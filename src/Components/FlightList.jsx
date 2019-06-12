@@ -51,7 +51,7 @@ export default class FlightList extends Component {
     return (
       <div className="air-wrapper">
         <div className="air-table__btn">
-            <button className={this.state.display === 'departures' ? ' air-btn--focus btn-left' : 'air-btn--focus-no'}
+          <button className={this.state.display === 'departures' ? ' air-btn--focus btn-left' : 'air-btn--focus-no'}
             onClick={this.changedDeparture}>
             <span>
               <svg className="air-svg" width="40px" height="28px" viewBox="0 0 40 28" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -68,7 +68,7 @@ export default class FlightList extends Component {
               </svg>
             </span>
             Departures</button>
-            <button className={this.state.display === 'arrivals' ? ' air-btn--focus btn-right' : 'air-btn--focus-no'}
+          <button className={this.state.display === 'arrivals' ? ' air-btn--focus btn-right' : 'air-btn--focus-no'}
               onClick={this.changedArrivals}>
               <span>
                 <svg className="air-svg" width="40px" height="28px" viewBox="0 0 40 28" version="1.1" xmlns="http://www.w3.org/2000/svg">
