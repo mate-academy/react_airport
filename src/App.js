@@ -1,7 +1,6 @@
 import React from 'react';
 import './App.css';
 import FlightList from './FlightList';
-// import state from './state';
 
 function App() {
   return (

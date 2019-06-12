@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
-import Arrivals from './Arrivals';
-import Departures from './Departures';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Flights from './Flights';
 
 class FlightList extends Component {
@@ -8,104 +7,88 @@ class FlightList extends Component {
     super(props);
 
     this.state = {
-      departure: null,
-      arrival: null,
-      flights:null
+      flights: null,
     };
 
-
-
-
-    this.showArrivals=this.showArrivals.bind(this);
-    this.showDepartures= this.showDepartures.bind(this);
-    this.loadededate= this.loadededate.bind(this);
+    this.showArrivals = this.showArrivals.bind(this);
+    this.showDepartures = this.showDepartures.bind(this);
+    this.loadData = this.loadData.bind(this);
   }
 
-  loadededate(){
-    const xhrflights = new XMLHttpRequest();
-    xhrflights.open('GET', `https://api.iev.aero/api/flights/13-06-2019`);
-    xhrflights.addEventListener('load', () => {
-      const flights = JSON.parse(xhrflights.response).body;
+  componentDidMount() {
+    this.loadData('departure');
+  }
+
+  loadData(date) {
+    const dateNow = new Date().toLocaleString().slice(0, 10).replace(/\./g, '-');
+    const xhrFlights = new XMLHttpRequest();
+    xhrFlights.open('GET', `https://api.iev.aero/api/flights/${dateNow}`);
+    xhrFlights.addEventListener('load', () => {
+      const actualFlights = JSON.parse(xhrFlights.response).body;
+
       this.setState({
-        departure: flights.departure,
-        arrival: flights.arrival,
-        flights: flights.departure
+        flights: actualFlights[date],
       });
     });
 
-    xhrflights.send();
+    xhrFlights.send();
   }
 
-  // componentDidMount() {
-  //
-  //
-  //   const xhrflights = new XMLHttpRequest();
-  //
-  //   xhrflights.open('GET', `https://api.iev.aero/api/flights/13-06-2019`);
-  //
-  //   xhrflights.addEventListener('load', () => {
-  //     console.log(JSON.parse(xhrflights.response));
-  //     this.setState({
-  //       flights: JSON.parse(xhrflights.response)
-  //     });
-  //   });
-  //
-  //   xhrflights.send();
-  //
-  // }
+  showArrivals() {
+    this.loadData('arrival');
+  }
 
-  showArrivals(){}
-
-  showDepartures(){}
-
-
-
-
+  showDepartures() {
+    this.loadData('departure');
+  }
 
   render() {
-    this.loadededate();
-
-if(this.state.departure){
-
-
-  const flightComponents = this.state.flights.map(flight=><Flights
-    key={flight.ID}
-    term={flight.term}
-    timeDepExpectCalc={flight.timeDepExpectCalc}
-    gateNo={flight.gateNo}
-    airportTo={flight["airportToID.city_en"]}
-    airline={flight.airline.en}
-    fltNo={flight.fltNo}
-    status={flight.status}
-
-  />)
-  return (
-    <section>
-      <Arrivals onclick={this.showArrivals}/>
-      <Departures onclick={this.showDepartures}/>
-
-      <table>
-        <thead>
-        <tr>
-          <th>Terminal</th>
-          <th>Gate </th>
-          <th>Time</th>
-          <th>Destination</th>
-          <th>Airline </th>
-          <th>Flight </th>
-          <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        {flightComponents}
-        </tbody>
-      </table>
-    </section>
-  );
-}
-return null;
-
+    const { flights } = this.state;
+    if (flights) {
+      const flightComponents = flights.map(flight => (
+        <Flights
+          key={flight.ID}
+          term={flight.term}
+          time={flight.timeDepShedule ? new Date(flight.timeDepShedule) : new Date(flight.timeArrShedule)}
+          airportTo={flight['airportToID.city_en'] ? flight['airportToID.city_en'] : flight['airportFromID.city_en']}
+          flight={flight.codeShareData}
+          status={flight.status}
+          actual={new Date(flight.actual)}
+        />
+      ));
+      return (
+        <section>
+          <input type="button" value="Arrivals" onClick={this.showArrivals} />
+          <input type="button" value="Departures" onClick={this.showDepartures} />
+          <table>
+            <thead>
+              <tr>
+                <th>Terminal</th>
+                <th>Time</th>
+                <th>Destination</th>
+                <th>Status</th>
+                <th>Airline</th>
+                <th>Flight</th>
+              </tr>
+            </thead>
+            <tbody>
+              {flightComponents}
+            </tbody>
+          </table>
+        </section>
+      );
+    }
+    return null;
   }
 }
 
-export default  FlightList;
+Flights.propTypes = {
+  flight: PropTypes.arrayOf(PropTypes.object),
+  term: PropTypes.string,
+  time: PropTypes.objectOf(),
+  airportTo: PropTypes.string,
+  status: PropTypes.string,
+  actual: PropTypes.objectOf(),
+};
+
+export default FlightList;

@@ -1,18 +1,72 @@
 import React from 'react';
 
 export default function Flights(props) {
-  // console.log(props.airline.name)
-  //const airlines = props.airlines.map(airline=> <div>airline.name</div>);
+  const {
+    flight,
+    term,
+    time,
+    airportTo,
+    status,
+    actual,
+  } = props;
+
+  const flights = flight.map(flightItem => (
+    <div key={flightItem.airline.en.id}>
+      {flightItem.airline.en.name}
+    </div>
+  ));
+  const airlines = flight.map(airline => (
+    <div key={airline.airline.en.id}>
+      {airline.codeShare}
+    </div>
+  ));
+  const flightTime = `${time.getHours()}:${time.getMinutes()}`;
+  const actualFlightTime = `${actual.getHours()}:${actual.getMinutes()}`;
+
+  const getStatus = () => {
+    let statusFlight;
+    switch (status) {
+      case 'ON':
+        statusFlight = 'On time';
+        break;
+      case 'DP':
+        statusFlight = 'Departed';
+        break;
+      case 'CK':
+        statusFlight = 'Check-in';
+        break;
+      case 'LN':
+        statusFlight = 'Landed';
+        break;
+      case 'CX':
+        statusFlight = 'Cancelled';
+        break;
+      case 'BD':
+        statusFlight = 'Boarding';
+        break;
+      default:
+        statusFlight = status;
+    }
+
+    if (
+      statusFlight === 'Boarding'
+      || statusFlight === 'Landed'
+      || statusFlight === 'Departed'
+    ) {
+      statusFlight = `${statusFlight} ${actualFlightTime}`;
+    }
+
+    return statusFlight;
+  };
 
   return (
     <tr>
-      <td>{props.term}</td>
-      <td>{props.timeDepExpectCalc}</td>
-      <td>{props.airportTo}</td>
-      <td>{props.status}</td>
-      <td>{props.airline.name}</td>
-      <td>{props.fltNo}</td>
-      <td>{props.gateNo}</td>
+      <td>{term}</td>
+      <td>{flightTime}</td>
+      <td>{airportTo}</td>
+      <td>{getStatus()}</td>
+      <td>{flights}</td>
+      <td>{airlines}</td>
     </tr>
   );
 }
