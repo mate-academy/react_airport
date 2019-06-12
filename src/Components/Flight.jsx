@@ -22,7 +22,7 @@ export default class Flight extends Component {
           {departureDate ? <td>{departureTime}</td> : 'Canceled'}
           <td>{this.props.items.airline.en.name}</td>
           <td>{this.props.items.status + this.props.items.fltNo}</td>
-          <td className="flight-details"><a href="">Flight details</a></td>
+          <td className="flight-details"><a href="#">Flight details</a></td>
         </tr>
       </>
     )
