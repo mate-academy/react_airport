@@ -1,0 +1,51 @@
+tbody tr {
+  padding: 15px 5px;
+}
+
+tbody tr:nth-child(odd) {
+  background: #E5EFF3;
+}
+
+tbody tr:hover {
+  box-shadow: 0px 4px 9px 1px rgb(184, 180, 184);
+  cursor: pointer;
+}
+
+.details {
+  display: none;
+}
+
+.details:hover {
+  text-decoration: none;
+}
+
+tbody tr:hover .details {
+  display: block;
+  color: #73D2F0;
+}
+
+td {
+  padding: 15px 10px;
+  font-size: 18px;
+}
+
+td:last-child {
+  width: 120px;
+}
+
+.terminal {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #6FC84A;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: bold;
+  color: #6FC84A;
+}
+
+td:first-child {
+  text-align: center;
+}
