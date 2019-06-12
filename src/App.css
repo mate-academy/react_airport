@@ -1,33 +1,76 @@
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+
 .App {
-  text-align: center;
+  margin: 0;
+  font-size: 16px;
+  line-height: 24px;
+  color: #2f2f2f;
+  font-family: "Open Sans", sans-serif;
+  background-color: #e7efec;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.air-wrapper {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 40px 0 20px;;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.air-table__btn {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  color: #fff;
 }
 
-.App-link {
-  color: #61dafb;
+.air-table__btn button {
+  padding: 0;
+  font-size: 24px;
+  line-height: 60px;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-radius: 60px 60px 0 0;
+  transition: all .3s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.air-svg {
+  margin-right: 15px;
+  transform: translateY(5px);
+}
+
+.air-btn--focus-no {
+  background-color: #1eb7ee;
+  color: #fff;
+  opacity: .5;
+}
+
+.air-btn--focus-no:hover {
+  opacity: 1;
+}
+
+.air-btn--focus {
+  color: #1eb7ee;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.air-btn--focus .air-svg--fill {
+  fill: #1eb7ee;
+}
+
+.air-btn--focus-no .air-svg--fill {
+  fill: #fff;
+}
+
+.btn-left {
+  margin-right: -100px;
+}
+
+.btn-right {
+  margin-left: -100px;
+}
+
+
+.visual-hidden {
+  display: none;
 }

@@ -1,0 +1,73 @@
+
+.air-table {
+  width: 100%;
+  background-color: #fff;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.tbody tr {
+  line-height: 40px;
+}
+
+.air-table td {
+  padding: 12px;
+  font-size: 18px;
+}
+
+.air-table th {
+  padding: 12px;
+  color: #95989a;
+  border: 0;
+}
+
+.flight--term span {
+  font-weight: 700;
+  border-radius: 50%;
+  display: inline-block;
+  text-align: center;
+  width: 39px;
+  height: 40px;
+  line-height: 40px;
+  font-size: 22px;
+}
+
+.flight-details {
+  min-width: 150px;
+}
+
+tbody tr:nth-of-type(odd) {
+  background-color: rgba(0,102,135,.1);
+}
+
+tbody tr {
+  transition: all .3s;
+}
+
+tbody tr:hover {
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+tbody tr:hover .flight-details a {
+  opacity: 1;
+  transition: all .3s;
+}
+
+.flight-details a {
+  color: #1eb7ee;
+  opacity: 0;
+}
+
+.flight-details a:hover {
+  text-decoration: none;
+}
+
+.flight-term--a {
+  color: #63c745;
+  border: 1px solid #63c745;
+}
+
+.flight-term--d {
+  color: #1eb7ee;
+  border: 1px solid #1eb7ee;
+}
