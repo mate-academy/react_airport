@@ -13,7 +13,7 @@ export default function Flight(props, text, departuresState) {
 
   return (
     <tr className="flight" key={props.ID}>
-      <td><span className="terminal">{props.term}</span></td>
+      <td><span className={props.term==='A' ? 'green terminal' : 'blue terminal'}>{props.term}</span></td>
       {departuresState === undefined
         ? <td>{props.gateNo || ''}</td>
         : null}

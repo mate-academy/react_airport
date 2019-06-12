@@ -27,6 +27,7 @@ button {
   font-size: 23px;
   font-weight: 600;
   color: #fff;
+  transition: .3s;
 }
 
 button:hover {

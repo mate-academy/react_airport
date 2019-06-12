@@ -36,16 +36,19 @@ export default class Schendule extends Component {
   changeTab(event) {
     const targetTab = event.target.closest('button').dataset.tab;
     event.target.closest('button').classList.add('active');
+    event.target.closest('button').disabled = true;
 
     switch (targetTab) {
       case 'departures':
         event.target.nextSibling.classList.remove('active');
+        event.target.nextSibling.removeAttribute('disabled');
         this.setState({
           departuresState: true,
         });
         break;
       case 'arrivals':
         event.target.previousSibling.classList.remove('active');
+        event.target.previousSibling.removeAttribute('disabled');
         this.setState({
           departuresState: false,
         });
@@ -75,8 +78,11 @@ export default class Schendule extends Component {
     return `${day}-${month}-${date.getFullYear()}`;
   }
 
-  render() {
+  componentWillMount() {
     this.loadItems();
+  }
+
+  render() {
     const departureText = 'Departed at ';
     const arrivalText = 'Landed ';
     const displayGate = false;
