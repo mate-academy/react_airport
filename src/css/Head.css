@@ -1,0 +1,16 @@
+.thead_tr {
+  font-size: 18px;
+  font-weight: 500;
+  color: #95a4c3;
+  height: 60px;
+  background-color: #fff;
+  text-align: left;
+}
+
+.thead_tr th:first-child {
+  text-align: center;
+}
+
+.thead_tr .arrival {
+  display: none;
+}

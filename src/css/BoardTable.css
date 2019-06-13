@@ -1,0 +1,27 @@
+.table > table {
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+}
+
+.table tbody {
+  font-size: 20px;
+}
+
+.table tbody tr {
+  font-size: 20px;
+}
+
+.table tbody tr:nth-child(2n+1) {
+  background-color: #e7efec;
+}
+
+.table tbody tr:nth-child(2n+2) {
+  background-color: #fff;
+}
+
+.table td div {
+  margin: auto;
+  font-size: 26px;
+  font-weight: bold;
+}
