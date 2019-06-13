@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+body {
+  background: rgba(0, 102, 135, 0.1);
+  color: #2f2f2f;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.schedule {
+  width: 80%;
+  padding: 0px;
+  margin: 90px auto;
+  position: relative;
+}
+
+.schedule > input {
+  display:none;
+}
+
+.schedule > div {
+  display: none;
+}
+
+.schedule > label {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  text-align: center;
+  color: rgba(255, 255, 255);;
+  background: rgba(30, 183, 238, 0.6);
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 22px;
+  border-top-left-radius: 60px;
+  border-top-right-radius: 60px;
+}
+
+.schedule > label:hover {
+  background: rgba(30, 183, 238);
+}
+
+.schedule > label:first-of-type {
+  position: absolute;
+  top: -65px;
+  width: 55%;
+}
+
+.up {
+  margin-right: 15px;
+}
+
+#Path_403, #Path_402 {
+  fill: rgba(255, 255, 255);;
+}
+
+.schedule > label:last-of-type {
+  position: absolute;
+  top: -65px;
+  right: 0;
+  width: 55%;
+}
+
+.down {
+  margin-right: 15px;
+}
+
+.schedule > input:checked + label {
+  color: rgba(30, 183, 238);
+  border-bottom: 1px solid rgba(255, 255, 255);;
+  background: rgba(255, 255, 255);
+}
+
+.schedule > input:checked + label #Path_403,
+.schedule > input:checked + label #Path_402 {
+  fill: rgba(30, 183, 238);
+}
+
+#departures:checked ~ #shedule_1,
+#arrivals:checked ~ #shedule_2 {
+  display: block;
+}
+
+.calendar {
+  background: rgba(255, 255, 255);
+  height: 100px;
+  padding-left: 60px;
+}
+
+.calendar button {
+  background: rgba(255, 255, 255);
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 18px;
+  margin-top: 55px;
+  border: none;
+  color: rgba(149, 152, 154, 0.7);
+  cursor: pointer;
+  padding: 0 0 10px 0;
+  border-bottom: 3px solid rgba(149, 152, 154, 0.7);
+  outline: none;
+  position: relative;
+}
+
+.calendar button:nth-child(2) {
+  padding-left: 20px;
+  padding-right: 20px
+}
+
+.calendar .selected {
+  color:rgba(30, 183, 238);
+  border-bottom: 3px solid rgba(30, 183, 238);
+}
+
+.calendar .showDate {
+  position: absolute;
+  top: -25px;
+  left: 30px;
+  font-size: 14px;
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+  background: rgba(255, 255, 255);
+}
+
+td, th {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+th {
+  color: #95989a;
+  font-weight: normal;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+tbody {
+  color: #2f2f2f;
+}
+
+tr:nth-child(2n) {
+  background: rgba(0, 102, 135, 0.1);
+}
+
+tbody tr:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  padding-top: 13px;
+  display: flex;
+  justify-content: left;
+}
+
+li img {
+  width: 64px;
+  height: 38px;
+  margin-right: 7px;
+  margin-top: -8px;
+}
+
+li p {
+  margin: 0;
+}
+
+th:first-child {
+  text-align: center;
+}
+
+.terminal {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  margin: auto;
+}
+
+.terminalA {
+  color: rgb(4, 167, 4);
+  border: 1px solid rgb(4, 167, 4);;
+}
+
+.terminalD {
+  color: #1eb7ee;
+  border: 1px solid #1eb7ee;
+}
