@@ -6,6 +6,10 @@
   box-shadow: 0 0 10px grey;
 }
 
+.row td {
+  padding: 0 20px 0;
+}
+
 .row td:last-child {
   width: 250px;
 }
