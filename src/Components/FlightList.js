@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import FlightItem from './FlightItem';
-
+import Button from './Button';
 class FlightList extends Component {
   constructor(props) {
     super(props);
@@ -9,6 +9,7 @@ class FlightList extends Component {
       arrival: [],
       display: 'departures',
     };
+    this.updateDisplayMode = this.updateDisplayMode.bind(this);
   }
 
   componentDidMount() {
@@ -23,26 +24,29 @@ class FlightList extends Component {
       });
   }
 
+  updateDisplayMode () {
+    this.setState({display: 'arrivals'})
+  }
+
   render() {
-    console.log(this.state.arrival);
-    console.log(this.state);
-    return (
+     return (
       <div>
+        <Button  onClick={this.updateDisplayMode} />
         <table>
           <thead>
             <tr>
               <th>Terminal</th>
-              <th>Gate</th>
+              {this.state.arrival.gateNo ? <th>Gate</th> : null}
               <th>Local Time</th>
-              <th>Time</th>
               <th>Destination</th>
+              <th>Status</th>
               <th>Airline</th>
               <th>Flight </th>
-              <th>Status</th>
+              {/* <th></th> */}
             </tr>
           </thead>
           <tbody>
-            {this.state.map(item => <FlightItem arrival={item.arrival} departure={item.departure} />)}
+            {this.state.arrival.map(item => <FlightItem arrival={item} key={item.ID} />)}
           </tbody>
         </table>
       </div>
