@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import Flights from './Flights';
 
 class FlightList extends Component {
@@ -8,6 +8,8 @@ class FlightList extends Component {
 
     this.state = {
       flights: null,
+      arrivals: null,
+      departures:null
     };
 
     this.showArrivals = this.showArrivals.bind(this);
@@ -20,15 +22,25 @@ class FlightList extends Component {
   }
 
   loadData(date) {
+
     const dateNow = new Date().toLocaleString().slice(0, 10).replace(/\./g, '-');
     const xhrFlights = new XMLHttpRequest();
     xhrFlights.open('GET', `https://api.iev.aero/api/flights/${dateNow}`);
     xhrFlights.addEventListener('load', () => {
       const actualFlights = JSON.parse(xhrFlights.response).body;
-
-      this.setState({
-        flights: actualFlights[date],
-      });
+      if (date === 'arrival') {
+        this.setState({
+          flights: actualFlights[date],
+          arrivals: 'arrivals active',
+          departures: 'departures',
+        });
+      } else {
+        this.setState({
+          flights: actualFlights[date],
+          arrivals: 'arrivals',
+          departures: 'departures active',
+        });
+      }
     });
 
     xhrFlights.send();
@@ -58,8 +70,10 @@ class FlightList extends Component {
       ));
       return (
         <section>
-          <input type="button" value="Arrivals" onClick={this.showArrivals} />
-          <input type="button" value="Departures" onClick={this.showDepartures} />
+          <div>
+            <input className={this.state.arrivals} type="button" value="Arrivals" onClick={this.showArrivals} />
+            <input className={this.state.departures} type="button" value="Departures" onClick={this.showDepartures} />
+          </div>
           <table>
             <thead>
               <tr>
@@ -82,13 +96,13 @@ class FlightList extends Component {
   }
 }
 
-Flights.propTypes = {
-  flight: PropTypes.arrayOf(PropTypes.object),
-  term: PropTypes.string,
-  time: PropTypes.objectOf(),
-  airportTo: PropTypes.string,
-  status: PropTypes.string,
-  actual: PropTypes.objectOf(),
-};
+// Flights.propTypes = {
+//   flight: PropTypes.arrayOf(PropTypes.object),
+//   term: PropTypes.string,
+//   time: PropTypes.object,
+//   airportTo: PropTypes.string,
+//   status: PropTypes.string,
+//   actual: PropTypes.object,
+// };
 
 export default FlightList;
