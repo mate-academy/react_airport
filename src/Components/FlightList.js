@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import FlightItem from './FlightItem';
 import Button from './Button';
+
 class FlightList extends Component {
   constructor(props) {
     super(props);
     this.state = {
       departure: [],
       arrival: [],
-      display: 'departures',
+      display: 'departure',
     };
     this.updateDisplayMode = this.updateDisplayMode.bind(this);
   }
@@ -24,19 +25,21 @@ class FlightList extends Component {
       });
   }
 
-  updateDisplayMode () {
-    this.setState({display: 'arrivals'})
+  updateDisplayMode(stateItem) {
+    this.setState({ display: stateItem });
   }
 
   render() {
-     return (
+    let data = this.state[this.state.display];
+    const displayGate = this.state.display === 'departure';
+    return (
       <div>
-        <Button  onClick={this.updateDisplayMode} />
+        <Button updateDisplayMode={this.updateDisplayMode} display={this.state.display} />
         <table>
           <thead>
             <tr>
               <th>Terminal</th>
-              {this.state.arrival.gateNo ? <th>Gate</th> : null}
+              {this.state.display === 'departure' ? <th>Gate</th> : null}
               <th>Local Time</th>
               <th>Destination</th>
               <th>Status</th>
@@ -46,7 +49,8 @@ class FlightList extends Component {
             </tr>
           </thead>
           <tbody>
-            {this.state.arrival.map(item => <FlightItem arrival={item} key={item.ID} />)}
+            {data.map(item => <FlightItem item={item} key={item.ID} 
+              displayGate={displayGate} />)}
           </tbody>
         </table>
       </div>

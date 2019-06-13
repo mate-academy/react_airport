@@ -7,8 +7,12 @@ export default class Button extends Component {
   render() {
     return (
       <React.Fragment>
-       <button className='departures' >DEPARTURES</button>
-       <button className='arrivals' onClick={this.props.onClick}>ARRIVALS</button>
+        <button className='departures' 
+          onClick={() => this.props.updateDisplayMode('departure')}>DEPARTURES
+        </button>
+        <button className='arrivals' 
+          onClick={() => this.props.updateDisplayMode('arrival')}>ARRIVALS
+        </button>
       </React.Fragment>
     )
   }
