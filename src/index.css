@@ -8,6 +8,10 @@ section {
 
 }
 
+input:hover {
+  cursor: pointer;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -21,6 +25,16 @@ tr {
 td:first-child,
 th:first-child {
   text-align: center;
+}
+
+span {
+  line-height: 25px;
+  display: inline-block;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin: 0;
 }
 
 section div {
@@ -45,14 +59,31 @@ section div:hover {
 }
 
 .departures {
-  left: 250px;
   color: white;
   background-color: #1eb7ee;
 }
 
+.imgDepartures {
+  display: inline-block;
+  z-index: 3;
+  position: absolute;
+  left: 90px;
+  top: 10px;
+}
+
+.imgArrivals {
+  display: inline-block;
+  z-index: 5;
+  position: absolute;
+  left: 355px;
+  top: 10px;
+}
+
 .arrivals {
+  left: 250px;
   color: white;
   background-color: #1eb7ee;
+  position: absolute;
 }
 
 table tbody tr:nth-child(even) {
@@ -78,4 +109,20 @@ tbody tr:hover {
 
 thead tr {
   background-color: white;
+  color: #95989a;
+  font-size: small;
+}
+
+.termA {
+  color: #63c745;
+  border: 1px solid #63c745;
+}
+
+.termB {
+  color: #1eb7ee;
+  border: 1px solid #1eb7ee;
+}
+
+td div {
+  height: 20px;
 }

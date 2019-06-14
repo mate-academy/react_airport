@@ -8,8 +8,11 @@ export default function Flights(props) {
     airportTo,
     status,
     actual,
+    gate,
   } = props;
 
+  const colorTerm = term === 'A' ? 'termA' : 'termB';
+  const gateTd = gate || '-';
   const flights = flight.map(flightItem => (
     <div key={flightItem.airline.en.id}>
       {flightItem.airline.en.name}
@@ -58,15 +61,15 @@ export default function Flights(props) {
 
     return statusFlight;
   };
-
   return (
     <tr>
-      <td>{term}</td>
+      <td><span className={colorTerm}>{term}</span></td>
       <td>{flightTime}</td>
       <td>{airportTo}</td>
       <td>{getStatus()}</td>
       <td>{flights}</td>
       <td>{airlines}</td>
+      <td>{gateTd}</td>
     </tr>
   );
 }
