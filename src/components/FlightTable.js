@@ -20,8 +20,8 @@ class FlightTable extends Component {
           isDeparture: true,
           isArrival: false,
           viewData: prevState.departure
-        }
-      })
+        };
+      });
     }
     if (value === 'arrival') {
       this.setState(prevState => {
@@ -29,8 +29,8 @@ class FlightTable extends Component {
           isDeparture: false,
           isArrival: true,
           viewData: prevState.arrival
-        }
-      })
+        };
+      });
     }
 
   };
@@ -40,7 +40,7 @@ class FlightTable extends Component {
     const viewData = this.state.viewData.map(flight => {
       return (
         <FlightRow flight={flight}/>
-      )
+      );
     });
     const bntDepClassName = this.state.isDeparture
       ? 'air-btn-active air-btn air-btn-left'

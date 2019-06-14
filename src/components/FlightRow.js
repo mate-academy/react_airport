@@ -1,16 +1,16 @@
 import React from 'react';
 
 function FlightRow(props) {
-  const {flight} = props;
+  const { flight } = props;
   const flightFields = [];
-  for (let field in flight) {
+  for (const field in flight) {
     flightFields.push(
       (
         <td className={field}>
           {flight[field]}
         </td>
       )
-    )
+    );
   }
 
   return (

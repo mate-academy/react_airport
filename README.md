@@ -53,7 +53,7 @@
   $ git add .
   $ git commit -m 'commit message'
   $ git push origin master
-  ```
+  ``
 - Execute `npm run deploy`. This command will push the `/build` folder to branch
   `gh-pages` in your remote repository. 
 - Add links to your demo in readme.md.

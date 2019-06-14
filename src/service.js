@@ -9,7 +9,7 @@ export default class Service {
   }
 
   _dataModification(data) {
-    const departure = data.then(body => {
+    const departure = data.then((body) => {
       return body.departure.reduce((acc, currentV) => {
         acc.push({
           terminal: currentV.term,
@@ -18,13 +18,13 @@ export default class Service {
           destination: currentV['airportToID.name_en'],
           airline: currentV.airline.en.name,
           flight: currentV.codeShareData[0].codeShare,
-          status: currentV.status
+          status: currentV.status,
         });
         return acc;
-      }, [])
+      }, []);
     });
 
-    const arrival = data.then(body => {
+    const arrival = data.then((body) => {
       return body.arrival.reduce((acc, currentV) => {
         acc.push({
           terminal: currentV.term,
@@ -32,34 +32,26 @@ export default class Service {
           destination: currentV['airportFromID.name_en'],
           airline: currentV.airline.en.name,
           flight: currentV.codeShareData[0].codeShare,
-          status: currentV.status
+          status: currentV.status,
         });
         return acc;
-      }, [])
+      }, []);
     });
-    return Promise.all([departure, arrival]).then(values => {
+    return Promise.all([departure, arrival]).then((values) => {
       return {
         departure: values[0],
-        arrival: values[1]
-      }
+        arrival: values[1],
+      };
     });
   }
 
   _getData(date) {
     return fetch(`${this.apiBase}${date}`)
-      .then(res => {
-        return res.json();
-      })
-      .then(res => {
-        return res.body
-      })
-
+      .then(res => res.json())
+      .then(res => res.body);
   }
   _dateFormat(date) {
     const time = new Date(date);
-    return `${time.getHours()}:${time.getMinutes().toString().padStart(2, '0')}`
+    return `${time.getHours()}:${time.getMinutes().toString().padStart(2, '0')}`;
   }
 }
-
-
-
