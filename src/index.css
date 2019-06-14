@@ -1,5 +1,5 @@
 body {
-  background-color: #E7EFEC;
+  background-color: #e7efec;
 }
 
 section {
@@ -8,7 +8,7 @@ section {
 
 }
 
-input:hover {
+button:hover {
   cursor: pointer;
 }
 
@@ -44,7 +44,7 @@ section div {
   display: flex;
 }
 
-input {
+button {
   width: 350px;
   height: 100%;
   position: absolute;
@@ -63,17 +63,13 @@ section div:hover {
   background-color: #1eb7ee;
 }
 
-.imgDepartures {
-  display: inline-block;
-  z-index: 3;
-  position: absolute;
-  left: 90px;
-  top: 10px;
+button span {
+  margin-right: 10px;
 }
 
 .imgArrivals {
   display: inline-block;
-  z-index: 5;
+  /*z-index: 5;*/
   position: absolute;
   left: 355px;
   top: 10px;
@@ -93,7 +89,7 @@ table tbody tr:nth-child(even) {
 
 table tbody tr:nth-child(odd) {
   width: 100%;
-  background-color: #E5EFF3;
+  background-color: #e5eff3;
 }
 
 tbody tr:hover {
@@ -102,7 +98,6 @@ tbody tr:hover {
 
 .active {
   z-index: 2;
-
   background-color: white;
   color: #1eb7ee;
 }

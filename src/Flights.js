@@ -1,4 +1,5 @@
 import React from 'react';
+//import PropTypes from 'prop-types';
 
 export default function Flights(props) {
   const {
@@ -6,7 +7,7 @@ export default function Flights(props) {
     term,
     time,
     airportTo,
-    status,
+    statusCode,
     actual,
     gate,
   } = props;
@@ -28,7 +29,7 @@ export default function Flights(props) {
 
   const getStatus = () => {
     let statusFlight;
-    switch (status) {
+    switch (statusCode) {
       case 'ON':
         statusFlight = 'On time';
         break;
@@ -48,7 +49,7 @@ export default function Flights(props) {
         statusFlight = 'Boarding';
         break;
       default:
-        statusFlight = status;
+        statusFlight = statusCode;
     }
 
     if (
@@ -73,3 +74,23 @@ export default function Flights(props) {
     </tr>
   );
 }
+
+// Flights.propTypes = {
+//   flight: PropTypes.arrayOf(PropTypes.object),
+//   term: PropTypes.string,
+//   time: PropTypes.string,
+//   airportTo: PropTypes.string,
+//   statusCode: PropTypes.string,
+//   actual: PropTypes.string,
+//   gate: PropTypes.string,
+// };
+//
+// Flights.defaultProps = {
+//   flight: [],
+//   term: '',
+//   time: '',
+//   airportTo: '',
+//   statusCode: '',
+//   actual: '',
+//   gate: '',
+// };
