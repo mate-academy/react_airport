@@ -48,16 +48,30 @@ td:last-child {
   font-weight: bold;
 }
 
-.green {
+.termA {
   color: #6fc84a;
   border: 1px solid #6fc84a;
 }
 
-.blue {
+.termD {
   color: #1eb7ee;
   border: 1px solid #1eb7ee;
 }
 
 td:first-child {
   text-align: center;
+}
+
+.code-share {
+  list-style: none;
+}
+
+.airline {
+  display: flex;
+  align-items: center;
+}
+
+.airline img {
+  width: 60px;
+  margin-right: 10px;
 }

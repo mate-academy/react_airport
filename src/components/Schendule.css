@@ -1,5 +1,5 @@
 .schendule {
-  max-width: 900px;
+  max-width: 1100px;
   margin: 20px auto;
   font-family: "Open Sans", sans-serif;
   background-color: #fff;
@@ -17,7 +17,7 @@
 }
 
 button {
-  width: 56%;
+  width: 55%;
   height: 60px;
   position: absolute;
   border: none;
@@ -38,7 +38,7 @@ button:hover {
 .departure {
   left: 0;
   text-align: right;
-  padding-right: 130px;
+  padding-right: 140px;
 }
 
 .departure::before {
@@ -50,13 +50,13 @@ button:hover {
   position: absolute;
   z-index: 2;
   top: 10px;
-  right: 320px;
+  right: 330px;
 }
 
 .arrive {
   right: 0;
   text-align: left;
-  padding-left: 200px;
+  padding-left: 210px;
 }
 
 .arrive::before {
@@ -68,7 +68,7 @@ button:hover {
   position: absolute;
   z-index: 2;
   top: 10px;
-  left: 130px;
+  left: 140px;
 }
 
 .active {
@@ -106,6 +106,10 @@ button:last-child.active::before {
   border-bottom: 3px solid #b8b9b9;
 }
 
+.day:hover {
+  cursor: pointer;
+}
+
 .date {
   font-size: 12px;
   margin: 0 auto 5px;
@@ -134,7 +138,6 @@ th {
   font-weight: 400;
   vertical-align: bottom;
   text-align: left;
-  font-weight: bold;
 }
 
 th:last-child {
