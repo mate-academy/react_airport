@@ -16,10 +16,10 @@ class FlightList extends Component {
     super(props);
 
     this.state = {
-      arrival: null,
-      departure: null,
-      imgDeparturesColor: '',
-      imgArrivalsColor: '',
+      arrivalClassName: null,
+      departureClassName: null,
+      imgDeparturesColor: null,
+      imgArrivalsColor: null,
       flightComponents: null,
       headersItems: null,
     };
@@ -45,7 +45,6 @@ class FlightList extends Component {
     ));
   }
 
-  // eslint-disable-next-line class-methods-use-this
   getRowComponents(response, displayGate) {
     return response.map(flight => (
       <Flights
@@ -76,8 +75,8 @@ class FlightList extends Component {
 
       if (displayGate) {
         this.setState({
-          arrival: ARRIVAL,
-          departure: `${DEPARTURE} ${ACTIVE}`,
+          arrivalClassName: ARRIVAL,
+          departureClassName: `${DEPARTURE} ${ACTIVE}`,
           imgDeparturesColor: activeIcon,
           imgArrivalsColor: notActiveIcon,
           flightComponents,
@@ -85,8 +84,8 @@ class FlightList extends Component {
         });
       } else {
         this.setState({
-          arrival: `${ARRIVAL} ${ACTIVE}`,
-          departure: DEPARTURE,
+          arrivalClassName: `${ARRIVAL} ${ACTIVE}`,
+          departureClassName: DEPARTURE,
           imgDeparturesColor: notActiveIcon,
           imgArrivalsColor: activeIcon,
           flightComponents,
@@ -100,8 +99,8 @@ class FlightList extends Component {
 
   render() {
     const {
-      departure,
-      arrival,
+      departureClassName,
+      arrivalClassName,
       imgDeparturesColor,
       imgArrivalsColor,
       flightComponents,
@@ -110,8 +109,8 @@ class FlightList extends Component {
     return (
       <section>
         <Tabs
-          departure={departure}
-          arrival={arrival}
+          departureClassName={departureClassName}
+          arrivalClassName={arrivalClassName}
           loadData={this.loadData}
           imgDeparturesColor={imgDeparturesColor}
           imgArrivalsColor={imgArrivalsColor}

@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 
 export default function Tabs(props) {
   const {
-    departure,
-    arrival,
+    departureClassName,
+    arrivalClassName,
     loadData,
     imgDeparturesColor,
     imgArrivalsColor,
   } = props;
   return (
     <div>
-      <button type="button" className={departure} data="departure" onClick={loadData}>
+      <button type="button" className={departureClassName} data="departure" onClick={loadData}>
         <span>
           <svg
             data-v-2cc0fd12=""
@@ -44,7 +44,7 @@ export default function Tabs(props) {
         </span>
         Departures
       </button>
-      <button className={arrival} data="arrival" type="button" onClick={loadData}>
+      <button className={arrivalClassName} data="arrival" type="button" onClick={loadData}>
         <span>
           <svg
             data-v-2cc0fd12=""
@@ -86,16 +86,16 @@ export default function Tabs(props) {
 }
 
 Tabs.propTypes = {
-  departure: PropTypes.string,
-  arrival: PropTypes.string,
+  departureClassName: PropTypes.string,
+  arrivalClassName: PropTypes.string,
   loadData: PropTypes.func,
   imgDeparturesColor: PropTypes.string,
   imgArrivalsColor: PropTypes.string,
 };
 
 Tabs.defaultProps = {
-  departure: '',
-  arrival: '',
+  departureClassName: '',
+  arrivalClassName: '',
   loadData: () => console.log('loadData is undefined'),
   imgDeparturesColor: '',
   imgArrivalsColor: '',
