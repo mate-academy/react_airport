@@ -1,0 +1,23 @@
+.flights-body__row {
+  height: 70px;
+  border: 0;
+  overflow: hidden;
+}
+
+.flights-body__row-terminal {
+  text-align: center;
+  color: green;
+  padding-right: 20px;
+  font-weight: 600;
+}
+
+.flights-body__row-terminal:before {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 1px solid green;
+  border-radius: 50%;
+  transform: translate(-32%, -20%);
+}
+
