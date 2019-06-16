@@ -25,7 +25,7 @@ function Arrival(props) {
               <Term flight={item} />
               <td>{item.gateNo}</td>
               <td>{item.timeSchedule}</td>
-              <td>{item['airportFromID.name_en']}</td>
+              <td>{item['airportFromID.city_en']}</td>
               <Status flight={item} />
               <Airline flight={item} />
               <Flight flight={item} />

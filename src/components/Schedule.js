@@ -31,24 +31,28 @@ export default class Schedule extends React.PureComponent {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.date !== prevState.date) {
-      this.loadUrl(`https://api.iev.aero/api/flights/${this.state.date}`)
-        .then(data => this.setState(state => ({
-          departure: data.departure.map(item => ({
-            ...item,
-            timeSchedule: this.getTime(item.timeDepShedule),
-            timeFact: this.getTime(item.timeTakeofFact),
-          }))
-            .filter(item => this.getDateTimeZone(item.timeDepShedule) === state.dateFilter)
-            .sort((a, b) => a.timeSchedule.localeCompare(b.timeSchedule)),
-          arrival: data.arrival.map(item => ({
-            ...item,
-            timeSchedule: this.getTime(item.timeToStand),
-            timeFact: this.getTime(item.timeLandFact),
-          }))
-            .filter(item => this.getDateTimeZone(item.timeToStand) === state.dateFilter)
-            .sort((a, b) => a.timeSchedule.localeCompare(b.timeSchedule)),
-        })));
+      this.loadData(`https://api.iev.aero/api/flights/${this.state.date}`)
+        .then(data => this.getFlights(data));
     }
+  }
+
+  getFlights(data) {
+    return this.setState(state => ({
+      departure: data.departure.map(item => ({
+        ...item,
+        timeSchedule: this.getTime(item.timeDepShedule),
+        timeFact: this.getTime(item.timeTakeofFact),
+      }))
+        .filter(item => this.getDateTimeZone(item.timeDepShedule) === state.dateFilter)
+        .sort((a, b) => a.timeSchedule.localeCompare(b.timeSchedule)),
+      arrival: data.arrival.map(item => ({
+        ...item,
+        timeSchedule: this.getTime(item.timeToStand),
+        timeFact: this.getTime(item.timeLandFact),
+      }))
+        .filter(item => this.getDateTimeZone(item.timeToStand) === state.dateFilter)
+        .sort((a, b) => a.timeSchedule.localeCompare(b.timeSchedule)),
+    }));
   }
 
   getDate(num = 0) {
@@ -56,10 +60,9 @@ export default class Schedule extends React.PureComponent {
     const currentDay = currentDate.getDate() + num;
     const currentMonth = currentDate.getMonth() + 1;
     const currentYear = currentDate.getFullYear();
-    const currentFullMonth = currentMonth < 10 ? `0${currentMonth}` : currentMonth;
     this.setState({
-      date: `${currentDay}-${currentFullMonth}-${currentYear}`,
-      dateFilter: `${currentYear}-${currentFullMonth}-${currentDay}`,
+      date: `${currentDay}-${currentMonth}-${currentYear}`,
+      dateFilter: currentDay,
     });
   }
 
@@ -76,13 +79,26 @@ export default class Schedule extends React.PureComponent {
     });
   }
 
+  /* getShowDate() {
+    const date = new Date();
+    const nextDate = new Date();
+    nextDate.setDate(nextDate.getDate() + 1);
+    const prevDate = new Date();
+    prevDate.setDate(prevDate.getDate() - 1);
+    this.setState({
+      showToday: `${date.getDate()}/${date.getMonth()}`,
+      showTomorrow: `${nextDate.getDate()}/${nextDate.getMonth()}`,
+      showYesterday: `${prevDate.getDate()}/${prevDate.getMonth()}`,
+    });
+  } */
+
   getTime(time) {
     const newTime = new Date(time).toTimeString().slice(0, 5);
     return newTime;
   }
 
   getDateTimeZone(date) {
-    const newDate = new Date(date).toLocaleDateString().split('.').reverse().join('-');
+    const newDate = new Date(date).getDate();
     return newDate;
   }
 
@@ -97,7 +113,7 @@ export default class Schedule extends React.PureComponent {
     });
   }
 
-  loadUrl(url) {
+  loadData(url) {
     return fetch(url)
       .then(response => response.json())
       .then(data => data.body);
