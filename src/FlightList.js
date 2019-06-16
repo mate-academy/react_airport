@@ -45,6 +45,7 @@ class FlightList extends Component {
     ));
   }
 
+  // eslint-disable-next-line class-methods-use-this
   getRowComponents(response, displayGate) {
     return response.map(flight => (
       <Flights
