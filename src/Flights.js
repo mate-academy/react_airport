@@ -79,10 +79,10 @@ export default function Flights(props) {
 Flights.propTypes = {
   flight: PropTypes.arrayOf(PropTypes.object),
   term: PropTypes.string,
-  time: PropTypes.node,
+  time: PropTypes.objectOf(PropTypes.string),
   airportTo: PropTypes.string,
   statusCode: PropTypes.string,
-  actual: PropTypes.node,
+  actual: PropTypes.objectOf(PropTypes.string),
   gateNo: PropTypes.string,
   displayGate: PropTypes.bool,
 };
