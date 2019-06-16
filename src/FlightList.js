@@ -5,8 +5,8 @@ import {
   ARRIVAL,
   DEPARTURE,
   ACTIVE,
-  activeIcon,
-  notActiveIcon,
+  colorActiveIcon,
+  colorNotActiveIcon,
   headersWithGate,
   headersWithoutGate,
 } from './constants';
@@ -77,8 +77,8 @@ class FlightList extends Component {
         this.setState({
           arrivalClassName: ARRIVAL,
           departureClassName: `${DEPARTURE} ${ACTIVE}`,
-          imgDeparturesColor: activeIcon,
-          imgArrivalsColor: notActiveIcon,
+          imgDeparturesColor: colorActiveIcon,
+          imgArrivalsColor: colorNotActiveIcon,
           flightComponents,
           headersItems,
         });
@@ -86,8 +86,8 @@ class FlightList extends Component {
         this.setState({
           arrivalClassName: `${ARRIVAL} ${ACTIVE}`,
           departureClassName: DEPARTURE,
-          imgDeparturesColor: notActiveIcon,
-          imgArrivalsColor: activeIcon,
+          imgDeparturesColor: colorNotActiveIcon,
+          imgArrivalsColor: colorActiveIcon,
           flightComponents,
           headersItems,
         });

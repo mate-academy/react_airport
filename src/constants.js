@@ -19,5 +19,5 @@ export const headersWithoutGate = [
 export const ARRIVAL = 'arrival';
 export const DEPARTURE = 'departure';
 export const ACTIVE = 'active';
-export const activeIcon = '#1EB7EE';
-export const notActiveIcon = '#FFFFFF';
+export const colorActiveIcon = '#1EB7EE';
+export const colorNotActiveIcon = '#FFFFFF';
