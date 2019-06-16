@@ -58,7 +58,7 @@ section div:hover {
   cursor: pointer;
 }
 
-.departures {
+.departure {
   color: white;
   background-color: #1eb7ee;
 }
@@ -67,15 +67,7 @@ button span {
   margin-right: 10px;
 }
 
-.imgArrivals {
-  display: inline-block;
-  /*z-index: 5;*/
-  position: absolute;
-  left: 355px;
-  top: 10px;
-}
-
-.arrivals {
+.arrival {
   left: 250px;
   color: white;
   background-color: #1eb7ee;
@@ -108,12 +100,12 @@ thead tr {
   font-size: small;
 }
 
-.termA {
+.termAIcon {
   color: #63c745;
   border: 1px solid #63c745;
 }
 
-.termB {
+.termBIcon {
   color: #1eb7ee;
   border: 1px solid #1eb7ee;
 }

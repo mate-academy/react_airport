@@ -1,53 +1,95 @@
 import React, { Component } from 'react';
 import Flights from './Flights';
 import Tabs from './Tabs';
+import {
+  ARRIVAL,
+  DEPARTURE,
+  ACTIVE,
+  activeIcon,
+  notActiveIcon,
+  headersWithGate,
+  headersWithoutGate,
+} from './constants';
 
 class FlightList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      flights: null,
-      arrivals: null,
-      departures: null,
+      arrival: null,
+      departure: null,
       imgDeparturesColor: '',
       imgArrivalsColor: '',
-      isGate: false,
+      flightComponents: null,
+      headersItems: null,
     };
 
-    this.showArrivals = this.showArrivals.bind(this);
-    this.showDepartures = this.showDepartures.bind(this);
     this.loadData = this.loadData.bind(this);
-    this.getProps = this.getProps.bind(this);
+    this.getRowComponents = this.getRowComponents.bind(this);
+    FlightList.getHeaders = FlightList.getHeaders.bind(this);
   }
 
   componentDidMount() {
-    this.loadData('departure');
+    this.loadData();
   }
 
-  loadData(date) {
+  static getHeaders(displayGate) {
+    return displayGate ? headersWithGate.map(header => (
+      <th key={header}>
+        {header}
+      </th>
+    )) : headersWithoutGate.map(header => (
+      <th key={header}>
+        {header}
+      </th>
+    ));
+  }
+
+  getRowComponents(response, displayGate) {
+    return response.map(flight => (
+      <Flights
+        key={flight.ID}
+        term={flight.term}
+        time={flight.timeDepShedule ? new Date(flight.timeDepShedule) : new Date(flight.timeArrShedule)}
+        airportTo={flight['airportToID.city_en'] ? flight['airportToID.city_en'] : flight['airportFromID.city_en']}
+        flight={flight.codeShareData}
+        statusCode={flight.status}
+        actual={new Date(flight.actual)}
+        gateNo={flight.gateNo}
+        displayGate={displayGate}
+      />
+    ));
+  }
+
+  loadData(eventTarget) {
+    const direction = eventTarget ? eventTarget.currentTarget.attributes.data.value : DEPARTURE;
     const dateNow = new Date().toLocaleString().slice(0, 10).replace(/\./g, '-');
     const xhrFlights = new XMLHttpRequest();
+
     xhrFlights.open('GET', `https://api.iev.aero/api/flights/${dateNow}`);
     xhrFlights.addEventListener('load', () => {
       const actualFlights = JSON.parse(xhrFlights.response).body;
-      if (date === 'arrival') {
+      const displayGate = direction === DEPARTURE;
+      const headersItems = FlightList.getHeaders(displayGate);
+      const flightComponents = this.getRowComponents(actualFlights[direction], displayGate);
+
+      if (displayGate) {
         this.setState({
-          flights: actualFlights[date],
-          arrivals: 'arrivals active',
-          departures: 'departures',
-          imgDeparturesColor: '#FFFFFF',
-          imgArrivalsColor: '#1EB7EE',
-          isGate: false,
+          arrival: ARRIVAL,
+          departure: `${DEPARTURE} ${ACTIVE}`,
+          imgDeparturesColor: activeIcon,
+          imgArrivalsColor: notActiveIcon,
+          flightComponents,
+          headersItems,
         });
       } else {
         this.setState({
-          flights: actualFlights[date],
-          arrivals: 'arrivals',
-          departures: 'departures active',
-          imgDeparturesColor: '#1EB7EE',
-          imgArrivalsColor: '#FFFFFF',
-          isGate: true,
+          arrival: `${ARRIVAL} ${ACTIVE}`,
+          departure: DEPARTURE,
+          imgDeparturesColor: notActiveIcon,
+          imgArrivalsColor: activeIcon,
+          flightComponents,
+          headersItems,
         });
       }
     });
@@ -55,83 +97,36 @@ class FlightList extends Component {
     xhrFlights.send();
   }
 
-  showArrivals() {
-    this.loadData('arrival');
-  }
-
-  showDepartures() {
-    this.loadData('departure');
-  }
-
-  getProps() {
-      const flightComponents = this.state.flights.map(flight => (
-        <Flights
-          key={flight.ID}
-          term={flight.term}
-          time={flight.timeDepShedule ? new Date(flight.timeDepShedule) : new Date(flight.timeArrShedule)}
-          airportTo={flight['airportToID.city_en'] ? flight['airportToID.city_en'] : flight['airportFromID.city_en']}
-          flight={flight.codeShareData}
-          statusCode={flight.status}
-          actual={new Date(flight.actual)}
-          gate={flight.gateNo || '-'}
-        />
-    ));
-
-    const headers = [
-      'Terminal',
-      'Gate',
-      'Time',
-      'Destination',
-      'Status',
-      'Airline',
-      'Flight',
-
-    ];
-
-    const headerWithGate = headers.map(header=><th key={header}>
-      {header}
-    </th>);
-
-    const headerWithoutGate = headers.filter(header=>{return header!=='Gate'}).map(header=><th key={header}>
-      {header}
-    </th>);
-    const headersActive = this.state.isGate? headerWithGate:headerWithoutGate;
-console.log(headersActive);
-    return {
-      flightComponents,
-      headersItems: headersActive
-    }
-  }
-
   render() {
-    const { flights } = this.state;
-
-    if(flights){
-      const {flightComponents, headersItems} = this.getProps();
-      return (
-        <section>
-          <Tabs
-            departures={this.state.departures}
-            arrivals={this.state.arrivals}
-            showDepartures={this.showDepartures}
-            showArrivals={this.showArrivals}
-            imgDeparturesColor={this.state.imgDeparturesColor}
-            imgArrivalsColor={this.state.imgArrivalsColor}
-          />
-          <table>
-            <thead>
+    const {
+      departure,
+      arrival,
+      imgDeparturesColor,
+      imgArrivalsColor,
+      flightComponents,
+      headersItems,
+    } = this.state;
+    return (
+      <section>
+        <Tabs
+          departure={departure}
+          arrival={arrival}
+          loadData={this.loadData}
+          imgDeparturesColor={imgDeparturesColor}
+          imgArrivalsColor={imgArrivalsColor}
+        />
+        <table>
+          <thead>
             <tr>
               {headersItems}
             </tr>
-            </thead>
-            <tbody>
+          </thead>
+          <tbody>
             {flightComponents}
-            </tbody>
-          </table>
-        </section>
-      )
-    }
-    return null;
+          </tbody>
+        </table>
+      </section>
+    );
   }
 }
 
