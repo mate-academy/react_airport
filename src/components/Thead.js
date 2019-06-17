@@ -18,8 +18,8 @@ function Thead({ page }) {
   );
 }
 
-Thead.PropTypes = {
-  page: PropTypes.oneOf(['departure', 'arrival']).isRequired
+Thead.propTypes = {
+  page: PropTypes.oneOf(['departure', 'arrival'])
 }
 
 export default Thead;

@@ -36,7 +36,7 @@ function Flight({ flight }) {
   )
 }
 
-Flight.PropTypes = {
+Flight.propTypes = {
   flight: PropTypes.object.isRequired
 }
 

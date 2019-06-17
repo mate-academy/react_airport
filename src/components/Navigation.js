@@ -44,7 +44,7 @@ function Navigation({ page, switchPage }) {
   );
 }
 
-Navigation.PropTypes = {
+Navigation.propTypes = {
   page: PropTypes.oneOf(['departure', 'arrival']).isRequired,
   switchPage: PropTypes.func.isRequired,
 }
