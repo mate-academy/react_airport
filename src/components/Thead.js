@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Thead({ page }) {
   return (
@@ -15,6 +16,10 @@ function Thead({ page }) {
       </tr>
     </thead>
   );
+}
+
+Thead.PropTypes = {
+  page: PropTypes.oneOf(['departure', 'arrival']).isRequired
 }
 
 export default Thead;

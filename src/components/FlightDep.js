@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function normalizeTime(timeStr) {
   return timeStr.match(/\d{2}:\d{2}/)
@@ -38,6 +39,10 @@ function Flight({ flight }) {
       <td>{flight[`planeTypeID.name`]}</td>
     </tr>
   );
+}
+
+Flight.PropTypes = {
+  flight: PropTypes.object.isRequired
 }
 
 export default Flight;

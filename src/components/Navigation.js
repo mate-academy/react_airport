@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function Navigation({ page, switchPage }) {
   return (
@@ -41,6 +42,11 @@ function Navigation({ page, switchPage }) {
         </div>
     </div>
   );
+}
+
+Navigation.PropTypes = {
+  page: PropTypes.oneOf(['departure', 'arrival']).isRequired,
+  switchPage: PropTypes.func.isRequired,
 }
 
 export default Navigation;
