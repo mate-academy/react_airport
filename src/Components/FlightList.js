@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import FlightItem from './FlightItem';
 import Button from './Button';
+import './FlightList.css';
 
 class FlightList extends Component {
   constructor(props) {
@@ -9,8 +10,10 @@ class FlightList extends Component {
       departure: [],
       arrival: [],
       display: 'departure',
+      departureEvent: true
     };
     this.updateDisplayMode = this.updateDisplayMode.bind(this);
+    this.tabChanger = this.tabChanger.bind(this);
   }
 
   componentDidMount() {
@@ -20,8 +23,8 @@ class FlightList extends Component {
       .then(({ body }) => {
         const { arrival, departure } = body;
         this.setState(() => ({
-          arrival, departure
-        }))
+          arrival, departure,
+        }));
       });
   }
 
@@ -29,12 +32,38 @@ class FlightList extends Component {
     this.setState({ display: stateItem });
   }
 
+  tabChanger(event) {
+    const targetButton = event.target.closest('button').dataset.tab;
+    console.log(event.target.value);
+    event.target.closest('button').classList.add('active');
+    event.target.closest('button').disabled = true;
+
+    switch (targetButton) {
+      case 'departures':
+        this.setState({
+          departureEvent: true,
+        });
+        event.target.nextSibling.classList.remove('active');
+        event.target.nextSibling.removeAttribute('disabled');
+        break;
+      case 'arrivals':
+        this.setState({
+          departureEvent: false,
+        });
+        event.target.previousSibling.classList.remove('active');
+        event.target.previousSibling.removeAttribute('disabled');
+        break;
+      default:
+        console.log(event);
+    }
+  }
+
   render() {
     let data = this.state[this.state.display];
     const displayGate = this.state.display === 'departure';
     return (
       <div>
-        <Button updateDisplayMode={this.updateDisplayMode} display={this.state.display} />
+        <Button updateDisplayMode={this.updateDisplayMode} display={this.state.display} tabChanger={this.tabChanger} />
         <table>
           <thead>
             <tr>
@@ -49,7 +78,7 @@ class FlightList extends Component {
             </tr>
           </thead>
           <tbody>
-            {data.map(item => <FlightItem item={item} key={item.ID} 
+            {data.map(item => <FlightItem item={item} key={item.ID}
               displayGate={displayGate} />)}
           </tbody>
         </table>
@@ -58,4 +87,4 @@ class FlightList extends Component {
   }
 }
 
-export default FlightList;
+export default FlightList; 

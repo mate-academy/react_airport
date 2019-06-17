@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './FlightList.css'
 
 export default class FlightItem extends Component {
 
@@ -11,15 +12,20 @@ export default class FlightItem extends Component {
 
 
     return (
-      <tr>
-        <td>{this.props.item.term}</td>
+      <tr className='flightList'>
+        <td>
+          <span className={this.props.item.term === 'A' ? 'term-a' : 'term-d'}>
+            {this.props.item.term}
+          </span>
+        </td>
         {this.props.displayGate ? <td>{this.props.item.gateNo}</td> : null}
         <td>{localeTime}</td>
         <td>{this.props.item['airportFromID.city_en'] || this.props.item['airportToID.city_en']}</td>
         {timeArrSheduleDate ? <td>{timeArrShedule}</td> : 'Canceled'}
         <td>{this.props.item.airline.en.name}</td>
         <td>{this.props.item.status + this.props.item.fltNo}</td>
+        <td><a>Flight details</a></td>
       </tr>
     )
   }
-}
+} 
