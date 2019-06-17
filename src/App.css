@@ -1,33 +1,120 @@
 .App {
+  font-family: "Open Sans", sans-serif;
+}
+
+body {
+  background-color:#e7efec;
+  margin-top: 30px;
+}
+
+.preload {
+  color: #1eb7ee;
+  font-size: 48px;
+  width: 150px;
+  margin: 0 auto;
+}
+
+table {
+  width: 1200px;
   text-align: center;
+  margin: 0 auto;
+  border-collapse: collapse;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+table tr {
+  height: 50px;
+  font-size: 18px;
+  font-family: "Open Sans", sans-serif;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+thead {
+  font-weight: bold;
+}
+
+table thead tr, table tbody tr:nth-child(even) {
+  background-color: #ffff;
+}
+
+table tbody tr:nth-child(odd) {
+  background-color:#e5eff3;
+}
+
+
+.button__container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 1200;
+  margin: 0 auto;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  transition: all .3s;
+  font-size: 24px;
+  line-height: 60px;
 }
 
-.App-link {
-  color: #61dafb;
+.button__container * {
+  border-radius: 60px 60px 0 0;
+  font-size: 24px;
+  line-height: 60px;
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button__container :first-child {
+  margin-right: -100px;
+}
+
+.button__container button {
+  border: none;
+  height: 60px;
+  width: 650px;
+  color: #1eb7ee;
+  background-color: white;
+  transition: all 0.5s;
+}
+
+.button__container button.active {
+  color: #fff;
+  background-color: #73d2f0;
+  z-index: 1;
+}
+
+.button__container button.active g {
+  fill: #ffff;
+}
+
+.button__container button.active:hover {
+  background-color: #1eb7ee;
+}
+
+.button__container button.active:not(:hover) span svg {
+  fill: #1eb7ee;
+}
+
+.terminal-a, .terminal-d {
+  font-weight: 700;
+  border-radius: 50%;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  font-size: 22px;
+}
+
+.terminal-a {
+  color: #63c745;
+  border: 1px solid #63c745;
+}
+
+.terminal-d {
+  color: #1eb7ee;
+  border: 1px solid #1eb7ee;
+}
+
+.airline-info img {
+  width: 65px;
+  height: 40px;
+}
+
+.airline-info span {
+  text-align: end;
 }
