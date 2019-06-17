@@ -39,6 +39,14 @@ table tbody tr:nth-child(odd) {
   background-color:#e5eff3;
 }
 
+tbody tr {
+  transition: all 0.5s
+}
+
+tbody tr:hover {
+  box-shadow: 0px 5px 10px rgb(184, 180, 184);
+  z-index: 2;
+}
 
 .button__container {
   display: flex;

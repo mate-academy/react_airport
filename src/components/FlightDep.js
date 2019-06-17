@@ -1,29 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function normalizeTime(timeStr) {
-  return timeStr.match(/\d{2}:\d{2}/)
-}
-
-function getStatus(flight) {
-  if(flight.status === 'DP' && flight.timeDepFact) {
-    return <td>Departed at {normalizeTime(flight.timeDepFact)}</td>
-  } else if(flight.status === 'CX') {
-    return <td>Cancelled</td>
-  } else if(flight.status === 'CK') {
-    return <td>Check-in</td>
-  } else if(flight.status === 'ON') {
-    return <td>On time</td>
-  } else if(flight.status === 'BD') {
-    return <td>Boarding</td>
-  } else if(flight.status === 'GC') {
-    return <td>Gate cloased</td>
-  } else {
-    return <td>{flight.status}</td>
-  };
-}
-
-function Flight({ flight }) {
+function Flight({ flight, getStatus, normalizeTime }) {
   return (
     <tr className=''>
       <td><span className={flight.term === 'A' ? 'terminal-a': 'terminal-d'}>{flight.term}</span></td>
