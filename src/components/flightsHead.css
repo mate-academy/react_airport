@@ -1,0 +1,14 @@
+.flights-body__head tr {
+  height: 70px;
+  text-align: left;
+}
+
+.flights-body__head th {
+  background: #fff;
+  font-weight: 300;
+  color: grey;
+}
+
+.flights-body__head-info:first-child {
+  padding-left: 20px;
+}

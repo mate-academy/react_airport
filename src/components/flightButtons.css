@@ -1,0 +1,62 @@
+.flight-buttons {
+  position: relative;
+}
+
+.flights-buttons__departure {
+  position: absolute;
+  width: 70%;
+  top: 0;
+  left: 0;
+  height: 55px;
+  text-transform: uppercase;
+  text-align: left;
+  font-size: 22px;
+  line-height: 55px;
+  font-weight: 700;
+  padding-left: 25%;
+  border: none;
+  outline: none;
+  border-top-left-radius: 55px;
+  border-top-right-radius: 55px;
+  background-color: #74d1f2;
+  transition: background-color .5s ease;
+  cursor: pointer;
+  color: #fff;
+}
+
+.flights-buttons__departure:hover, .flights-buttons__arrival:hover {
+  background-color: #1eb8ee;
+  transition: background-color .5s ease;
+}
+
+.flights-buttons__arrival {
+  position: absolute;
+  width: 70%;
+  top: 0;
+  right: 0;
+  height: 55px;
+  text-transform: uppercase;
+  text-align: right;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 55px;
+  padding-right: 30%;
+  border: none;
+  outline: none;
+  border-top-left-radius: 55px;
+  border-top-right-radius: 55px;
+  background-color: #74d1f2;
+  cursor: pointer;
+  color: #fff;
+}
+
+.active {
+  z-index: 2;
+  width: 50%;
+  background-color: #fff;
+  color: #1eb8ee;
+}
+
+.active:hover {
+  background-color: #fff;
+}
