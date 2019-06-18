@@ -3,7 +3,7 @@ import { FLIGHT_TYPES, BASE_URL_API } from './constants';
 import { createFlightMapper, createDateString } from './utils';
 import FlightsBody from './components/FlightsBody';
 import FlightsButtons from './components/FlightsButtons';
-import './App.css'
+import './App.css';
 
 const { DEPARTURE, ARRIVAL } = FLIGHT_TYPES;
 
@@ -13,7 +13,7 @@ export default class App extends Component {
     this.state = {
       depatrure: [],
       arrival: [],
-      loaded: null,
+      loaded: false,
       currRender: DEPARTURE,
       currDate: new Date(),
     }
@@ -25,13 +25,15 @@ export default class App extends Component {
   toggleRender(type) {
     const { currRender } = this.state;
     
-    if (type === DEPARTURE && currRender !== DEPARTURE) {
+    if (type === DEPARTURE 
+      && currRender !== DEPARTURE) {
       this.setState({
         currRender: DEPARTURE
       })
     }
 
-    if (type === ARRIVAL && currRender !== ARRIVAL) {
+    if (type === ARRIVAL 
+      && currRender !== ARRIVAL) {
       this.setState({
         currRender: ARRIVAL
       })
@@ -79,7 +81,6 @@ export default class App extends Component {
       )
     } else {
       return (
-        <div className="main">
           <div className="wrapper">
             <div className="buttons">
               <FlightsButtons toggler={this.toggleRender} currRender={currRender} />
@@ -90,7 +91,6 @@ export default class App extends Component {
               changeDay={this.changeDay}
             />
           </div>
-        </div>
       )
     }
   }

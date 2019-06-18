@@ -14,16 +14,8 @@ table {
   width: 100%;
   font-size: 18px;
   font-family: Helvetica, sans-serif;
-  background: #fff;
-}
-
-table tbody tr:nth-child(odd) {
-  background: #fff;
-}
-
-
-table tbody tr:nth-child(even) {
-  background: #e7efec;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 .loader {
@@ -34,7 +26,6 @@ table tbody tr:nth-child(even) {
   width: 100%;
   background: #e7efec;
 }
-
 
 .load {
   position: absolute;
@@ -47,9 +38,8 @@ table tbody tr:nth-child(even) {
   height: 80px;
   border-radius: 50%;
   animation: spin 1s infinite linear;
-  z-index: 999999;
+  z-index: 999;
 }
-
 
 @keyframes spin {
   from {

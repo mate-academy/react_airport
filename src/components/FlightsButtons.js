@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { FLIGHT_TYPES } from '../constants';
 import './flightButtons.css'
 
@@ -12,8 +13,8 @@ export default function FlightsButtons(props) {
         className={currRender === DEPARTURE 
           ? "flights-buttons__departure active" : "flights-buttons__departure"}
         onClick={(e) => {
-          e.preventDefault()
-          toggler(DEPARTURE)
+          e.preventDefault();
+          toggler(DEPARTURE);
         }}
         type='button'
       >
@@ -23,8 +24,8 @@ export default function FlightsButtons(props) {
         className={currRender === ARRIVAL
           ? "flights-buttons__arrival active" : "flights-buttons__arrival"}
         onClick={(e) => {
-          e.preventDefault()
-          toggler(ARRIVAL)
+          e.preventDefault();
+          toggler(ARRIVAL);
         }}
         type='button'
       >
@@ -33,3 +34,8 @@ export default function FlightsButtons(props) {
     </div>
   );
 };
+
+FlightsButtons.propTypes = {
+  toggler: PropTypes.func,
+  currRender: PropTypes.string,
+}

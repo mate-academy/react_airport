@@ -18,7 +18,7 @@ export default function FlightsRow(props) {
 
   return (
     <tr className="flights-body__row">
-      <td className="flights-body__row-terminal"><span>{terminal}</span></td>
+      <td className="flights-body__row-terminal"><p>{terminal}</p></td>
       {currRender ===  DEPARTURE &&
         <td className="flights-body__row-ggate">{gate || '-'}</td>}
       <td className="flights-body__row-time">{time}</td>
