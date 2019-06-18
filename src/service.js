@@ -9,9 +9,9 @@ export default class Service {
   }
 
   _modifyData(data) {
-    const departure = data.then((body) => {
-      return body.departure.reduce((acc, currentV) => {
-        acc.push({
+    return data.then((body) => {
+      const departure = body.departure.map((currentV) => {
+        return ({
           terminal: currentV.term,
           gate: currentV.gateNo,
           time: this._formatDate(currentV.timeDepShedule),
@@ -20,13 +20,9 @@ export default class Service {
           flight: currentV.codeShareData[0].codeShare,
           status: currentV.status,
         });
-        return acc;
-      }, []);
-    });
-
-    const arrival = data.then((body) => {
-      return body.arrival.reduce((acc, currentV) => {
-        acc.push({
+      });
+      const arrival = body.arrival.map((currentV) => {
+        return ({
           terminal: currentV.term,
           time: this._formatDate(currentV.timeArrShedule),
           destination: currentV['airportFromID.name_en'],
@@ -34,13 +30,10 @@ export default class Service {
           flight: currentV.codeShareData[0].codeShare,
           status: currentV.status,
         });
-        return acc;
-      }, []);
-    });
-    return Promise.all([departure, arrival]).then((values) => {
+      });
       return {
-        departure: values[0],
-        arrival: values[1],
+        departure,
+        arrival,
       };
     });
   }

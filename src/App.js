@@ -20,12 +20,12 @@ export default class App extends Component{
     const dateToday = `${day}-${month}-${year}`;
     this.flightsService.getFlight(dateToday)
       .then(flights => {
-        this.setState({
-          flightData: flights,
-          loading: false,
-        });
+        this.setState(
+          {
+            flightData: flights,
+            loading: false,
+          });
       });
-
   }
 
   render() {
