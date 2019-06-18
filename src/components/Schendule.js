@@ -81,29 +81,10 @@ export default class Schendule extends Component {
     return new Date(year, month, day);
   }
 
-  changeTab(event) {
-    const targetTab = event.target.closest('button').dataset.tab;
-    event.target.closest('button').classList.add('active');
-    event.target.closest('button').disabled = true;
-
-    switch (targetTab) {
-      case 'departures':
-        this.setState({
-          departuresState: true,
-        });
-        event.target.nextSibling.classList.remove('active');
-        event.target.nextSibling.removeAttribute('disabled');
-        break;
-      case 'arrivals':
-        this.setState({
-          departuresState: false,
-        });
-        event.target.previousSibling.classList.remove('active');
-        event.target.previousSibling.removeAttribute('disabled');
-        break;
-      default:
-        console.log('Lint wanted default case');
-    }
+  changeTab(departuresState) {
+    this.setState({
+      departuresState: departuresState
+    });
   }
 
   loadApi(url) {
@@ -115,8 +96,8 @@ export default class Schendule extends Component {
   render() {
     return (
       <section className="schendule">
-        <DepArrButtons changeTab={this.changeTab} />
-        <Dates datesForTable={this.datesForTable} dateForLink={this.dateForLink} />
+        <DepArrButtons changeTab={this.changeTab} departuresState={this.state.departuresState} />
+        <Dates datesForTable={this.datesForTable} dateForLink={this.dateForLink} currentDate={this.state.filterDate} />
         <table>
           <TableHeaders departuresState={this.state.departuresState} />
           {this.state.departuresState
