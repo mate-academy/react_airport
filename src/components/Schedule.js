@@ -79,27 +79,12 @@ export default class Schedule extends React.PureComponent {
     });
   }
 
-  /* getShowDate() {
-    const date = new Date();
-    const nextDate = new Date();
-    nextDate.setDate(nextDate.getDate() + 1);
-    const prevDate = new Date();
-    prevDate.setDate(prevDate.getDate() - 1);
-    this.setState({
-      showToday: `${date.getDate()}/${date.getMonth()}`,
-      showTomorrow: `${nextDate.getDate()}/${nextDate.getMonth()}`,
-      showYesterday: `${prevDate.getDate()}/${prevDate.getMonth()}`,
-    });
-  } */
-
   getTime(time) {
-    const newTime = new Date(time).toTimeString().slice(0, 5);
-    return newTime;
+    return new Date(time).toTimeString().slice(0, 5);
   }
 
   getDateTimeZone(date) {
-    const newDate = new Date(date).getDate();
-    return newDate;
+    return new Date(date).getDate();
   }
 
   getOnClick(show, num) {
