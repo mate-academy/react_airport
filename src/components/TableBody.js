@@ -93,7 +93,6 @@ class TableBody extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.day !== prevProps.day) {
-      console.log(this.state.top);
       this.setState({
         loaded: false
     })
