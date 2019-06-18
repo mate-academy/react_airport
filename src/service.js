@@ -5,16 +5,16 @@ export default class Service {
 
   getFlight(date) {
     const data = this._getData(date);
-    return this._dataModification(data);
+    return this._modifyData(data);
   }
 
-  _dataModification(data) {
+  _modifyData(data) {
     const departure = data.then((body) => {
       return body.departure.reduce((acc, currentV) => {
         acc.push({
           terminal: currentV.term,
           gate: currentV.gateNo,
-          time: this._dateFormat(currentV.timeDepShedule),
+          time: this._formatDate(currentV.timeDepShedule),
           destination: currentV['airportToID.name_en'],
           airline: currentV.airline.en.name,
           flight: currentV.codeShareData[0].codeShare,
@@ -28,7 +28,7 @@ export default class Service {
       return body.arrival.reduce((acc, currentV) => {
         acc.push({
           terminal: currentV.term,
-          time: this._dateFormat(currentV.timeArrShedule),
+          time: this._formatDate(currentV.timeArrShedule),
           destination: currentV['airportFromID.name_en'],
           airline: currentV.airline.en.name,
           flight: currentV.codeShareData[0].codeShare,
@@ -50,7 +50,7 @@ export default class Service {
       .then(res => res.json())
       .then(res => res.body);
   }
-  _dateFormat(date) {
+  _formatDate(date) {
     const time = new Date(date);
     return `${time.getHours()}:${time.getMinutes().toString().padStart(2, '0')}`;
   }

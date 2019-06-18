@@ -8,7 +8,6 @@ class FlightTable extends Component {
     departure: this.props.departure,
     arrival: this.props.arrival,
     isDeparture: true,
-    isArrival: false,
     viewData: this.props.departure
   };
 
@@ -18,7 +17,6 @@ class FlightTable extends Component {
       this.setState(prevState => {
         return {
           isDeparture: true,
-          isArrival: false,
           viewData: prevState.departure
         };
       });
@@ -27,7 +25,6 @@ class FlightTable extends Component {
       this.setState(prevState => {
         return {
           isDeparture: false,
-          isArrival: true,
           viewData: prevState.arrival
         };
       });
@@ -37,35 +34,35 @@ class FlightTable extends Component {
 
 
   render() {
-    const viewData = this.state.viewData.map(flight => {
-      return (
-        <FlightRow flight={flight}/>
-      );
-    });
     const bntDepClassName = this.state.isDeparture
       ? 'air-btn-active air-btn air-btn-left'
       : 'air-btn air-btn-left';
-    const bntArClassName = this.state.isArrival
-      ? 'air-btn-active air-btn air-btn-right'
-      : 'air-btn air-btn-right';
+    const bntArClassName = this.state.isDeparture
+      ? 'air-btn air-btn-right'
+      : 'air-btn-active air-btn air-btn-right';
     return (
-      <div className={'flight-board'}>
+      <div className="flight-board">
         <div>
-          <div className={'air-buttons'}>
-            <button onClick={this.select} value={'departure'} className={bntDepClassName}>
+          <div className="air-buttons">
+            <button onClick={this.select} value="departure" className={bntDepClassName}>
               DEPARTURE
             </button>
-            <button onClick={this.select} value={'arrival'} className={bntArClassName}>ARRIVAL</button>
+            <button onClick={this.select} value="arrival" className={bntArClassName}>ARRIVAL</button>
           </div>
-          <table className={'flight-table'}>
+          <table className="flight-table">
             <thead >
             <FlightHead isDeparture={this.state.isDeparture}
-                        isArrival={this.state.isArrival}
-                        className={'flight-header'}
+                        className="flight-header"
             />
             </thead>
             <tbody>
-            {viewData}
+            {
+              this.state.viewData.map(flight => {
+              return (
+                <FlightRow flight={flight}/>
+              );
+            })
+            }
             </tbody>
           </table>
         </div>
