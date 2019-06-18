@@ -1,0 +1,55 @@
+.row {
+  height: 70px;
+}
+
+.row:hover {
+  box-shadow: 0 0 10px grey;
+}
+
+.row td {
+  padding: 0 20px 0;
+}
+
+.row td:last-child {
+  width: 250px;
+}
+
+.terminal > div {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  text-align: center;
+  line-height: 40px;
+}
+
+.green {
+  color: #63c745;
+  border: 1px solid #63c745;
+}
+
+.blue {
+  color: #1E91EE;
+  border: 1px solid #1e91ee;
+}
+
+.row img {
+  width: 65px;
+  margin-bottom: -12px;
+  margin-right: 5px;
+}
+
+.row .arr {
+  display: none;
+}
+
+.row .visible {
+  display: inline;
+}
+
+.row .unvisible {
+  display: none;
+}
+
+.row a {
+  margin-left: 15px;
+}

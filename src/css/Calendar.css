@@ -1,0 +1,26 @@
+.calendar {
+  background-color: #fff;
+  padding: 50px 0 50px 100px;
+}
+
+.calendar table {
+  border-collapse: collapse;
+  cursor: pointer;
+  
+}
+
+.calendar table td {
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 100px;
+  text-align: center;
+  cursor: pointer;
+  color: #d0d0d0;
+  border-bottom: 3px solid #d0d0d0;
+  padding: 10px 0 10px;
+}
+
+.calendar .active {
+  color:#73d2f0;
+  border-color:#73d2f0;
+}
