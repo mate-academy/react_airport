@@ -24,7 +24,7 @@ export default class FlightItem extends Component {
         {timeArrSheduleDate ? <td>{timeArrShedule}</td> : 'Canceled'}
         <td>{this.props.item.airline.en.name}</td>
         <td>{this.props.item.status + this.props.item.fltNo}</td>
-        <td><a>Flight details</a></td>
+        <td><a href='https://github.com/OlhaMazurenko/js_ordering-food'>Flight details</a></td>
       </tr>
     )
   }
