@@ -13,7 +13,6 @@ class FlightList extends Component {
       departureEvent: true
     };
     this.updateDisplayMode = this.updateDisplayMode.bind(this);
-    this.tabChanger = this.tabChanger.bind(this);
   }
 
   componentDidMount() {
@@ -32,38 +31,12 @@ class FlightList extends Component {
     this.setState({ display: stateItem });
   }
 
-  tabChanger(event) {
-    const targetButton = event.target.closest('button').dataset.tab;
-    console.log(event.target.value);
-    event.target.closest('button').classList.add('active');
-    event.target.closest('button').disabled = true;
-
-    switch (targetButton) {
-      case 'departures':
-        this.setState({
-          departureEvent: true,
-        });
-        event.target.nextSibling.classList.remove('active');
-        event.target.nextSibling.removeAttribute('disabled');
-        break;
-      case 'arrivals':
-        this.setState({
-          departureEvent: false,
-        });
-        event.target.previousSibling.classList.remove('active');
-        event.target.previousSibling.removeAttribute('disabled');
-        break;
-      default:
-        console.log(event);
-    }
-  }
-
   render() {
     let data = this.state[this.state.display];
     const displayGate = this.state.display === 'departure';
     return (
       <div>
-        <Button updateDisplayMode={this.updateDisplayMode} display={this.state.display} tabChanger={this.tabChanger} />
+        <Button updateDisplayMode={this.updateDisplayMode} display={this.state.display}  />
         <table>
           <thead>
             <tr>
