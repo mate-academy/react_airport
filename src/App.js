@@ -1,6 +1,4 @@
 import React from 'react';
-import './App.css';
-
 import { Api } from './api';
 import { CreateFlightMapper, CreateDateString } from './utils';
 import { BASE_URL, FLIGHT_TYPES, COLUMNS_BY_TYPE } from './constants';
@@ -111,5 +109,4 @@ export class App extends Component {
     );
   }
 }
-
 
