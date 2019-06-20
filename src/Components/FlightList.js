@@ -47,7 +47,6 @@ class FlightList extends Component {
               <th>Status</th>
               <th>Airline</th>
               <th>Flight </th>
-              {/* <th></th> */}
             </tr>
           </thead>
           <tbody>
