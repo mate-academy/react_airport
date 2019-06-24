@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function Navigation({ page, switchPage }) {
+export function Navigation({ page, switchPage }) {
   return (
     <div>
       <div className='button__container'>
@@ -48,5 +48,3 @@ Navigation.propTypes = {
   page: PropTypes.oneOf(['departure', 'arrival']).isRequired,
   switchPage: PropTypes.func.isRequired,
 }
-
-export default Navigation;

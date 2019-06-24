@@ -1,14 +1,14 @@
-import React from 'react'
+import React from 'react';
 import PropTypes from 'prop-types';
 
-function Flight({ flight, getStatus, normalizeTime }) {
+export function FlightArr({ flight, getStatus, normalizeTime }) {
   return (
     <tr>
-      <td><span className={flight.term === 'A' ? 'terminal-a': 'terminal-d'}>{flight.term}</span></td>
+      <td><span className={flight.term === 'A' ? "terminal-a": "terminal-d"}>{flight.term}</span></td>
       <td>{normalizeTime(flight.timeArrShedule)}</td>
       <td>{flight[`airportFromID.city`]}</td>
-      {getStatus(flight)}
-      <td className = 'airline-info'>
+      <td>{getStatus(flight)}</td>
+      <td className="airline-info">
         <img src={flight.airline.ua.logoSmallName} alt={`${flight.airline.ua.name} logo`}/>
         <span> {flight.airline.ua.name}</span>
       </td>
@@ -18,8 +18,13 @@ function Flight({ flight, getStatus, normalizeTime }) {
   )
 }
 
-Flight.propTypes = {
-  flight: PropTypes.object.isRequired
+FlightArr.propTypes = {
+  flight: PropTypes.shape({
+    term: PropTypes.string,
+    timeArrShedule: PropTypes.string,
+    ['airline.ua.logoSmallName']: PropTypes.string,
+    [`airportFromID.city`]: PropTypes.string,
+  }),
+  getStatus: PropTypes.func,
+  normalizeTime: PropTypes.func
 }
-
-export default Flight;

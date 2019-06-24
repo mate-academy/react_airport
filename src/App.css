@@ -14,37 +14,37 @@ body {
   margin: 0 auto;
 }
 
-table {
+.list-of-flights {
   width: 1200px;
   text-align: center;
   margin: 0 auto;
   border-collapse: collapse;
 }
 
-table tr {
+.list-of-flights tr {
   height: 50px;
   font-size: 18px;
   font-family: "Open Sans", sans-serif;
 }
 
-thead {
+.list-of-flights thead {
   font-weight: bold;
 }
 
-table thead tr, table tbody tr:nth-child(even) {
+.list-of-flights thead tr, .list-of-flights tbody tr:nth-child(even) {
   background-color: #ffff;
 }
 
-table tbody tr:nth-child(odd) {
+.list-of-flights tbody tr:nth-child(odd) {
   background-color:#e5eff3;
 }
 
-tbody tr {
+.list-of-flightst body tr {
   transition: all 0.5s
 }
 
-tbody tr:hover {
-  box-shadow: 0px 5px 10px rgb(184, 180, 184);
+.list-of-flights tbody tr:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   z-index: 2;
 }
 
