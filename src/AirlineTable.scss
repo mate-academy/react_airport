@@ -1,0 +1,9 @@
+.data-table {
+  table {
+    width: 100%;
+
+    tr:nth-child(2n) {
+      background: rgba(0, 102, 135, 0.1);
+    }
+  }
+}

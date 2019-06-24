@@ -1,0 +1,18 @@
+.flight-item {
+  text-align: center;
+
+  .flight-item__airline-list-airline {
+    width: 100%;
+  }
+
+  .flight-item__airline-list-airline-logo {
+    width: 25px;
+    height: auto;
+  }
+
+  .flight-item__airline-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}
