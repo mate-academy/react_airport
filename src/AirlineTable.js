@@ -3,7 +3,7 @@ import FlightItem from "./FlightItem.js"
 import './AirlineTable.scss';
 
 export default ({ data }) => {
-  let flightList = data.map((value) => {
+  const flightList = data.map(value => <FlightItem data={value} />);
     return <FlightItem data={value} />
     });
 
