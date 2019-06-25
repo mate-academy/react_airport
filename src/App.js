@@ -40,7 +40,7 @@ class App extends React.Component {
   }
 
   updateData(dayOffset) {
-    let date = new Date(Date.now());
+    const date = new Date(Date.now());
     date.setTime(date.getTime() + dayOffset * (60 * 60 * 24 * 1000));
 
     return fetch(`https://api.iev.aero/api/flights/${this.formatDate(date)}`).then(data => data.json()).then(data => this.setState({
