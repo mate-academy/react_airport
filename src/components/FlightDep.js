@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { getStatus, normalizeTime } from "../utils";
 
-export function FlightDep({ flight, getStatus, normalizeTime }) {
+export function FlightDep({ flight }) {
   return (
     <tr>
       <td><span className={flight.term === 'A' ? 'terminal-a': 'terminal-d'}>{flight.term}</span></td>

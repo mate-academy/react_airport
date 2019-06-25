@@ -50,7 +50,7 @@ body {
 
 .button__container {
   display: flex;
-  width: 1200;
+  width: 1200px;
   margin: 0 auto;
   justify-content: center;
   transition: all .3s;

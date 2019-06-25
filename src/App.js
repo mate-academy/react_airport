@@ -4,7 +4,7 @@ import { FlightDep } from './components/FlightDep';
 import { FlightArr } from './components/FlightArr';
 import { Navigation } from './components/Navigation';
 import { Thead } from './components/Thead';
-import { getStatus, getTodayDate, normalizeTime } from "./utils";
+import { getTodayDate } from "./utils";
 
 class App extends Component {
   constructor(props) {
@@ -52,8 +52,8 @@ class App extends Component {
             <Thead page={page} />
             <tbody>
               {page === 'departure' ?
-                departure.map(flight => <FlightDep getStatus={getStatus} normalizeTime={normalizeTime} flight={flight} key={flight.ID} />) :
-                arrival.map(flight => <FlightArr getStatus={getStatus} normalizeTime={normalizeTime} flight={flight} key={flight.ID} />)}
+                departure.map(flight => <FlightDep flight={flight} key={flight.ID} />) :
+                arrival.map(flight => <FlightArr flight={flight} key={flight.ID} />)}
             </tbody>
           </table>
         </>
