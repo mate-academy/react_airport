@@ -4,8 +4,6 @@ import './AirlineTable.scss';
 
 export default ({ data }) => {
   const flightList = data.map(value => <FlightItem data={value} />);
-    return <FlightItem data={value} />
-    });
 
   return <div className="data-table">
     <table>
