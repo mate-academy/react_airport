@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import './App.css';
 import FlightList from './FlightList';
 
+const DEPARTURES = 'departures';
+const ARRIVALS = 'arrivals';
+const YESTERDAY = 'yesterday';
+const TODAY = 'today';
+const TOMORROW = 'tomorrow';
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -9,7 +15,7 @@ export default class App extends Component {
 
     this.state = {
       statusDate: 'today',
-      statusFlight: 'departures',
+      statusFlight: DEPARTURES,
 
       yesterdayDepartures: '',
       yesterdayArrival: '',
@@ -21,14 +27,14 @@ export default class App extends Component {
     this.clickHandler = this.clickHandler.bind(this);
   }
 
-  parseData(dataArrs) {
+  parseData([yesterday, today, tomorrow]) {
     this.setState(() => ({
-      yesterdayDepartures: dataArrs[0].body.departure,
-      yesterdayArrival: dataArrs[0].body.arrival,
-      todayDepartures: dataArrs[1].body.departure,
-      todayArrival: dataArrs[1].body.arrival,
-      tomorrowDepartures: dataArrs[2].body.departure,
-      tomorrowArrival: dataArrs[2].body.arrival
+      yesterdayDepartures: yesterday.body.departure,
+      yesterdayArrival: yesterday.body.arrival,
+      todayDepartures: today.body.departure,
+      todayArrival: today.body.arrival,
+      tomorrowDepartures: tomorrow.body.departure,
+      tomorrowArrival: tomorrow.body.arrival
     }));
   }
 
@@ -36,9 +42,9 @@ export default class App extends Component {
     const date = new Date();
     const url = this.props.urlFlight;
 
-    const dateYesterday = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
-    const dateToday = `${date.getDate() + 1}-${date.getMonth() + 1}-${date.getFullYear()}`;
-    const dateTomorrow = `${date.getDate() + 2}-${date.getMonth() + 1}-${date.getFullYear()}`;
+    const dateYesterday = `${date.getDate() - 1}-${date.getMonth() + 1}-${date.getFullYear()}`;
+    const dateToday = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
+    const dateTomorrow = `${date.getDate() + 1}-${date.getMonth() + 1}-${date.getFullYear()}`;
 
     const dataYesterday = url + dateYesterday;
     const dataToday = url + dateToday;
@@ -65,20 +71,34 @@ export default class App extends Component {
   }
 
   clickHandler(event) {
-    if (event.target.id === 'departures') {
-      this.setState(() => ({statusFlight: 'departures'}));
-    }
-    if (event.target.id === 'arrivals') {
-      this.setState(() => ({statusFlight: 'arrivals'}));
-    }
-    if (event.target.id === 'yesterday') {
-      this.setState(() => ({statusDate: 'yesterday'}));
-    }
-    if (event.target.id === 'today') {
-      this.setState(() => ({statusDate: 'today'}));
-    }
-    if (event.target.id === 'tomorrow') {
-      this.setState(() => ({statusDate: 'tomorrow'}));
+    switch (event.target.id) {
+      case DEPARTURES:
+        this.setState(() => ({
+          statusFlight: DEPARTURES
+        }));
+        break;
+      case ARRIVALS:
+        this.setState(() => ({
+          statusFlight: ARRIVALS
+        }));
+        break;
+      case YESTERDAY:
+        this.setState(() => ({
+          statusFlight: YESTERDAY
+        }));
+        break;
+      case TODAY:
+        this.setState(() => ({
+          statusFlight: TODAY
+        }));
+        break;
+      case TOMORROW:
+        this.setState(() => ({
+          statusFlight: TOMORROW
+        }));
+        break;
+      default:
+        break;
     }
   }
 

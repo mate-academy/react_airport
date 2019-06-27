@@ -8,7 +8,7 @@ export default class Flight extends Component {
     return (
       <div className="flights-row">
         <div>{data.term}</div>
-        <div>{data.gateNo ? data.gateNo : '-'}</div>
+        <div>{data.gateNo || '-'}</div>
         <div>{`${newDate.getHours()}`.padStart(2, '0')}:{`${newDate.getMinutes()}`.padStart(2, '0')}</div>
         <div>{data['airportToID.name_en'] || data['airportFromID.name_en']}</div>
         <div>{data.airline.en.name}</div>
