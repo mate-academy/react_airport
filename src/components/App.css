@@ -1,0 +1,27 @@
+.flights {
+  border: 1px solid black;
+}
+
+.flights > .flights-row {
+  border: 1px solid black;
+  padding: 10px;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 70px 60px 80px 150px 150px 60px 60px;
+}
+
+.flights > .flights-row:nth-child(even) {
+  background-color: #ddd;
+}
+
+.loading {
+  width: 100px;
+  margin: 50px auto;
+}
+
+.departures {
+  display: grid;
+  grid-template-columns: 100px 100px 100px 100px 100px;
+  justify-content: center;
+  grid-gap: 10px;
+}
