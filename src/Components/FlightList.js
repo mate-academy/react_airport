@@ -41,7 +41,7 @@ class FlightList extends Component {
           <thead>
             <tr>
               <th>Terminal</th>
-              {this.state.display === 'departure' ? <th>Gate</th> : null}
+              { displayGate ? <th>Gate</th> : null}
               <th>Local Time</th>
               <th>Destination</th>
               <th>Status</th>
