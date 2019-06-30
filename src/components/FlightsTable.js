@@ -8,9 +8,9 @@ class FlightsTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      requested: false,
       loaded: false,
       listOfFlights: [],
-      departures: true,
       currentDate: getCurrentDate(),
       currentRadio: 'today',
       currentTab: 'departures',
@@ -55,10 +55,9 @@ class FlightsTable extends React.Component {
     const { currentTab } = this.state;
 
     if (currentTab !== toTab) {
-      this.setState(prevState => ({
-        departures: !prevState.departures,
+      this.setState({
         currentTab: toTab,
-      }));
+      });
     }
   }
 
@@ -75,11 +74,11 @@ class FlightsTable extends React.Component {
 
   render() {
     const {
-      departures,
       listOfFlights,
       loaded,
       currentDate,
       currentRadio,
+      currentTab,
       requested,
     } = this.state;
 
@@ -89,7 +88,7 @@ class FlightsTable extends React.Component {
 
     if (loaded) {
       const date = currentDate.slice(0, 2);
-      const flightsData = departures
+      const flightsData = currentTab === 'departures'
         ? listOfFlights.departure
           .filter(data => parseTime(data.timeDepExpectCalc).day === date)
           .map(parseFlightData)

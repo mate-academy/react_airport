@@ -10,11 +10,7 @@ export function getCurrentDate(dayShiftSize = 0) {
 }
 
 function normalizeTimeUnit(date) {
-  if (date.length === 1) {
-    return `0${date}`;
-  }
-
-  return date;
+  return date.padStart(2, '0');
 }
 
 export function doFetch(url) {
