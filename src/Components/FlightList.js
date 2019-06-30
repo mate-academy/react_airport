@@ -32,7 +32,7 @@ class FlightList extends Component {
   }
 
   render() {
-    let data = this.state[this.state.display];
+    const data = this.state[this.state.display];
     const displayGate = this.state.display === 'departure';
     return (
       <div>
@@ -47,7 +47,6 @@ class FlightList extends Component {
               <th>Status</th>
               <th>Airline</th>
               <th>Flight </th>
-              {/* <th></th> */}
             </tr>
           </thead>
           <tbody>
