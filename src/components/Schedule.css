@@ -193,3 +193,88 @@ th:first-child {
   color: #1eb7ee;
   border: 1px solid #1eb7ee;
 }
+
+@media screen and (max-width: 930px) {
+  td, th {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  td, th {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 14px;
+  }
+
+  .calendar button {
+    font-size: 16px;
+  }
+
+  .terminal {
+    width: 30px;
+    height: 30px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .schedule {
+    width: 90%;
+  }
+
+  td, th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 12px;
+  }
+
+  .calendar button {
+    font-size: 14px;
+  }
+
+  li img {
+    width: 60px;
+    height: 34px;
+  }
+
+  .schedule > label {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  td, th {
+    font-size: 10px;
+  }
+.calendar {
+  height: 70px;
+}
+  .calendar button {
+    font-size: 12px;
+    margin-top: 30px;
+  }
+
+  li img {
+    width: 50px;
+    height: 24px;
+  }
+
+  .schedule > label {
+    font-size: 16px;
+  }
+
+  .calendar .showDate {
+    font-size: 10px;
+    top: -15px;
+  }
+
+  .terminal {
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+  }
+}
+
