@@ -22,6 +22,9 @@ body {
 }
 
 .schedule > label {
+  position: absolute;
+  top: -65px;
+  width: 55%;
   padding-top: 15px;
   padding-bottom: 15px;
   text-align: center;
@@ -38,12 +41,6 @@ body {
   background: rgba(30, 183, 238);
 }
 
-.schedule > label:first-of-type {
-  position: absolute;
-  top: -65px;
-  width: 55%;
-}
-
 .up {
   margin-right: 15px;
 }
@@ -53,10 +50,7 @@ body {
 }
 
 .schedule > label:last-of-type {
-  position: absolute;
-  top: -65px;
   right: 0;
-  width: 55%;
 }
 
 .down {
@@ -202,6 +196,17 @@ th:first-child {
   }
 }
 
+@media screen and (max-width: 840px) {
+  .schedule {
+    width: 90%;
+  }
+  td, th {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+  }
+}
+
 @media screen and (max-width: 750px) {
   td, th {
     padding-left: 5px;
@@ -221,10 +226,6 @@ th:first-child {
 }
 
 @media screen and (max-width: 680px) {
-  .schedule {
-    width: 90%;
-  }
-
   td, th {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -249,9 +250,10 @@ th:first-child {
   td, th {
     font-size: 10px;
   }
-.calendar {
-  height: 70px;
-}
+
+  .calendar {
+    height: 70px;
+  }
   .calendar button {
     font-size: 12px;
     margin-top: 30px;
@@ -264,6 +266,7 @@ th:first-child {
 
   .schedule > label {
     font-size: 16px;
+    top: -60px;
   }
 
   .calendar .showDate {
@@ -276,5 +279,101 @@ th:first-child {
     height: 20px;
     font-size: 12px;
   }
+
+  .up {
+    margin-right: 5px;
+  }
+
+  .down {
+    margin-right: 5px;
+  }
 }
 
+@media screen and (max-width: 470px) {
+  .schedule {
+    width: 95%;
+  }
+
+  .schedule label {
+    top: -45px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    font-size: 14px;
+    border-top-left-radius: 45px;
+    border-top-right-radius: 45px;
+    width: 53%;
+  }
+
+  svg {
+    width: 25px;
+  }
+
+  .up {
+    margin-right: 5px;
+  }
+
+  .down {
+    margin-right: 5px;
+  }
+
+  td, th {
+    font-size: 8px;
+  }
+
+  .calendar {
+    height: 50px;
+  }
+
+  .calendar button {
+    font-size: 8px;
+    margin-top: 20px;
+  }
+
+  .calendar button:nth-child(2) {
+    padding-left: 10px;
+    padding-right: 10px
+  }
+
+  .calendar .showDate {
+    font-size: 8px;
+    top: -10px;
+    left: 15px;
+  }
+
+  li {
+    padding-top:7px;
+  }
+
+  li img {
+    width: 40px;
+    height: 14px;
+    margin-right: 5px;
+    margin-top: -2px;
+  }
+
+  .terminal {
+    width: 15px;
+    height: 15px;
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .schedule {
+    width: 99%;
+  }
+
+  td, th {
+    font-size: 6px;
+  }
+
+  li {
+    padding-top: 0px;
+  }
+
+  li img {
+    width: 30px;
+    height: 14px;
+    margin-top: -2px;
+  }
+}

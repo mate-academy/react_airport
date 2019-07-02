@@ -63,7 +63,7 @@ export default class Schedule extends React.PureComponent {
     this.setState({
       date: `${currentDay}-${currentMonth}-${currentYear}`,
       dateFilter: currentDay,
-    });
+    }, () => console.log(this.state.date));
   }
 
   getShowDate() {
@@ -73,9 +73,9 @@ export default class Schedule extends React.PureComponent {
     const prevDate = new Date();
     prevDate.setDate(prevDate.getDate() - 1);
     this.setState({
-      showToday: `${date.getDate()}/${date.getMonth()}`,
-      showTomorrow: `${nextDate.getDate()}/${nextDate.getMonth()}`,
-      showYesterday: `${prevDate.getDate()}/${prevDate.getMonth()}`,
+      showToday: `${date.getDate()}/${date.getMonth() + 1}`,
+      showTomorrow: `${nextDate.getDate()}/${nextDate.getMonth() + 1}`,
+      showYesterday: `${prevDate.getDate()}/${prevDate.getMonth() + 1}`,
     });
   }
 
