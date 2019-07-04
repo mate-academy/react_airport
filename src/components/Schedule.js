@@ -57,13 +57,14 @@ export default class Schedule extends React.PureComponent {
 
   getDate(num = 0) {
     const currentDate = new Date();
-    const currentDay = currentDate.getDate() + num;
+    currentDate.setDate(currentDate.getDate() + num);
+    const currentDay = currentDate.getDate();
     const currentMonth = currentDate.getMonth() + 1;
     const currentYear = currentDate.getFullYear();
     this.setState({
       date: `${currentDay}-${currentMonth}-${currentYear}`,
       dateFilter: currentDay,
-    }, () => console.log(this.state.date));
+    });
   }
 
   getShowDate() {
