@@ -22,7 +22,8 @@ class FlightList extends Component {
       .then(({ body }) => {
         const { arrival, departure } = body;
         this.setState(() => ({
-          arrival, departure,
+          arrival, 
+          departure,
         }));
       });
   }
