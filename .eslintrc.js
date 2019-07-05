@@ -15,6 +15,8 @@ module.exports = {
   rules: {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     'no-console': 'off',
-    "no-param-reassign": 0
+    "no-param-reassign": 0,
+    "max-len":[2, 120],
+    "react/destructuring-assignment": ['never']
   }
 };
