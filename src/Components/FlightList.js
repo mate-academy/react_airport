@@ -18,12 +18,12 @@ class FlightList extends Component {
   componentDidMount() {
     fetch(`https://api.iev.aero/api/flights/${`${new Date()
       .toISOString()}`.split('T')[0]}`)
-      .then(data => data.json())
+      .then(response => response.json())
       .then(({ body }) => {
         const { arrival, departure } = body;
         this.setState(() => ({
           arrival, 
-          departure,
+          departure
         }));
       });
   }
