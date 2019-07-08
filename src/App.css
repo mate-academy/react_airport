@@ -27,8 +27,12 @@ body {
   border-top-left-radius: 60px;
   border-top-right-radius: 60px;
   color: white;
-  background: #1eb7ee;
+  background-color: rgba(30,183,238,.6);
   font-size: 22px;
+}
+
+.changedDisplayTable label:hover {
+  background: #1eb7ee;
 }
 
 section.buttonChangedDay button.selectedDay {
