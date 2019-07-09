@@ -1,13 +1,115 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #e7efec;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+section {
+  width: 600px;
+  margin: 50px auto;
+
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+tr {
+  height: 50px;
+}
+
+td:first-child,
+th:first-child {
+  text-align: center;
+}
+
+span {
+  line-height: 25px;
+  display: inline-block;
+  text-align: center;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  margin: 0;
+}
+
+section div {
+  width: 100%;
+  height: 40px;
+  position: relative;
+  display: flex;
+}
+
+button {
+  width: 350px;
+  height: 100%;
+  position: absolute;
+  border-radius: 50px 50px 0 0;
+  border: none;
+  font-size: large;
+  outline: none;
+}
+
+section div:hover {
+  cursor: pointer;
+}
+
+.departure {
+  color: white;
+  background-color: #1eb7ee;
+}
+
+button span {
+  margin-right: 10px;
+}
+
+.arrival {
+  left: 250px;
+  color: white;
+  background-color: #1eb7ee;
+  position: absolute;
+}
+
+table tbody tr:nth-child(even) {
+  width: 100%;
+  background-color: white;
+}
+
+table tbody tr:nth-child(odd) {
+  width: 100%;
+  background-color: #e5eff3;
+}
+
+tbody tr:hover {
+  box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+}
+
+.active {
+  z-index: 2;
+  background-color: white;
+  color: #1eb7ee;
+}
+
+thead tr {
+  background-color: white;
+  color: #95989a;
+  font-size: small;
+}
+
+.termAIcon {
+  color: #63c745;
+  border: 1px solid #63c745;
+}
+
+.termBIcon {
+  color: #1eb7ee;
+  border: 1px solid #1eb7ee;
+}
+
+td div {
+  height: 20px;
 }
