@@ -38,10 +38,6 @@ export default function IconSVG(props) {
       </g>
       <g>
       </g>
-      <g>
-      </g>
-      <g>
-      </g>
     </svg>
   </span>
   )

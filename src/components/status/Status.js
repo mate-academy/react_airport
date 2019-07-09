@@ -2,8 +2,10 @@ import React from 'react'
 
 export default function Status(props) {
   let status;
-  let timefact = new Date(props.flight.timeTakeofFact).toLocaleTimeString().slice(0, -6)
-
+  const time = new Date(props.flight.timeTakeofFact)
+  const hours = time.getHours().toString();
+  const minutes = time.getMinutes().toString().padStart(2, '0');
+  const timefact = `${hours}:${minutes}`;
   switch (props.flight.status) {
     case 'DP':
       status = `Departed at ${timefact}`;

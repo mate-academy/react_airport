@@ -20,8 +20,6 @@ export default class App extends Component {
   };
   
   getCurrentDate(number, day) {
-
-
     const currentDate = new Date();
     const currentYear = currentDate.getFullYear();
     const currentMonth = currentDate.getMonth() + 1;
@@ -29,7 +27,7 @@ export default class App extends Component {
   
     this.setState({
       ...this.state,
-      date: `${currentDay >= 10 ? currentDay : '0' + currentDay}-${currentMonth >= 10 ? currentMonth : '0' + currentMonth}-${currentYear}`,
+      date: `${currentDay.toString().padStart(2, '0')}-${currentMonth.toString().padStart(2, '0')}-${currentYear}`,
       selectedDay: day
     });
   };
@@ -62,7 +60,7 @@ export default class App extends Component {
   
   filterFlight(currDate, flightDate) {
     const currentDay = +currDate.split('-')[0]
-    let flightDay = new Date(flightDate).getDate();
+    const flightDay = new Date(flightDate).getDate();
     return flightDay === currentDay;
   };
 
@@ -81,7 +79,7 @@ export default class App extends Component {
     const day = date.getDate() + num;
     const month = date.getMonth() + 1;
 
-    return `${day >= 10 ? day : '0' + day}/${month >= 10 ? month : '0' + month}`;
+    return `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}`;
   }
   
 
@@ -91,7 +89,6 @@ export default class App extends Component {
         <div className="flightsPage">
           <section className="changedDisplayTable">
             <label
-
                className={this.state.displayTable === "DEPARTURES" ? 'selectedDisplay' : ''} 
                onClick={(e) => this.changedDisplayTable(e)}
             > 
