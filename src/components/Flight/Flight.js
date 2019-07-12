@@ -15,12 +15,14 @@ export default function FlightDeparture(props) {
       <Status flight={props.flight}/>
       <td className="airline">
         {props.flight.codeShareData.map(item => {
-          return <span key={item.airline.en.name}>{item.airline.en.name}</span>
+          return <span key={item.airline.en.name}>
+          <img className="airlineLogo" src={item.airline.en.logoSmallName} alt="airline logo"/>
+          {item.airline.en.name}</span>
         })}
       </td>
       <td className="codeShare">
         {props.flight.codeShareData.map(item => {
-          return <span key={item.codeShare}>{item.codeShare}</span>
+          return <span className="spCodeShare" key={item.codeShare}>{item.codeShare}</span>
         })}
       </td>
     </tr>

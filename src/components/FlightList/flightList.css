@@ -56,6 +56,17 @@ tbody td {
 
 td.codeShare span,
 td.airline span {
-  margin: 10px 0;
-  display: block;
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+td.codeShare span.spCodeShare {
+  line-height: 36px;
+}
+
+
+.airlineLogo {
+  width: 60px;
+  margin-right: 5px;
 }

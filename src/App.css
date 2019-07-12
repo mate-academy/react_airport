@@ -1,7 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap');
+
 body {
   background-color: #e7efec;
   color: #2f2f2f;
-  font-family: Open Sans,sans-serif;
+  font-family: 'Roboto', sans-serif;  
 }
 
 .flightsPage {
@@ -29,6 +31,7 @@ body {
   color: white;
   background-color: rgba(30,183,238,.6);
   font-size: 22px;
+  user-select: none;
 }
 
 .changedDisplayTable label:hover {
@@ -64,6 +67,7 @@ svg {
 }
 
 section.buttonChangedDay {
+  user-select: none;
   margin-bottom: 20px;
   margin-left: 20px;
 }
