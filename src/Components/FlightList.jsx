@@ -16,7 +16,7 @@ export default class FlightList extends Component {
   componentDidMount() {
     const date = new Date().toISOString().split('T')[0];
     fetch(`https://api.iev.aero/api/flights/${date}`)
-      .then(data => data.json())
+      .then(response => response.json())
       .then(({ body }) => {
         const { arrival, departure } = body;
         this.setState(() => ({
@@ -50,7 +50,11 @@ export default class FlightList extends Component {
             </tr>
           </thead>
           <tbody className="tbody">
-            {data.map(item =><FlightItem key={item.ID} data={item} gate={this.state.display === 'departure'} />)}
+            {data.map(item => <FlightItem
+              key={item.ID}
+              data={item}
+              gate={this.state.display === 'departure'}
+            />)}
           </tbody>
         </table>
       </div>
