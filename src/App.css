@@ -131,3 +131,13 @@ button.no-active {
 .arrival {
   width: 610px;
 }
+
+.airline {
+  display: flex;
+  align-items: center;
+}
+
+.airline img {
+  width: 60px;
+  margin-right: 10px;
+}

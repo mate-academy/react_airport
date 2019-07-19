@@ -8,7 +8,13 @@ export default function Switcher(props) {
         className={props.display === 'departure' ? 'departures active' : 'departures'}
         onClick={() => props.switchFlightList('departure')}
       >
-        <svg width="40px" height="28px" viewBox="0 0 40 28" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="40px"
+          height="28px"
+          viewBox="0 0 40 28"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <g id="Path-403" transform="translate(-1.000000, -1.000000)" fill="#fff">
             <path
               d="M40.9190312,14.2925525 C40.731055,13.5210761 40.2396434,12.8581323 39.5561585,12.4539552
@@ -26,10 +32,16 @@ export default function Switcher(props) {
       </button>
       <button
         type="button"
-        className={props.display === 'arrival' ? 'arrivals active' : 'arrivals'}
+        className={props.display === 'arrival' ? 'active' : ''}
         onClick={() => props.switchFlightList('arrival')}
       >
-        <svg width="40px" height="28px" viewBox="0 0 40 28" version="1.1" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="40px"
+          height="28px"
+          viewBox="0 0 40 28"
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <g fill="#fff">
             <g id="Group" transform="translate(-4.000000, -7.000000)">
               <path

@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import FlightItem from './FlightItem.jsx'
-import Switcher from "./Switcher";
+import React, { Component } from 'react';
+import FlightItem from './FlightItem';
+import Switcher from './Switcher';
 
 export default class FlightList extends Component {
   constructor(props) {
@@ -8,8 +8,8 @@ export default class FlightList extends Component {
     this.state = {
       departure: [],
       arrival: [],
-      display: 'departure'
-    }
+      display: 'departure',
+    };
     this.switchFlightList = this.switchFlightList.bind(this);
   }
 
@@ -20,44 +20,52 @@ export default class FlightList extends Component {
       .then(({ body }) => {
         const { arrival, departure } = body;
         this.setState(() => ({
-          arrival, departure
-        }))
+          arrival, departure,
+        }));
       });
   }
 
   switchFlightList(displayMode) {
-    this.setState({display: displayMode});
+    this.setState({ display: displayMode });
   }
 
   render() {
-    const data = this.state[this.state.display]
+    const data = this.state[this.state.display];
     return (
       <div>
-        <Switcher display={this.state.display} switchFlightList={this.switchFlightList}/>
+        <Switcher
+          display={this.state.display}
+          switchFlightList={this.switchFlightList}
+        />
         <table className="table">
           <thead className="thead">
             <tr>
               <th>Terminal</th>
-              {this.state.display === 'departure' &&
-              <th>Gate</th>
+              {this.state.display === 'departure'
+              && (
+                <th>
+                  Gate
+                </th>)
               }
               <th>Local time</th>
               <th>Destination</th>
               <th>Status</th>
               <th>Airline</th>
               <th>Flight</th>
-              <th></th>
+              <th />
             </tr>
           </thead>
           <tbody className="tbody">
-            {data.map(item => <FlightItem
-              key={item.ID}
-              data={item}
-              gate={this.state.display === 'departure'}
-            />)}
+            {data.map(item => (
+              <FlightItem
+                key={item.ID}
+                data={item}
+                gate={this.state.display === 'departure'}
+              />
+            ))}
           </tbody>
         </table>
       </div>
-    )
+    );
   }
 }
