@@ -13,7 +13,8 @@ export default class Schendule extends Component {
       departures: [],
       arrivals: [],
       dateForLink: null,
-      filterDate: null
+      filterDate: null,
+      todaysDate: null
     };
     this.changeTab = this.changeTab.bind(this);
     this.dateForLink = this.dateForLink.bind(this);
@@ -27,7 +28,6 @@ export default class Schendule extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.dateForLink !== prevState.dateForLink) {
-      console.log('done');
       this.loadApi(`https://api.iev.aero/api/flights/${this.state.dateForLink}`)
       .then(flights => this.setState({
           departures: flights.departure
@@ -47,6 +47,7 @@ export default class Schendule extends Component {
     const [correctDay, correctMonth] = [...this.monthAndDayView(dateCorrected)];
 
     this.setState({
+      todaysDate: date.getDate(),
       dateForLink: `${correctDay}-${correctMonth}-${dateCorrected.getFullYear()}`,
       filterDate: dateCorrected.getDate()
     });
@@ -61,8 +62,8 @@ export default class Schendule extends Component {
   }
 
   datesForTable(num = 0) {
-    const date = new Date();
-    const dateCorrected = this.correctDate(date, num);
+    const todaysDate = new Date();
+    const dateCorrected = this.correctDate(todaysDate, num);
     const [correctDay, correctMonth] = [...this.monthAndDayView(dateCorrected)];
 
     return `${correctDay} / ${correctMonth}`;
@@ -97,7 +98,8 @@ export default class Schendule extends Component {
     return (
       <section className="schendule">
         <DepArrButtons changeTab={this.changeTab} departuresState={this.state.departuresState} />
-        <Dates datesForTable={this.datesForTable} dateForLink={this.dateForLink} currentDate={this.state.filterDate} />
+        <Dates datesForTable={this.datesForTable} dateForLink={this.dateForLink}
+               currentDate={this.state.filterDate} todaysDate={this.state.todaysDate} />
         <table>
           <TableHeaders departuresState={this.state.departuresState} />
           {this.state.departuresState
