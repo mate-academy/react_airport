@@ -9,6 +9,7 @@ class App extends React.Component {
     arrivals: [],
     departures: [],
     sortOrder: 1,
+    isSortOn: false,
   }
 
   async componentDidMount() {
@@ -70,6 +71,7 @@ class App extends React.Component {
             )),
 
             sortOrder: -prevState.sortOrder,
+            isSortOn: true,
           }))
         );
 
@@ -89,6 +91,7 @@ class App extends React.Component {
             )),
 
             sortOrder: -prevState.sortOrder,
+            isSortOn: true,
           }))
         );
 
@@ -108,6 +111,7 @@ class App extends React.Component {
             )),
 
             sortOrder: -prevState.sortOrder,
+            isSortOn: true,
           }))
         );
 
@@ -127,6 +131,7 @@ class App extends React.Component {
             )),
 
             sortOrder: -prevState.sortOrder,
+            isSortOn: true,
           }))
         );
 
@@ -144,6 +149,7 @@ class App extends React.Component {
             )),
 
             sortOrder: -prevState.sortOrder,
+            isSortOn: true,
           }))
         );
 
@@ -161,6 +167,7 @@ class App extends React.Component {
             )),
 
             sortOrder: -prevState.sortOrder,
+            isSortOn: true,
           }))
         );
 
@@ -170,6 +177,7 @@ class App extends React.Component {
             departures: [...prevState.departuresOrigin],
             arrivals: [...prevState.arrivalsOrigin],
             sortOrder: 1,
+            isSortOn: false,
           }))
         );
 
@@ -178,7 +186,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { arrivals, departures } = this.state;
+    const { arrivals, departures, isSortOn } = this.state;
 
     return (
       <div className="App">
@@ -189,6 +197,7 @@ class App extends React.Component {
           departures={departures}
           filterFlight={this.filterFlight}
           sortTable={this.sortTable}
+          isSortOn={isSortOn}
         />
       </div>
     );

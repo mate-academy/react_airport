@@ -30,7 +30,10 @@ class FlightsTable extends React.Component {
   }
 
   render() {
-    const { departures, arrivals, sortTable } = this.props;
+    const {
+      departures, arrivals, sortTable, isSortOn,
+    } = this.props;
+
     const { isDepartures, filterInput } = this.state;
     const currentSchedule = isDepartures ? departures : arrivals;
 
@@ -55,7 +58,7 @@ class FlightsTable extends React.Component {
         />
 
         <table className="flights-table">
-          <FlightsTableHeader sortTable={sortTable} />
+          <FlightsTableHeader sortTable={sortTable} isSortOn={isSortOn} />
 
           <tbody className="flights-table__body">
             {flights}
@@ -72,6 +75,7 @@ FlightsTable.propTypes = {
   departures: PropTypes.arrayOf(PropTypes.object).isRequired,
   arrivals: PropTypes.arrayOf(PropTypes.object).isRequired,
   sortTable: PropTypes.func.isRequired,
+  isSortOn: PropTypes.bool.isRequired,
 };
 
 export default FlightsTable;

@@ -16,7 +16,6 @@ const FlightsTableHeader = props => (
       </th>
 
       <th>
-
         <button
           name="Local time"
           onClick={props.sortTable}
@@ -28,7 +27,6 @@ const FlightsTableHeader = props => (
       </th>
 
       <th>
-
         <button
           name="Destination"
           onClick={props.sortTable}
@@ -40,7 +38,6 @@ const FlightsTableHeader = props => (
       </th>
 
       <th>
-
         <button
           name="Status"
           onClick={props.sortTable}
@@ -52,7 +49,6 @@ const FlightsTableHeader = props => (
       </th>
 
       <th>
-
         <button
           name="Airline"
           onClick={props.sortTable}
@@ -64,7 +60,6 @@ const FlightsTableHeader = props => (
       </th>
 
       <th>
-
         <button
           name="Flight"
           onClick={props.sortTable}
@@ -76,14 +71,16 @@ const FlightsTableHeader = props => (
       </th>
 
       <th>
-
         <button
           name="unSort"
           onClick={props.sortTable}
-          className="
-            header-cell__title-wrapper
-            header-cell__title-wrapper--unsort
-          "
+          className={props.isSortOn
+            ? `header-cell__title-wrapper
+              header-cell__title-wrapper--unsort`
+            : `header-cell__title-wrapper
+              header-cell__title-wrapper--unsort
+              header-cell__title-wrapper--hidden`
+          }
           type="button"
         />
       </th>
@@ -95,6 +92,7 @@ const FlightsTableHeader = props => (
 
 FlightsTableHeader.propTypes = {
   sortTable: PropTypes.func.isRequired,
+  isSortOn: PropTypes.bool.isRequired,
 };
 
 export default FlightsTableHeader;
