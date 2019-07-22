@@ -10,9 +10,14 @@ class App extends React.Component {
     departures: [],
     sortOrder: 1,
     isSortOn: false,
+    isLoading: false,
   }
 
   async componentDidMount() {
+    this.setState({
+      isLoading: true,
+    });
+
     const flights = await getFlights();
 
     this.setState({
@@ -21,6 +26,7 @@ class App extends React.Component {
 
       arrivals: [...flights.body.arrival],
       departures: [...flights.body.departure],
+      isLoading: false,
     });
   }
 
@@ -186,11 +192,17 @@ class App extends React.Component {
   }
 
   render() {
-    const { arrivals, departures, isSortOn } = this.state;
+    const {
+      arrivals, departures, isSortOn, isLoading,
+    } = this.state;
+
+    const loader = <div className="loader" />;
 
     return (
       <div className="App">
         <h1 className="App-header">React airport SEARCH FLIGHT</h1>
+
+        {isLoading && loader}
 
         <FlightsTable
           arrivals={arrivals}

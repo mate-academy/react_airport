@@ -65,6 +65,7 @@ const FlightRow = ({ flight, isDepartures }) => {
 
 FlightRow.propTypes = {
   flight: PropTypes.objectOf(
+    PropTypes.number,
     PropTypes.string,
     PropTypes.object,
   ).isRequired,
