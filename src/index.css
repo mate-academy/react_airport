@@ -1,0 +1,129 @@
+.App {
+  min-width: 640px;
+  max-width: 1000px;
+  margin: 20px auto 1px;
+  border: 1px solid black;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+  background-color: rgba(250, 246, 246, 0.68);
+}
+
+h1 {
+  text-align: center;
+  user-select: none;
+  color: #0754a0ba;
+  padding: 15px;
+}
+
+.serach-box {
+  width: 80%;
+  margin: 10px auto 30px;
+}
+
+.search-field {
+  width: 80%;
+  height: 50px;
+  padding-left: 10px;
+  outline-style: none;
+  border-style: none;
+  border-top-left-radius: 10px;
+}
+
+.search-btn:focus {
+  outline-style: none;
+}
+
+.search-btn {
+  width: 20%;
+  height: 50px;
+  background-color: #1c92e72d;
+  color: gray;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  outline-style: none;
+  border-top-right-radius: 50px;
+  transition: 0.5s;
+}
+
+.search-btn:hover {
+  background-color: #61b7ec2b;
+  border-top-right-radius: 20px;
+  color: rgb(76, 76, 76);
+  transition: all 0.5s;
+  outline-style: none;
+}
+
+.search-btn:active {
+  color: black;
+  background-color: #4ca4e215;
+  transition: 0ms;
+  outline-style: none;
+}
+
+.toggle-type {
+  width: 100%;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.react-tabs__tab {
+  border-top-right-radius: 30px;
+  border-top-left-radius: 30px;
+  color: gray;
+}
+
+.react-tabs__tab--selected {
+  color: #1f63a7;
+}
+
+#react-tabs-0 {
+  width: 50%;
+}
+
+#react-tabs-2 {
+  width: 50%;
+}
+
+.react-tabs__tab {
+  width: 200px;
+  text-align: center;
+}
+
+.react-tabs__tab-list {
+  padding: 0 5px;
+  text-align: center;
+}
+
+.toggle-table-date {
+  display: block;
+  color: gray;
+  text-align: center;
+  font-size: 12px;
+  user-select: none;
+}
+
+thead {
+  background-color: #1c92e72d;
+  color: gray;
+}
+
+.flights-table {
+  border-radius: 50px;
+  margin-top: 30px;
+  border-collapse: collapse;
+  cursor: pointer;
+}
+
+tr:not(:last-child) {
+  border-bottom: 1px solid black;
+}
+
+tr:hover:not(:first-child) {
+  background-color: #f4f7f7;
+}
+
+tr:nth-child(even) {
+  background-color: #1c9ae716;
+}
