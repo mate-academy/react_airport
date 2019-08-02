@@ -1,36 +1,13 @@
 import React from 'react';
 import getFlights from './API_DATA';
 import FlightsTable from './components/FlightsTable';
+import ButoonContainer from './components/ButoonContainer';
+import cashingFabric from './helpers';
 
-class App extends React.Component {
-  state = {
-    arrivalsOrigin: [],
-    departuresOrigin: [],
-    arrivals: [],
-    departures: [],
-    sortOrder: 1,
-    isSortOn: false,
-    isLoading: false,
-  }
+const filterFlight = (flights, filterValue) => {
+  let newFlights = [];
 
-  async componentDidMount() {
-    this.setState({
-      isLoading: true,
-    });
-
-    const flights = await getFlights();
-
-    this.setState({
-      arrivalsOrigin: [...flights.body.arrival],
-      departuresOrigin: [...flights.body.departure],
-
-      arrivals: [...flights.body.arrival],
-      departures: [...flights.body.departure],
-      isLoading: false,
-    });
-  }
-
-  isValueExist = (flight, value) => {
+  const isIncludes = (flight, value) => {
     const valueLower = value.toLowerCase();
     const planeIdLower = flight['planeTypeID.code'].toLowerCase();
     const arlineNameLower = flight.airline.en.name.toLowerCase();
@@ -42,175 +19,232 @@ class App extends React.Component {
       || (airportToId
         ? airportToId.toLowerCase().includes(valueLower)
         : airportFromId.toLowerCase().includes(valueLower));
-  }
+  };
 
-  filterFlight = (filterValue) => {
-    this.setState(prevState => ({
-      departures: [...prevState.departuresOrigin].filter(flight => (
-        this.isValueExist(flight, filterValue)
-      )),
+  newFlights = flights.filter(flight => (
+    isIncludes(flight, filterValue)));
 
-      arrivals: [...prevState.arrivalsOrigin].filter(flight => (
-        this.isValueExist(flight, filterValue)
-      )),
-    }));
-  }
+  return newFlights;
+};
 
-  getMinutes = (time) => {
+const sortTable = (name, flights, sortOrder, isDepartures) => {
+  let newFlights = flights;
+
+  const getMinutes = (time) => {
     const date = new Date(Date.parse(time));
     const hoursMinutes = (date.getHours() * 60) + date.getMinutes();
 
     return hoursMinutes;
+  };
+
+  switch (name) {
+    case 'Terminal':
+      return (
+        newFlights = [...flights].sort((a, b) => (
+          sortOrder * a.term.localeCompare(b.term)
+        ))
+      );
+
+    case 'Local time':
+      switch (isDepartures) {
+        case true:
+          return (
+            newFlights = [...flights].sort((a, b) => (
+              sortOrder * (getMinutes(a.timeDepExpectCalc)
+              - getMinutes(b.timeDepExpectCalc))
+            )));
+
+        default:
+          return (
+            newFlights = [...flights].sort((a, b) => (
+              sortOrder * (getMinutes(a.timeArrExpectCalc)
+              - getMinutes(b.timeArrExpectCalc))
+            )));
+      }
+
+    case 'Destination':
+      if (flights[0]['airportToID.name_en']) {
+        return (
+          newFlights = [...flights].sort((a, b) => sortOrder
+            * a['airportToID.name_en']
+              .localeCompare(b['airportToID.name_en'])));
+      }
+
+      return (
+        newFlights = [...flights].sort((a, b) => sortOrder
+          * a['airportFromID.name_en']
+            .localeCompare(b['airportFromID.name_en'])));
+
+    case 'Status':
+      switch (isDepartures) {
+        case true:
+          return (
+            newFlights = [...flights].sort((a, b) => (
+              sortOrder * (getMinutes(a.timeDepShedule)
+              - getMinutes(b.timeDepShedule))
+            )));
+
+        default:
+          return (
+            newFlights = [...flights].sort((a, b) => (
+              sortOrder * (getMinutes(a.timeArrShedule)
+              - getMinutes(b.timeArrShedule))
+            )));
+      }
+
+    case 'Airline':
+      return (
+        newFlights = [...flights].sort((a, b) => (
+          sortOrder * a.airline.en.name.localeCompare(b.airline.en.name)
+        ))
+      );
+
+    case 'Flight':
+      return (
+        newFlights = [...flights].sort((a, b) => (
+          sortOrder
+          * a['planeTypeID.code'].localeCompare(b['planeTypeID.code'])
+        ))
+      );
+
+    default: return newFlights;
+  }
+};
+
+const cashedFilterFlight = cashingFabric(filterFlight);
+const cashedSortTable = cashingFabric(sortTable);
+
+class App extends React.Component {
+  state = {
+    arrivals: [],
+    departures: [],
+    sortName: '',
+    sortOrder: 1,
+    isSortOn: false,
+    isLoading: false,
+    filterInput: '',
+    isDepartures: true,
+  }
+
+  async componentDidMount() {
+    this.setState({
+      isLoading: true,
+    });
+
+    let flights = [];
+
+    try {
+      flights = await getFlights();
+      if (!flights.body) {
+        throw new SyntaxError('Данные некорректны');
+      }
+    } catch (err) {
+      document.location.reload(true);
+    }
+
+    this.setState({
+      arrivals: flights.body.arrival,
+      departures: flights.body.departure,
+      isLoading: false,
+    });
+  }
+
+  handleFilterTyping = (event) => {
+    const { name, value } = event.target;
+
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  toggleTab = (event) => {
+    this.setState({
+      isDepartures: event.target.name === 'departures',
+    });
   }
 
   sortTable = (event) => {
-    switch (event.target.getAttribute('name')) {
-      case 'Terminal':
-        return (
-          this.setState(prevState => ({
-            departures: [...prevState.departuresOrigin].sort((a, b) => (
-              prevState.sortOrder * a.term.localeCompare(b.term)
-            )),
+    const name = event.target.getAttribute('name');
 
-            arrivals: [...prevState.arrivalsOrigin].sort((a, b) => (
-              prevState.sortOrder * a.term.localeCompare(b.term)
-            )),
-
-            sortOrder: -prevState.sortOrder,
-            isSortOn: true,
-          }))
-        );
-
-      case 'Local time':
-        return (
-          this.setState(prevState => ({
-            departures: [...prevState.departuresOrigin].sort((a, b) => (
-              prevState.sortOrder
-              * (this.getMinutes(a.timeDepExpectCalc)
-              - this.getMinutes(b.timeDepExpectCalc))
-            )),
-
-            arrivals: [...prevState.arrivalsOrigin].sort((a, b) => (
-              prevState.sortOrder
-              * (this.getMinutes(a.timeArrExpectCalc)
-              - this.getMinutes(b.timeArrExpectCalc))
-            )),
-
-            sortOrder: -prevState.sortOrder,
-            isSortOn: true,
-          }))
-        );
-
-      case 'Destination':
-        return (
-          this.setState(prevState => ({
-            departures: [...prevState.departuresOrigin].sort((a, b) => (
-              prevState.sortOrder
-              * a['airportToID.name_en']
-                .localeCompare(b['airportToID.name_en'])
-            )),
-
-            arrivals: [...prevState.arrivalsOrigin].sort((a, b) => (
-              prevState.sortOrder
-              * a['airportFromID.name_en']
-                .localeCompare(b['airportFromID.name_en'])
-            )),
-
-            sortOrder: -prevState.sortOrder,
-            isSortOn: true,
-          }))
-        );
-
-      case 'Status':
-        return (
-          this.setState(prevState => ({
-            departures: [...prevState.departuresOrigin].sort((a, b) => (
-              prevState.sortOrder
-              * (this.getMinutes(a.timeDepShedule)
-              - this.getMinutes(b.timeDepShedule))
-            )),
-
-            arrivals: [...prevState.arrivalsOrigin].sort((a, b) => (
-              prevState.sortOrder
-              * (this.getMinutes(a.timeArrShedule)
-              - this.getMinutes(b.timeArrShedule))
-            )),
-
-            sortOrder: -prevState.sortOrder,
-            isSortOn: true,
-          }))
-        );
-
-      case 'Airline':
-        return (
-          this.setState(prevState => ({
-            departures: [...prevState.departuresOrigin].sort((a, b) => (
-              prevState.sortOrder
-              * a.airline.en.name.localeCompare(b.airline.en.name)
-            )),
-
-            arrivals: [...prevState.arrivalsOrigin].sort((a, b) => (
-              prevState.sortOrder
-              * a.airline.en.name.localeCompare(b.airline.en.name)
-            )),
-
-            sortOrder: -prevState.sortOrder,
-            isSortOn: true,
-          }))
-        );
-
-      case 'Flight':
-        return (
-          this.setState(prevState => ({
-            departures: [...prevState.departuresOrigin].sort((a, b) => (
-              prevState.sortOrder
-              * a['planeTypeID.code'].localeCompare(b['planeTypeID.code'])
-            )),
-
-            arrivals: [...prevState.arrivalsOrigin].sort((a, b) => (
-              prevState.sortOrder
-              * a['planeTypeID.code'].localeCompare(b['planeTypeID.code'])
-            )),
-
-            sortOrder: -prevState.sortOrder,
-            isSortOn: true,
-          }))
-        );
-
+    switch (name) {
       case 'unSort':
         return (
           this.setState(prevState => ({
-            departures: [...prevState.departuresOrigin],
-            arrivals: [...prevState.arrivalsOrigin],
+            sortName: '',
             sortOrder: 1,
             isSortOn: false,
-          }))
-        );
+          })));
 
-      default: return undefined;
+      default:
+        return (
+          this.setState(prevState => ({
+            sortName: name,
+            sortOrder: -prevState.sortOrder,
+            isSortOn: true,
+          })));
     }
   }
 
   render() {
     const {
-      arrivals, departures, isSortOn, isLoading,
+      isSortOn, isLoading, filterInput, isDepartures, sortName, sortOrder,
     } = this.state;
 
-    const loader = <div className="loader" />;
+    let { arrivals, departures } = this.state;
+
+    const date = new Date();
+    const currentDate = (
+      `${date.getDate()}:${date.getMonth() + 1}:${date.getFullYear()}`
+    );
+
+    const filteredDepartures = cashedFilterFlight(departures, filterInput);
+    const filteredarrivals = cashedFilterFlight(arrivals, filterInput);
+
+    departures = cashedSortTable(
+      sortName, filteredDepartures, sortOrder, isDepartures
+    );
+
+    arrivals = cashedSortTable(
+      sortName, filteredarrivals, sortOrder, isDepartures
+    );
+
+    const currentSchedule = isDepartures ? departures : arrivals;
 
     return (
       <div className="App">
-        <h1 className="App-header">React airport SEARCH FLIGHT</h1>
+        <h1 className="App-header">
+React airport SEARCH FLIGHT of
+          {currentDate}
+        </h1>
 
-        {isLoading && loader}
+        {isLoading && <div className="loader" />}
 
-        <FlightsTable
-          arrivals={arrivals}
-          departures={departures}
-          filterFlight={this.filterFlight}
-          sortTable={this.sortTable}
-          isSortOn={isSortOn}
-        />
+        <div>
+          <form onSubmit={event => event.preventDefault()}>
+            <input
+              type="text"
+              name="filterInput"
+              value={filterInput}
+              onChange={this.handleFilterTyping}
+              className="filter"
+              placeholder="Filtering by airline, destination or flight"
+              autoComplete="off"
+            />
+          </form>
+
+          <ButoonContainer
+            toggleTab={this.toggleTab}
+            isDepartures={isDepartures}
+          />
+
+          <FlightsTable
+            currentSchedule={currentSchedule}
+            filterFlight={this.filterFlight}
+            sortTable={this.sortTable}
+            isSortOn={isSortOn}
+            isDepartures={isDepartures}
+          />
+        </div>
       </div>
     );
   }

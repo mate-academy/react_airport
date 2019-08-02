@@ -74,19 +74,15 @@ const FlightsTableHeader = props => (
         <button
           name="unSort"
           onClick={props.sortTable}
-          className={props.isSortOn
-            ? `header-cell__title-wrapper
-              header-cell__title-wrapper--unsort`
-            : `header-cell__title-wrapper
-              header-cell__title-wrapper--unsort
-              header-cell__title-wrapper--hidden`
-          }
+          className={`
+            header-cell__title-wrapper
+            header-cell__title-wrapper--unsort
+            ${props.isSortOn ? '' : 'header-cell__title-wrapper--hidden'}
+          `}
           type="button"
         />
       </th>
-
     </tr>
-
   </thead>
 );
 

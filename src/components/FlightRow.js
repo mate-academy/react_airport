@@ -45,7 +45,6 @@ const FlightRow = ({ flight, isDepartures }) => {
         <img
           src={flight.airline.en.logoSmallName}
           alt="logo"
-          style={{ width: '50px' }}
         />
         <p>{flight.airline.en.name}</p>
       </td>
@@ -64,11 +63,9 @@ const FlightRow = ({ flight, isDepartures }) => {
 };
 
 FlightRow.propTypes = {
-  flight: PropTypes.objectOf(
-    PropTypes.number,
-    PropTypes.string,
-    PropTypes.object,
-  ).isRequired,
+  flight: PropTypes.shape({
+    term: PropTypes.number,
+  }).isRequired,
   isDepartures: PropTypes.bool.isRequired,
 };
 
