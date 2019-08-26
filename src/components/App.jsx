@@ -46,11 +46,11 @@ export default class App extends Component {
     const dateToday = `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`;
     const dateTomorrow = `${date.getDate() + 1}-${date.getMonth() + 1}-${date.getFullYear()}`;
 
-    const dataYesterday = url + dateYesterday;
-    const dataToday = url + dateToday;
-    const dataTomorrow = url + dateTomorrow;
+    const urlDataYesterday = url + dateYesterday;
+    const urlDataToday = url + dateToday;
+    const urlDataTomorrow = url + dateTomorrow;
 
-    this.data.push(dataYesterday, dataToday, dataTomorrow);
+    this.data.push(urlDataYesterday, urlDataToday, urlDataTomorrow);
   }
 
   componentDidMount() {
@@ -58,12 +58,12 @@ export default class App extends Component {
     this.init();
   }
 
-  createPromise(url) {
+  createReq(url) {
     return fetch(url).then(resp => resp.json());
   }
 
   getAllData(urls) {
-    return Promise.all(urls.map(url => this.createPromise(url)));
+    return Promise.all(urls.map(url => this.createReq(url)));
   }
 
   init() {
@@ -123,30 +123,30 @@ export default class App extends Component {
             <div className="">Status</div>
           </div>
 
-          {this.state.statusDate === 'yesterday'
-            && this.state.statusFlight === 'departures'
+          {this.state.statusDate === YESTERDAY
+            && this.state.statusFlight === DEPARTURES
             && this.state.todayArrival
             && <FlightList data={this.state.yesterdayDepartures} />}
-          {this.state.statusDate === 'yesterday'
-            && this.state.statusFlight === 'arrivals'
+          {this.state.statusDate === YESTERDAY
+            && this.state.statusFlight === ARRIVALS
             && this.state.todayArrival
             && <FlightList data={this.state.yesterdayArrival} />}
 
-          {this.state.statusDate === 'today'
-            && this.state.statusFlight === 'departures'
+          {this.state.statusDate === TODAY
+            && this.state.statusFlight === DEPARTURES
             && this.state.todayDepartures
             && <FlightList data={this.state.todayDepartures} />}
-          {this.state.statusDate === 'today'
-            && this.state.statusFlight === 'arrivals'
+          {this.state.statusDate === TODAY
+            && this.state.statusFlight === ARRIVALS
             && this.state.todayArrival
             && <FlightList data={this.state.todayArrival} />}
 
-          {this.state.statusDate === 'tomorrow'
-            && this.state.statusFlight === 'departures'
+          {this.state.statusDate === TOMORROW
+            && this.state.statusFlight === DEPARTURES
             && this.state.todayArrival
             && <FlightList data={this.state.tomorrowDepartures} />}
-          {this.state.statusDate === 'tomorrow'
-            && this.state.statusFlight === 'arrivals'
+          {this.state.statusDate === TOMORROW
+            && this.state.statusFlight === ARRIVALS
             && this.state.todayArrival
             && <FlightList data={this.state.tomorrowArrival} />}
         </div>
