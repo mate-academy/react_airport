@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import Flight from './Flight.jsx';
 import './FlightList.css';
 import FlightBtn from './FlightBtn.jsx';
