@@ -9,7 +9,7 @@ export default class FlightList extends Component {
     this.state = {
       departures: [],
       arrivals: [],
-      display: 'departures'
+      display: 'departures',
     }
     this.displayChanged = this.displayChanged.bind(this);
   }
@@ -21,26 +21,26 @@ export default class FlightList extends Component {
       .then(({ body }) => {
         this.setState(() => ({
           departures: body.departure,
-          arrivals: body.arrival
+          arrivals: body.arrival,
         }))
       });
   }
 
   displayChanged(stateItems) {
     this.setState({
-        display: stateItems
+      display: stateItems,
     });
   }
 
   render() {
     return (
       <div className="air-wrapper">
-          <FlightBtn
-            display={this.state.display}
-            displayChanged={this.displayChanged}
-          />
+        <FlightBtn
+          display={this.state.display}
+          displayChanged={this.displayChanged}
+        />
         <table className="air-table">
-          <thead >
+          <thead>
             <tr>
               <th>Terminal</th>
               {this.state.display === 'departures' ? <th>Gate</th> : null}
