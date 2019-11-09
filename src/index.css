@@ -1,0 +1,99 @@
+body {
+  background-color: #e7efec;
+}
+
+.info-tab {
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 540px;
+}
+
+.info-tab-button {
+  margin: 0 auto;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-tab-button > a {
+  width: 50%;
+}
+
+td, th {
+  text-align: start;
+  padding: 10px 10px;
+  font-size: 20px;
+  width: max-content;
+}
+
+th {
+  color: #95989a;
+  background-color: white;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+}
+
+tr:nth-child(odd) {
+  background-color: #e5eff3;
+}
+
+tr:nth-child(even) {
+  background-color: white;
+}
+
+li {
+  list-style: none;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+button {
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+  border: none;
+  color: #1ec7f5;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 24px;
+  outline: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+button:first-child {
+  border-top-left-radius: 50px;
+}
+
+button:last-child {
+  border-top-right-radius: 50px;
+}
+
+.active-button {
+  background-color: #1ec7f5;
+  color: white;
+}
+
+li > img {
+  width: 50px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+@media screen and (max-width: 659px) {
+  button {
+    font-size: 18px;
+  }
+
+  th, td {
+    font-size: 16px;
+  }
+}
