@@ -73,4 +73,4 @@ You should be writing code in `src/` directory.
 
 ### Demo link
 
-Add link here: `[DEMO LINK](https://kisilov-vadim.github.io/react_airport/)`
+Add link here: `[DEMO LINK](https://kisilov-vadim.github.io/react_airport//#/)`
