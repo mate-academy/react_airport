@@ -33,15 +33,15 @@ function Flight({
           return '';
       }
     }
-
+  
   return (
     <tr>
       <td style={{ textAlign: 'center' }}>{term}</td>
       <td>{`${new Date(localTime).getHours()}:${('0' + new Date(localTime).getMinutes()).slice(-2)}`}</td>
       <td>{destination}</td>
       <td>{statusInfo()}</td>
-      <td>{flightCode.map(air => <li><img src={air.airline.en.logoName} />{air.airline.en.name}</li>)}</td>
-      <td>{flightCode.map(code => <li>{code.codeShare}</li> )}</td>
+      <td>{flightCode.map(air => <li key={air.codeShare}><img src={air.airline.en.logoSmallName} alt="logo" />{air.airline.en.name}</li>)}</td>
+      <td>{flightCode.map(code => <li key={code.codeShare}>{code.codeShare}</li> )}</td>
     </tr>
   )
 }

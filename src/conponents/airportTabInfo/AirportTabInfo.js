@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { HashRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 import Arrivals from '../Arrivals/Arrivals';
 import Departures from '../Departures/Departures';
+import InfoMainButton from './../tabInfoMainButtons/InfoMainButtons';
 
 const downloadAirApi = async () => {
   const day = new Date().getDate();
@@ -15,18 +16,29 @@ const downloadAirApi = async () => {
 function AirportTabInfo () {
   const [ departuresData, setDeparturesData ] = useState([]);
   const [ arrivalsData, setArrivalsData ] = useState([]);
-  const [ activeButton, setActiveBUtton ] = useState('departure')
+  const [ activeButton, setActiveButton ] = useState('departure');
+  const [ currentDay, setCurrentDay] = useState(new Date().getDate());
 
   useEffect(() => {
-
     downloadAirApi()
       .then(data => {
-        setDeparturesData(data.body.departure
-          .filter(dep => new Date(dep.actual).getDate() === new Date().getDate()));
-        setArrivalsData(data.body.arrival
-          .filter(dep => new Date(dep.actual).getDate() === new Date().getDate()));
-      })
+        setDeparturesData(data.body.departure)
+        setArrivalsData(data.body.arrival)
+      });
   }, []);
+
+  const filteredFlights = (currentDay) => {
+    if (activeButton === 'departure') {
+      return departuresData.filter(dep => new Date(dep.actual).getDate() === currentDay);
+    } else {
+      return arrivalsData.filter(arriv => new Date(arriv.actual).getDate() === currentDay);
+    }
+  }
+
+  const changeToDefaultDate = (active) => {
+    setCurrentDay(new Date().getDate());
+    setActiveButton(active);
+  }
 
   if (departuresData.length === 0 || arrivalsData.length === 0) {
     return (
@@ -35,32 +47,32 @@ function AirportTabInfo () {
       </div>
     )
   } else {
-
     return (
       <>
         <div className="info-tab">
           <Router>
-            <div className="info-tab-button">
-              <Link to="/departures">
-                <button
-                  className={activeButton === 'departure' ? 'active-button' : ''}
-                  onClick={() => setActiveBUtton('departure')}
-                >
-                  DEPARTURES
-                </button>
-              </Link>
-              <Link to="/arrivals">
-                <button
-                  className={activeButton === 'arrivals' ? 'active-button' : ''}
-                  onClick={() => setActiveBUtton('arrivals')}
-                >
-                  ARRIVALS
-                </button>
-              </Link>
-            </div>
             <Switch>
-              <Route path='/departures' render={() => <Departures departureArr={departuresData} />} />
-              <Route path='/arrivals' render={() => <Arrivals arrivalArr={arrivalsData} />} />
+              <Route path='/departures' exac render={() =>
+                <Departures
+                  departureArr={filteredFlights(currentDay)}
+                  setCurrentDay={setCurrentDay}
+                  currentDay={currentDay}
+                  changeToDefaultDate={changeToDefaultDate}
+                  activeButton={activeButton}
+                />} />
+              <Route path='/arrivals' exac render={() =>
+                <Arrivals
+                  arrivalArr={filteredFlights(currentDay)}
+                  setCurrentDay={setCurrentDay}
+                  currentDay={currentDay}
+                  changeToDefaultDate={changeToDefaultDate}
+                  activeButton={activeButton}
+                />} />
+              <Route path="/" render={() =>
+              <InfoMainButton
+                changeToDefaultDate={changeToDefaultDate}
+                activeButton={activeButton}
+              />} />
             </Switch>
           </Router>
         </div>
