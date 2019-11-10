@@ -1,9 +1,11 @@
 import React from 'react';
+import AirportTabInfo from './conponents/airportTabInfo/AirportTabInfo';
 
-const App = () => (
-  <div className="App">
-    <h1>React airport</h1>
-  </div>
-);
+function App() {
+  return (
+    <AirportTabInfo />
+  );
+}
 
 export default App;
+
