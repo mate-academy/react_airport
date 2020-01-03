@@ -1,0 +1,198 @@
+body, button, table, li, a, form {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
+  list-style: none;
+}
+
+body {
+  background-color: #eeeeee;
+}
+
+.terminalA {
+  display: inline-block;
+  border: 2px solid #63c745;
+  border-radius: 50%;
+  color: #63c745;
+  text-align: center;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  line-height: 27px;
+  font-size: 22px;
+  font-weight: 700
+}
+
+.terminalD {
+  display: inline-block;
+  border: 1px solid #1eb7ee;
+  border-radius: 50%;
+  color: #1eb7ee;
+  text-align: center;
+  box-sizing: border-box;
+  width: 30px;
+  height: 30px;
+  line-height: 27px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.row {
+  height: 70px;
+  font-size: 18px;
+  box-sizing: border-box;
+}
+
+.row:hover {
+  box-shadow: 0 5px 10px rgba(0,0,0,.2);
+}
+
+.oddRow {
+  background-color: rgba(0,102,135,.1);
+}
+
+.tableAndButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+  outline: none;
+  background-color: #73d2f0;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+
+.buttons:hover {
+  background-color: #1eb7ee;
+}
+
+.button {
+  width: 50%;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-size: 24px;
+  line-height: 60px;
+  box-sizing: border-box;
+  transition: 0.5s;
+}
+
+.aName {
+  color: #ffffff;
+}
+
+.activeButton {
+  background-color: #ffffff;
+  border-top-right-radius: 50px;
+  border-top-left-radius: 50px;
+  width: 60%;
+  color: #1eb7ee;
+  transition: 0.5s;
+}
+
+.cell {
+  padding: 13px 5px;
+  font-size: 100%;
+  text-align: left;
+}
+
+.lasetCell {
+  color: transparent;
+  text-decoration: underline;
+  transition: 0.5s;
+}
+
+.lasetCell:hover {
+  color: #1eb7ee;
+}
+
+.tableHead {
+  color: #95989a;
+  font-size: 12px;
+  font-weight: 600;
+  height: 42px;
+  padding: 15px;
+  text-align: left;
+}
+
+.terminal {
+  text-align: center;
+}
+
+.search {
+  height: 80px;
+  display: flex;
+  width: 700px;
+  margin: 30px auto;
+}
+
+.searchButton {
+  height: 80px;
+  width: 200px;
+  font-size: 26px;
+  background: #1eb7ee;
+  color: #fff;
+  padding: 0 20px;
+  border-top-right-radius: 100px;
+  transition: 0.5s;
+  margin: 0;
+  line-height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.searchButton:hover {
+  border-top-right-radius: 30px;
+}
+
+.searchInput {
+  width: 100%;
+  outline: none;
+  border: none;
+}
+
+.dateContainer {
+  align-self: flex-start;
+  color: #b8b9b9;
+  padding-bottom: 5px;
+  border-bottom: 3px solid #d0d0d0;
+  transition: 0.5;
+  position: relative;
+  margin-left: 30px;
+  box-sizing: border-box;
+}
+
+.dateDayContainer {
+  display: inline-block;
+  cursor: pointer;
+  box-sizing: border-box;
+  color: #95989a;  
+}
+
+.dateDay {
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.dateText {
+  font-weight: 700;
+  width: 101px;
+  font-size: 17px;
+  box-sizing: border-box;
+}
+
+.activeDate {
+  color: #1eb7ee;
+}
