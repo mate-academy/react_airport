@@ -58,6 +58,17 @@ const App = () => {
 
       <Switch>
         <Route
+          exact
+          path="/"
+          render={() => (
+            <h3 className="homeTitle">
+              <span role="img" aria-label="finger">👆</span>
+              {''}
+              Choose list of flights
+            </h3>
+          )}
+        />
+        <Route
           path="/departures"
           render={({ location, history }) => (
             <>
