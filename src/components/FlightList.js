@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import FlightRow from './FlightRow';
 
 const FlightList = ({ departuresData, activeLink }) => (
-  <table>
-    <thead>
-      <tr>
-        <th>Terminal</th>
-        <th>Local time</th>
-        <th>Destination</th>
-        <th>Status</th>
-        <th>Airline</th>
-        <th>Flight</th>
+  <table className="table table-hover">
+    <thead className="tableTitle">
+      <tr className="tableTitle__row">
+        <th scope="col">Terminal</th>
+        <th scope="col">Local time</th>
+        <th scope="col">Destination</th>
+        <th scope="col">Status</th>
+        <th scope="col">Airline</th>
+        <th scope="col">Flight</th>
       </tr>
     </thead>
     <tbody>

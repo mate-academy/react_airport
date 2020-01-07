@@ -33,18 +33,24 @@ const App = () => {
 
   return (
     <div className="App">
-      <NavLink
-        to="/departures"
-        onClick={() => setActiveLink('departures')}
-      >
-        Departures
-      </NavLink>
-      <NavLink
-        to="/arrivals"
-        onClick={() => setActiveLink('arrivals')}
-      >
-        Arrivals
-      </NavLink>
+      <div className="globalLink__block">
+        <NavLink
+          to="/departures"
+          className="globalLink"
+          activeClassName="globalLink--active"
+          onClick={() => setActiveLink('departures')}
+        >
+          Departures
+        </NavLink>
+        <NavLink
+          to="/arrivals"
+          className="globalLink"
+          activeClassName="globalLink--active"
+          onClick={() => setActiveLink('arrivals')}
+        >
+          Arrivals
+        </NavLink>
+      </div>
 
       <Switch>
         <Route

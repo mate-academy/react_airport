@@ -21,6 +21,11 @@ const FlightRow = ({
     <td>
       {flightCode.map(air => (
         <li key={air.codeShare}>
+          <img
+            alt={air.airline.en.name}
+            src={air.airline.en.logoSmallName}
+            className="airlineLogo"
+          />
           {air.airline.en.name}
         </li>
       ))}

@@ -19,7 +19,7 @@ const statusDefinition = (status, statusTime) => {
     case 'BD':
       return 'Begin departure';
     default:
-      return '';
+      return '👀‍‍';
   }
 };
 
