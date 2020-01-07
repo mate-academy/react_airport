@@ -41,6 +41,8 @@ const App = () => {
           onClick={() => setActiveLink('departures')}
         >
           Departures
+          {' '}
+          <span role="img" aria-label="plane">🛫</span>
         </NavLink>
         <NavLink
           to="/arrivals"
@@ -49,6 +51,8 @@ const App = () => {
           onClick={() => setActiveLink('arrivals')}
         >
           Arrivals
+          {' '}
+          <span role="img" aria-label="plane">🛬</span>
         </NavLink>
       </div>
 
