@@ -1,0 +1,62 @@
+
+body {
+  padding: 50px;
+  text-align: center;
+  overflow-x: hidden;
+}
+
+li {
+  list-style-type: none;
+}
+
+@media (max-width: 899px) {
+  body {
+    padding-top: 30px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.App {
+  min-width: min-content;
+}
+
+.globalLink__block {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.globalLink {
+  font-size: 20px;
+  margin-left: 20px;
+  border: 2px solid #222;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.globalLink:first-child {
+  margin-left: 0;
+}
+
+.globalLink:hover {
+  background-color: rgba(0, 188, 140, 0.1);
+  border: 2px solid rgba(0, 188, 140, 0.8);
+  text-decoration: none;
+}
+
+.globalLink--active {
+  color: #f39c12;
+  background-color: rgba(0, 188, 140, 0.3);
+  border: 2px solid rgba(0, 188, 140, 1);
+}
+
+.btn-group {
+  display: block;
+  text-align: center;
+  margin: 20px;
+}
+
+.airlineLogo {
+  width: 50px;
+  margin-right: 10px;
+}
