@@ -1,8 +1,7 @@
 import React from 'react';
 import '../index.css';
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import TableHead from './TableHead';
-import ArrivalsDetails from './ArrivalsDetails';
 import DayChangersArrival from './dayChangersArrival';
 
 const localtime = (time) => {
@@ -51,17 +50,29 @@ const Arrival = ({
                 className={index % 2 === 0 ? 'row oddRow' : 'row'}
               >
                 <td className="cell terminal">
-                  <span className={item.term === 'A' ? 'terminalA' : 'terminalD'}>
+                  <span
+                    className={
+                      item.term === 'A'
+                        ? 'terminalA'
+                        : 'terminalD'
+                    }
+                  >
                     {item.term}
                   </span>
                 </td>
-                <td className="cell">{new Date(item.timeToStand).toLocaleTimeString('uk-UA')}</td>
+                <td className="cell">
+                  {new Date(`${item.timeToStand} UTC`).toTimeString().slice(0, 8)}
+                </td>
                 <td className="cell">{item['airportFromID.city_en']}</td>
                 <td className="cell">{status(item)}</td>
                 <td className="cell">{item.airline.en.name}</td>
                 <td className="cell">{item['carrierID.IATA'] + item.fltNo}</td>
                 <td className="cell lasetCell">
-                  <NavLink to="/arrivalsDetails" exact onClick={() => setItemForDetails([item])}>
+                  <NavLink
+                    to="/arrivalsDetails"
+                    exact
+                    onClick={() => setItemForDetails([item])}
+                  >
                     Flight details
                   </NavLink>
                 </td>

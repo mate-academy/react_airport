@@ -5,6 +5,8 @@ body, button, table, li, a, form {
   border-collapse: collapse;
   border-spacing: 0;
   list-style: none;
+  border: none;
+  outline: none;
 }
 
 body {
@@ -159,8 +161,7 @@ body {
 
 .searchInput {
   width: 100%;
-  outline: none;
-  border: none;
+  font-size: 26px;
 }
 
 .dateContainer {
@@ -178,7 +179,7 @@ body {
   display: inline-block;
   cursor: pointer;
   box-sizing: border-box;
-  color: #95989a;  
+  color: #95989a;
 }
 
 .dateDay {

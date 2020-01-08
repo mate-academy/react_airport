@@ -1,15 +1,11 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 import '../index.css';
-import { NavLink, useParams } from 'react-router-dom';
-
-
 
 function DayChangersDeparture({
-  props, activeDay, yesterday, today, tomorrow,
+  activeDay, yesterday, today, tomorrow,
 }) {
-  // const { match } = useParams();
   const date = new Date();
-  // console.log(match);
 
   return (
     <div className="dateContainer">

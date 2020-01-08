@@ -3,7 +3,9 @@ import { Button } from 'semantic-ui-react';
 import '../index.css';
 import { NavLink } from 'react-router-dom';
 
-function DeparturesDetails({ logo, number, to, terminal, planeNo, planeType, arrivalTime }) {
+function DeparturesDetails({
+  logo, number, to, terminal, planeNo, planeType, arrivalTime
+}) {
   return (
     <>
       <NavLink to="/" exact>

@@ -1,8 +1,7 @@
 import React from 'react';
 import '../index.css';
-import { NavLink, Route } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import TableHead from './TableHead';
-import Details from './DeparturesDetails';
 import DayChangersDeparture from './dayCahngersDeparture';
 
 const localtime = (time) => {
@@ -50,7 +49,13 @@ const Departure = ({
                 className={index % 2 === 0 ? 'row oddRow' : 'row'}
               >
                 <td className="cell terminal">
-                  <span className={item.term === 'A' ? 'terminalA' : 'terminalD'}>
+                  <span
+                    className={
+                      item.term === 'A'
+                        ? 'terminalA'
+                        : 'terminalD'
+                    }
+                  >
                     {item.term}
                   </span>
                 </td>
@@ -60,7 +65,11 @@ const Departure = ({
                 <td className="cell">{item.airline.en.name}</td>
                 <td className="cell">{item['carrierID.IATA'] + item.fltNo}</td>
                 <td className="cell lasetCell">
-                  <NavLink to="/departuresDetails" exact onClick={() => setItemForDetails([item])}>
+                  <NavLink
+                    to="/departuresDetails"
+                    exact
+                    onClick={() => setItemForDetails([item])}
+                  >
                     Flight details
                   </NavLink>
                 </td>

@@ -1,14 +1,12 @@
 import React from 'react';
-import '../index.css';
 import { NavLink } from 'react-router-dom';
+import '../index.css';
 
 function DayChangersArrival({
-  props, activeDay, yesterday, today, tomorrow,
+  activeDay, yesterday, today, tomorrow,
 }) {
-  // const { match } = useParams();
   const date = new Date();
 
-  // console.log(match);
   return (
     <div className="dateContainer">
       <NavLink

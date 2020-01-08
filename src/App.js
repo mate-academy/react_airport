@@ -12,8 +12,6 @@ import SearchField from './components/searchField';
 import DeparturesDetails from './components/DeparturesDetails';
 import ArrivalsDetails from './components/ArrivalsDetails';
 
-// const date = new Date();
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -23,6 +21,8 @@ class App extends React.Component {
       arrivalToShow: [],
       departureToShow: [],
       details: [],
+      arrivalToShowFromFilter: [],
+      departureToShowFromFilter: [],
     };
   }
 
@@ -33,13 +33,11 @@ class App extends React.Component {
   airlinesScadule = async() => {
     const scadule = await airlines();
 
-    // debugger;
     // console.log(scadule);
     this.setState({
       arrival: this.setRightTime(scadule.body.arrival),
       departure: this.setRightTime(scadule.body.departure),
     });
-    // console.log(this.state.departure);
   }
 
   setRightTime = (arr) => {
@@ -100,17 +98,36 @@ class App extends React.Component {
   }
 
   setItemForDetails = (item) => {
-    // debugger
     this.setState(prevState => ({
       ...prevState,
       details: item,
     }));
-    // console.log(this.state.details);
+  };
+
+  filterForCities = (e) => {
+    debugger
+
+    this.setState(prevSate => ({
+      ...prevSate,
+      arrivalToShowFromFilter: [...prevSate.arrivalToShow]
+        .filter(item => item['airportFromID.city_en'].toLowerCase().includes(e.toLowerCase())),
+      departureToShowFromFilter: [...prevSate.departureToShow]
+        .filter(item => item['airportToID.city_en'].toLowerCase().includes(e.toLowerCase())),
+    }));
+    // console.log(this.state.arrivalToShow);
+
+  };
+
+  buttonFromFilter = () => {
+    this.setState(prevSate => ({
+      ...prevSate,
+      arrivalToShow: prevSate.arrivalToShowFromFilter,
+      departureToShow: prevSate.departureToShowFromFilter,
+    }));
   }
 
   render() {
     const { departureToShow, arrivalToShow, details } = this.state;
-    // console.log(this.props)
 
     return (
       <div className="App">
@@ -125,7 +142,9 @@ class App extends React.Component {
                 terminal={item.term}
                 planeNo={item.planeNo}
                 planeType={item['planeTypeID.name']}
-                arrivalTime={new Date(item.timeToStand).toLocaleTimeString('uk-UA')}
+                arrivalTime={
+                  new Date(item.timeToStand).toLocaleTimeString('uk-UA')
+                }
               />
             </Route>
           ))}
@@ -138,13 +157,18 @@ class App extends React.Component {
                 terminal={item.term}
                 planeNo={item.planeNo}
                 planeType={item['planeTypeID.name']}
-                arrivalTime={new Date(item.timeToStand).toLocaleTimeString('uk-UA')}
+                arrivalTime={
+                  new Date(item.timeToStand).toLocaleTimeString('uk-UA')
+                }
               />
             </Route>
           ))}
 
           <Route path="/">
-            <SearchField />
+            <SearchField
+              filterForCities={this.filterForCities}
+              buttonFromFilter={this.buttonFromFilter}
+            />
 
             <div className="tableAndButtons">
               <div className="buttons">

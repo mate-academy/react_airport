@@ -1,13 +1,22 @@
 import React from 'react';
+import { Input } from 'semantic-ui-react';
 import '../index.css';
 
-function SearchField() {
+function SearchField({ filterForCities, buttonFromFilter }) {
   return (
-    <form className="search" action>
-      <input className="searchInput" />
-      <div className="searchButton">
+    <form className="search" action="">
+      <Input
+        className="searchInput"
+        placeholder="Set name of the city"
+        onChange={e => filterForCities(e.target.value)}
+      />
+      <button
+        type="button"
+        className="searchButton"
+        onClick={() => buttonFromFilter()}
+      >
         SEARCH
-      </div>
+      </button>
     </form>
   );
 }
