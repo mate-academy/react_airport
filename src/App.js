@@ -105,8 +105,6 @@ class App extends React.Component {
   };
 
   filterForCities = (e) => {
-    debugger
-
     this.setState(prevSate => ({
       ...prevSate,
       arrivalToShowFromFilter: [...prevSate.arrivalToShow]
@@ -114,8 +112,6 @@ class App extends React.Component {
       departureToShowFromFilter: [...prevSate.departureToShow]
         .filter(item => item['airportToID.city_en'].toLowerCase().includes(e.toLowerCase())),
     }));
-    // console.log(this.state.arrivalToShow);
-
   };
 
   buttonFromFilter = () => {
@@ -131,7 +127,6 @@ class App extends React.Component {
 
     return (
       <div className="App">
-        <h1>SEARCH FLIGHT</h1>
         <Switch>
           {details.map(item => (
             <Route path="/arrivalsDetails" exact>
