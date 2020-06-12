@@ -1,3 +1,5 @@
+@import "./src/assets/variables";
+
 .Hero {
   position: absolute;
   top: 0;
@@ -14,14 +16,14 @@
   left: 45vw;
   width: 10px;
   height: 10px;
-  border: solid 1px lighten(#f2711c, 8%);
+  border: solid 1px lighten($blue, 8%);
   border-radius: 1px;
   transform-origin: top left;
   transform: scale(0) rotate(0deg) translate(-50%, -50%);
   animation: cube 10.5s ease-in forwards infinite;
 
   &:nth-child(2n) {
-    border-color: darken(#f2711c, 10%);
+    border-color: darken($blue, 2%);
   }
 
   &:nth-child(2) {
