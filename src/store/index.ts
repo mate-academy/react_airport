@@ -3,8 +3,11 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import { Dispatch } from 'react';
 
-import loadingReducer, { setError, finishLoading, startLoading } from './loading';
+import loadingReducer, {
+  setError, finishLoading, startLoading, setLoaded,
+} from './loading';
 import flightsReducer, { initFlights } from './flights';
+import directionReducer from './direction';
 import { getFlights } from '../helpers/api';
 
 /**
@@ -13,6 +16,7 @@ import { getFlights } from '../helpers/api';
 const rootReducer = combineReducers({
   loading: loadingReducer,
   flights: flightsReducer,
+  direction: directionReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -22,12 +26,10 @@ export const getLoading = (state: RootState) => state.loading.loading;
 export const getLoaded = (state: RootState) => state.loading.loaded;
 export const getError = (state: RootState) => state.loading.error;
 export const getFlightsAll = (state: RootState) => state.flights;
-// export const getFlightsArrival = (state: RootState) => state.flights.arrival;
+export const getDirection = (state: RootState) => state.direction;
 
 /**
- * Thunk - is a function that should be used as a normal action creator
- *
- * dispatch(loadMessage())
+ * Thunk - is a function that should be used as a normal action creator dispatch(loadFlights())
  */
 export const loadFlights = () => {
   return async (dispatch: Dispatch<any>) => {
@@ -37,6 +39,7 @@ export const loadFlights = () => {
       const flights = await getFlights();
 
       dispatch(initFlights(flights));
+      dispatch(setLoaded());
     } catch (error) {
       dispatch(setError(error.message));
     }

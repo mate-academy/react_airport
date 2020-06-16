@@ -1,7 +1,16 @@
 .FlightsPage {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   flex-grow: 1;
   width: 100%;
   text-align: center;
+
+  &-Header.ui.header {
+    margin-top: 2rem;
+  }
+
+  &-Error.header {
+    margin-top: 0;
+  }
 }

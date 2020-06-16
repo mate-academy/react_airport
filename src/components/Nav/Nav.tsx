@@ -7,7 +7,6 @@ const Nav = () => {
   return (
     <Menu
       className="Nav NavBar"
-      stackable
       inverted
       color="blue"
     >
