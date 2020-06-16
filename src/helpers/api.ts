@@ -9,5 +9,5 @@ const today = new Date()
   .toISOString().split('T')[0]
   .split('-').reverse().join('-');
 
-export const getFlights = () => getData<IFlightsFromServer>(today)
+export const getFlights = () => getData<IFlights>(today)
   .then(({ body }: any) => body);

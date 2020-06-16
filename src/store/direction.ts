@@ -1,18 +1,18 @@
 import { Action } from 'redux';
-import { DEPARTURES, ARRIVALS } from '../constants/flightDirection';
+import { DEPARTURE, ARRIVAL } from '../constants/flightDirection';
 import { SET_DIRECTION } from '../constants/actionTypes';
 
 type DirectionAction = Action<typeof SET_DIRECTION> & {
-  direction: typeof DEPARTURES | typeof ARRIVALS;
+  direction: typeof DEPARTURE | typeof ARRIVAL;
 };
 
-export const setDirection = (direction: typeof DEPARTURES | typeof ARRIVALS): DirectionAction => ({
+export const setDirection = (direction: typeof DEPARTURE | typeof ARRIVAL): DirectionAction => ({
   type: SET_DIRECTION,
   direction,
 });
 
 const reduce = (
-  directionState = DEPARTURES,
+  directionState = DEPARTURE,
   { type, direction }: DirectionAction,
 ): string => {
   switch (type) {

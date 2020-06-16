@@ -2,17 +2,18 @@ import { Action } from 'redux';
 import { INIT_FLIGHTS } from '../constants/actionTypes';
 
 type FlightsAction = Action<typeof INIT_FLIGHTS> & {
-  body: IFlightsFromServer;
+  body: IFlights;
 };
 
-export const initFlights = (body: IFlightsFromServer): FlightsAction => ({
+export const initFlights = (body: IFlights): FlightsAction => ({
   type: INIT_FLIGHTS,
   body,
 });
 
 export type FlightsState = {
-  departure: IFlights[];
-  arrival: IFlights[];
+  [key: string]: IFlight[];
+  departure: IFlight[];
+  arrival: IFlight[];
 };
 
 const initialState: FlightsState = {

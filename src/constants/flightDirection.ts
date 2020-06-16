@@ -1,2 +1,2 @@
-export const DEPARTURES = 'DEPARTURES';
-export const ARRIVALS = 'ARRIVALS';
+export const DEPARTURE = 'departure';
+export const ARRIVAL = 'arrival';

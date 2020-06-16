@@ -1,0 +1,16 @@
+@import "./src/assets/variables";
+
+.FlightsTable {
+  &.ui.table {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  &-TableHeader {
+    .FlightsTable-TableRow {
+      .FlightsTable-HeaderCell {
+        color: $blue;
+      }
+    }
+  }
+}

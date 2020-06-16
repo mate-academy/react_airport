@@ -3,16 +3,16 @@ import cn from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
 import { getDirection } from '../../store';
 import { setDirection } from '../../store/direction';
-import { ARRIVALS, DEPARTURES } from '../../constants/flightDirection';
+import { ARRIVAL, DEPARTURE } from '../../constants/flightDirection';
 import './DirectionBtn.scss';
 
 type ButtonConfig = {
-  [key: string]: typeof DEPARTURES | typeof ARRIVALS;
+  [key: string]: typeof DEPARTURE | typeof ARRIVAL;
 };
 
 const buttonConfig: ButtonConfig[] = [
-  { name: 'DEPARTURES' },
-  { name: 'ARRIVALS' },
+  { name: 'departure' },
+  { name: 'arrival' },
 ];
 
 const DirectionBtn = () => {
@@ -22,23 +22,21 @@ const DirectionBtn = () => {
   return (
     <div className="DirectionBtn">
       {buttonConfig.map(({ name }) => (
-        name === DEPARTURES
+        name === DEPARTURE
           ? (
             <button
               className={cn({
                 'DirectionBtn-AirBtn DirectionBtn-AirBtn_departures': true,
-                'DirectionBtn-AirBtn_focus': direction === DEPARTURES,
-                'DirectionBtn-AirBtn_focusNo': direction !== DEPARTURES,
+                'DirectionBtn-AirBtn_focus': direction === DEPARTURE,
+                'DirectionBtn-AirBtn_focusNo': direction !== DEPARTURE,
               })}
               key={name}
               type="button"
-              onClick={() => dispatch(setDirection(DEPARTURES))}
+              onClick={() => dispatch(setDirection(DEPARTURE))}
             >
               <span>
                 <svg
                   className="DirectionBtn-Svg"
-                  width="40px"
-                  height="28px"
                   viewBox="0 0 40 28"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -53,24 +51,22 @@ const DirectionBtn = () => {
                   </g>
                 </svg>
               </span>
-              {name}
+              {`${name}s`}
             </button>
           ) : (
             <button
               className={cn({
                 'DirectionBtn-AirBtn DirectionBtn-AirBtn_arrivals': true,
-                'DirectionBtn-AirBtn_focus': direction === ARRIVALS,
-                'DirectionBtn-AirBtn_focusNo': direction !== ARRIVALS,
+                'DirectionBtn-AirBtn_focus': direction === ARRIVAL,
+                'DirectionBtn-AirBtn_focusNo': direction !== ARRIVAL,
               })}
               key={name}
               type="button"
-              onClick={() => dispatch(setDirection(ARRIVALS))}
+              onClick={() => dispatch(setDirection(ARRIVAL))}
             >
               <span>
                 <svg
                   className="DirectionBtn-Svg"
-                  width="40px"
-                  height="28px"
                   viewBox="0 0 40 28"
                   xmlns="http://www.w3.org/2000/svg"
                 >
@@ -85,7 +81,7 @@ const DirectionBtn = () => {
                   </g>
                 </svg>
               </span>
-              {name}
+              {`${name}s`}
             </button>
           )))}
     </div>

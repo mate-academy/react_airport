@@ -1,29 +1,25 @@
 // eslint-disable-next-line
 /// <reference types="react-scripts" />
-interface IFlightsFromServer {
-  arrival: IFlights[];
-  departure: IFlights[];
-}
 
 interface IFlights {
+  arrival: IFlight[];
+  departure: IFlight[];
+}
+
+interface IFlight {
   [key: string]: T;
   ID: number;
   actual: string;
   airline: IAirline;
-  airportToID?: ICity;
-  airportFromID?: ICity;
-  checkinNo: string;
+  'airportToID.city_en'?: string;
+  'airportFromID.city_en'?: string;
+  checkinNo?: string;
   codeShareData: Array<ICodeData>;
-  gateNo: string;
-  fltNo: string;
-  status: Status;
+  gateNo?: string;
+  status: typeof Status;
   timeArrShedule?: string;
   timeDepShedule?: string;
   term: string;
-}
-
-interface ICity {
-  city_en: string;
 }
 
 interface IAirline {
@@ -44,7 +40,23 @@ interface ICodeData {
   codeShare: string;
 }
 
-enum Status {
-  'CX',
-  'ON',
+interface IHeadersConfig {
+  terminal: string;
+  gate?: string;
+  time: string;
+  destination: string;
+  status: string;
+  airline: string;
+  flight: string;
+  details: string;
 }
+
+type Status = 'CX' | 'ON' | 'DL' | 'LN' | 'FR';
+/*
+  TODO: Status description
+  LN: 'Landed'
+  ON: 'On time'
+  CX: 'Canceled'
+  FR: 'In flight'
+  DP: 'Departed at'
+*/

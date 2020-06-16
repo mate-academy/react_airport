@@ -1,5 +1,9 @@
 @import "./src/assets/variables";
 
+body {
+  background-color: $bg;
+}
+
 .App {
   position: relative;
   display: flex;
@@ -17,6 +21,6 @@
     align-items: center;
     flex-shrink: 0;
     height: $heightFooter;
-    background-color: #eee;
+    background-color: lighten($blue, 40%);
   }
 }

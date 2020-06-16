@@ -7,8 +7,9 @@
 
   &-AirBtn {
     padding: 0;
-    font-size: 24px;
+    font-size: 22px;
     line-height: 60px;
+    text-transform: uppercase;
     width: 100%;
     border: none;
     outline: none;
@@ -17,7 +18,7 @@
 
     &_focus {
       color: $blue;
-      background-color: #eee;
+      background-color: $bg-light;
       z-index: 1;
     }
 
@@ -32,15 +33,50 @@
     }
 
     &_departures {
-      margin-right: -100px;
+      margin-right: -80px;
     }
     &_arrivals {
-      margin-left: -100px;
+      margin-left: -80px;
     }
   }
 
   &-Svg {
     margin-right: 15px;
+    width: 40px;
+    height: 28px;
     transform: translateY(5px);
   }
 }
+
+@media (max-width: 995px) {
+  .DirectionBtn {
+
+    &-AirBtn {
+      font-size: 16px;
+
+      &_departures {
+        margin-right: -50px;
+      }
+      &_arrivals {
+        margin-left: -50px;
+      }
+    }
+
+    &-Svg {
+      width: 30px;
+      height: 21px;
+    }
+  }
+}
+
+/*
+@media (max-width: 995px) {
+  .DirectionBtn {
+    flex-wrap: wrap;
+
+    &-AirBtn_arrivals {
+      margin-left: 0;
+    }
+  }
+}
+*/

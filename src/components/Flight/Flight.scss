@@ -1,0 +1,37 @@
+@import "./src/assets/variables";
+
+.FlightsTable-TableRow.Flight {
+
+  .Flight {
+    &-Details {
+      padding: 0 0.5em;
+      text-align: center;
+      text-overflow: clip !important;
+    }
+
+    &-DetailsButton.basic.button {
+      width: 100%;
+      line-height: 1.2;
+
+      &:hover {
+        color: #fff !important;
+        background-color: $blue !important;
+      }
+    }
+
+    &-DetailsIcon.icon {
+      margin-right: 12px !important;
+    }
+  }
+}
+
+@media (max-width: $mobileBreakpoint) {
+  .FlightsTable-TableRow.Flight {
+    .Flight {
+
+      &-DetailsIcon.icon {
+        margin-right: 4px !important;
+      }
+    }
+  }
+}
