@@ -1,7 +1,7 @@
 // eslint-disable-next-line
 /// <reference types="react-scripts" />
-
 interface IFlights {
+  [key: string]: T;
   arrival: IFlight[];
   departure: IFlight[];
 }
@@ -17,8 +17,9 @@ interface IFlight {
   codeShareData: Array<ICodeData>;
   gateNo?: string;
   status: typeof Status;
-  timeDepShedule?: string;
-  timeToStand?: string;
+  timeDepShedule: string;
+  timeToStand: string;
+  timeTakeofFact?: string;
   term: string;
 }
 
@@ -57,12 +58,13 @@ type DateMap = {
   tomorrow: number;
 };
 
-type Status = 'CX' | 'ON' | 'DL' | 'LN' | 'FR';
+type Status = 'ON' | 'CX' | 'LN' | 'CK' | 'FR' | 'DP';
 /*
   TODO: Status description
-  LN: 'Landed'
   ON: 'On time'
   CX: 'Canceled'
+  LN: 'Landed'
+  CK: 'Check-in'
   FR: 'In flight'
   DP: 'Departed at'
 */

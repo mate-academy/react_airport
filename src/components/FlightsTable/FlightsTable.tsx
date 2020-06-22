@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import cn from 'classnames';
 import { Table } from 'semantic-ui-react';
 import * as selectors from '../../store';
-import Flight from '../Flight';
+import FlightItem from '../FlightItem';
 import { ARRIVAL } from '../../constants/flightDirection';
 import { flightsData } from '../../helpers/flightsData';
 import './FlightsTable.scss';
@@ -43,7 +43,7 @@ const FlightsTable = () => {
   const tableHeaders = createTableHeaders(flights);
   const { currentDay } = useParams();
 
-  const visibleFlights = useMemo(() => {
+  const flightsDay = useMemo(() => {
     return flightsData(flights, currentDay);
   }, [flights, currentDay]);
 
@@ -72,8 +72,8 @@ const FlightsTable = () => {
       </Table.Header>
 
       <Table.Body className="FlightsTable-TableBody">
-        {visibleFlights.map(flight => (
-          <Flight
+        {flightsDay.map(flight => (
+          <FlightItem
             key={flight.ID}
             flight={flight}
           />

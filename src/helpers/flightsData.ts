@@ -6,7 +6,7 @@ const dateMap = {
 
 export const flightsData = (flights: IFlight[], day: keyof DateMap) => {
   return flights.filter((flight: IFlight) => {
-    const flightDate = new Date(flight.actual);
+    const flightDate = new Date(flight.timeDepShedule || flight.timeToStand);
     const lookupDate = new Date();
     const currentDayCheck = (checkMap: DateMap, checkDay: keyof DateMap) => {
       lookupDate.setDate(lookupDate.getDate() + checkMap[checkDay]);
