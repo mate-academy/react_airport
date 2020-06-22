@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Icon, Table } from 'semantic-ui-react';
 import { useSelector } from 'react-redux';
+import { Button, Icon, Table } from 'semantic-ui-react';
 import * as selectors from '../../store';
 import { DEPARTURE } from '../../constants/flightDirection';
 import './Flight.scss';
@@ -32,8 +32,6 @@ const Flight: React.FC<Props> = ({ flight: {
   // const departureTime = `
   //   ${departureDate.getHours()}:${departureDate.getMinutes().toString().padStart(2, '0')}
   // `;
-
-  console.log(localDate);
 
   return (
     <Table.Row key={ID} className="Flight FlightsTable-TableRow">

@@ -1,7 +1,8 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import cn from 'classnames';
 import { Table } from 'semantic-ui-react';
-import { useSelector } from 'react-redux';
 import * as selectors from '../../store';
 import Flight from '../Flight';
 import { ARRIVAL } from '../../constants/flightDirection';
@@ -38,10 +39,10 @@ const createTableHeaders = (flights: IFlight[]): TableHeader[] => {
 const FlightsTable = () => {
   const direction = useSelector(selectors.getDirection);
   const flights = useSelector(selectors.getFlightsAll)[direction];
-
   const tableHeaders = createTableHeaders(flights);
+  const { currentDay } = useParams();
 
-  console.log(flights)
+  console.log(currentDay);
 
   return (
     <Table

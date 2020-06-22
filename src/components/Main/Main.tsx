@@ -9,12 +9,9 @@ const Main = () => {
   return (
     <div className="Main">
       <Switch>
-        <Route
-          path="/flights/:flightsID?"
-          render={() => (
-            <FlightsPage />
-          )}
-        />
+        <Route path="/flights">
+          <FlightsPage />
+        </Route>
 
         <Route path="/" exact>
           <HomePage />

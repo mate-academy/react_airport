@@ -2,7 +2,7 @@
 - Replace `<your_account>` with your Github username in the links
 
     - [DEMO LINK](https://andreas-just.github.io/react_airport/)
-    - [PULL REQUEST](https://github.com/mate-academy/react_redux-list-of-todos/pull/116)
+    - [PULL REQUEST](https://github.com/mate-academy/react_airport/pull/32)
 
 - Follow the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline)
 
