@@ -1,6 +1,6 @@
 {
   "name": "weather_app",
-  "homepage": "",
+  "homepage": "CitiesWeatherPage",
   "version": "0.1.0",
   "keywords": [],
   "dependencies": {
