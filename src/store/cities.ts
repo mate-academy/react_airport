@@ -25,8 +25,8 @@ const citiesReducer = (state = initialState, action: SetCitiesId | AddCityId | R
 
     case ADD_CITY_ID:
       return [
-        ...state, action.cityId,
-      ];
+          ...state, action.cityId,
+        ];
 
       case REMOVE_CITY_ID:
         return state.filter(city => city !== action.cityId)

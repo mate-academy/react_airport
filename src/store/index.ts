@@ -38,7 +38,7 @@ export const loadData = (citiesId: number[]) => {
 export const loadCityWeatherData = (city: number | string) => {
   return async (dispatch: Dispatch<any>) => {
     dispatch(startLoading());
-
+ 
     try {
       const cityWeather = await fetchCityWeather<CurrentWeather>(city);
       dispatch(addCityWeather(cityWeather));

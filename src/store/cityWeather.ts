@@ -20,7 +20,9 @@ const citiesWeatherReducer = (state = initialState, action: SetCitiesWeather | A
       return action.citiesWeather;
 
     case ADD_CITY_WEATHER:
-      return [
+      return state.map(item => item.id).includes(action.cityWeather.id)
+      ? [ ...state]
+      : [
         ...state, {...action.cityWeather}
       ]
 
