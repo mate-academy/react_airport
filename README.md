@@ -1,7 +1,6 @@
 # React Weather
-- Replace `<your_account>` with your Github username in the
-  [DEMO LINK](https://Tata2222.github.io/react_airport/)
-- Follow the [React task guideline](https://github.com/mate-academy/react_task-guideline#react-tasks-guideline)
+
+[DEMO LINK](https://Tata2222.github.io/weather_app/)
 
 Тестовое задание для React dev
 Задача: Реализовать SPA, показывающее погоду в выбранных городах.
