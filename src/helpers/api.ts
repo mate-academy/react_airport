@@ -1,5 +1,5 @@
 const API_KEY = "54f353d74ed1c0a937684e3d73df4511";
-const API_URL = "http://api.openweathermap.org/data/2.5/";
+const API_URL = "https://api.openweathermap.org/data/2.5/";
 
 
 export async function fetchCityWeather<T>(cityId: number | string): Promise<T> {
@@ -14,7 +14,7 @@ export async function fetchCityWeather<T>(cityId: number | string): Promise<T> {
     return Promise.reject(new Error(response.statusText))
   }
   const cityWeather = await response.json();
-  
+
   return cityWeather;
 }
 
@@ -25,9 +25,3 @@ export async function fetcWeatherDetails(cityId: number) {
   return cityWeather;
 }
 
-
-/*api.openweathermap.org/data/2.5/weather?q=London*/
-
-/*http://openweathermap.org/img/wn/10d@2x.png*/
-
-/*api.openweathermap.org/data/2.5/forecast?id=524901*/

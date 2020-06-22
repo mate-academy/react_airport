@@ -12,7 +12,7 @@ export const setCitiesId = (citiesId: number[]): SetCitiesId => ({ type:  SET_CI
 export const addCityId = (cityId: number): AddCityId => ({ type: ADD_CITY_ID, cityId });
 export const removeCityId = (cityId: number): RemoveCityId => ({ type: REMOVE_CITY_ID, cityId })
 
-let initialState: number[] = JSON.parse(localStorage.getItem('citiesId')||'');
+let initialState: number[] = JSON.parse(localStorage.getItem('citiesId')||'{}');
 
 if (!initialState) {
   initialState =  [4140963, 5107152, 1850147, 4171563, 706483];
