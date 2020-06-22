@@ -17,8 +17,8 @@ interface IFlight {
   codeShareData: Array<ICodeData>;
   gateNo?: string;
   status: typeof Status;
-  timeArrShedule?: string;
   timeDepShedule?: string;
+  timeToStand?: string;
   term: string;
 }
 
@@ -50,6 +50,12 @@ interface IHeadersConfig {
   flight: string;
   details: string;
 }
+
+type DateMap = {
+  yesterday: number;
+  today: number;
+  tomorrow: number;
+};
 
 type Status = 'CX' | 'ON' | 'DL' | 'LN' | 'FR';
 /*

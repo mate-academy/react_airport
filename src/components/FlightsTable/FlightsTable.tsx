@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import cn from 'classnames';
@@ -6,6 +6,7 @@ import { Table } from 'semantic-ui-react';
 import * as selectors from '../../store';
 import Flight from '../Flight';
 import { ARRIVAL } from '../../constants/flightDirection';
+import { flightsData } from '../../helpers/flightsData';
 import './FlightsTable.scss';
 
 const headersConfig: IHeadersConfig = {
@@ -42,7 +43,9 @@ const FlightsTable = () => {
   const tableHeaders = createTableHeaders(flights);
   const { currentDay } = useParams();
 
-  console.log(currentDay);
+  const visibleFlights = useMemo(() => {
+    return flightsData(flights, currentDay);
+  }, [flights, currentDay]);
 
   return (
     <Table
@@ -69,7 +72,7 @@ const FlightsTable = () => {
       </Table.Header>
 
       <Table.Body className="FlightsTable-TableBody">
-        {flights.map(flight => (
+        {visibleFlights.map(flight => (
           <Flight
             key={flight.ID}
             flight={flight}

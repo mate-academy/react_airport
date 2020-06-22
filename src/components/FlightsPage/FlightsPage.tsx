@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { Route, NavLink, withRouter, useRouteMatch } from 'react-router-dom';
+import {
+  Route,
+  NavLink,
+  withRouter,
+  useHistory,
+  useRouteMatch,
+} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Header } from 'semantic-ui-react';
 import * as selectors from '../../store';
@@ -24,11 +30,18 @@ const FlightsPage = () => {
   const loading = useSelector(selectors.getLoading);
   const loaded = useSelector(selectors.getLoaded);
   const error = useSelector(selectors.getError);
+  const history = useHistory();
   const match = useRouteMatch('/flights');
 
   useEffect(() => {
     dispatch(selectors.loadFlights());
   }, [dispatch]);
+
+  useEffect(() => {
+    if (match?.isExact) {
+      history.push({ pathname: '/flights/today' });
+    }
+  }, [match, history]);
 
   return (
     <div className="FlightsPage">
