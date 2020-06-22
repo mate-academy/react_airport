@@ -1,0 +1,65 @@
+.icon {
+  color: #878889;
+}
+
+.search {
+  font-weight: 400;
+  display: flex;
+  color: rgba(0,0,0,0.87);
+  margin: 20px auto;
+
+  &__form {
+    width: 300px;
+    position: relative;
+    display: flex;
+    margin: 20px 0;
+  }
+
+  &__input {
+    width: 100%;
+    flex: 1 0 auto;
+    outline: 0;
+    text-align: left;
+    line-height: 1.2em;
+    background-color: transparent;
+    border-bottom: 2px solid rgba(0,0,0,0.6);
+    color: rgba(0,0,0,0.8);
+    transition: all 0.1s ease;
+    box-shadow: none;
+    padding: 0.7em 0;
+
+    &:hover,
+    &:focus {
+      border-color: #556c87;
+      outline-offset: -2px;
+    }
+
+    &.error::placeholder {
+      color: rgb(253, 89, 39);
+    }
+  }
+
+  .error__message {
+    position: absolute;
+    top: 40px;
+    color: rgb(253, 89, 39);
+  }
+
+  &__btn {
+    display: flex;
+    align-items: center;
+    flex: 0 0 auto;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    outline: 0;
+
+    &:active,
+    &:hover {
+      background-color: transparent;
+      .icon {
+        color: #556c87;
+      }
+    }
+  }
+}

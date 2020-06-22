@@ -1,0 +1,1 @@
+export { WeekForecast } from './WeekForecast';
