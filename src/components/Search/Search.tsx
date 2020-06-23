@@ -24,14 +24,12 @@ export const Search = () => {
 
       return;
     }
-console.log('dispatch')
     dispatch(loadCityWeatherData(newCity));
 
     setInputValue('');
   }
 
   useEffect(() => {
-    console.log( loadError.errorMessage)
     if(loadError.errorMessage.length > 0) {
       setError(true);
       setErrorMessage(loadError.errorMessage);
@@ -44,7 +42,6 @@ console.log('dispatch')
   }
 
   const handleFocus = () => {
-    console.log('handleFocus')
     setError(false);
     setErrorMessage('');
   };
