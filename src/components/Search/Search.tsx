@@ -9,7 +9,6 @@ export const Search = () => {
   const [inputValue, setInputValue] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isError, setError] = useState<boolean>(false);
- /* const [isEdit, setEdit] = useState<boolean>(false);*/
   const loadError = useSelector(getErrorMessage);
   const dispatch = useDispatch();
   const ref: any = useRef(null);
@@ -60,12 +59,6 @@ console.log('dispatch')
     setErrorMessage('');
   };
 
-  /*useEffect(() => {
-    if (isEdit) {
-      ref.current.focus();
-    }
-  }, [isEdit]);*/
-
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
 
@@ -98,9 +91,3 @@ console.log('dispatch')
   )
 }
 
-
-/*
-if (loadError.errorMessage.length) {
-  setError(true);
-  setErrorMessage(loadError.errorMessage);
-}*/
