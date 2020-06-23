@@ -6,7 +6,7 @@ import { fetchCityWeather, fetcWeatherDetails } from '../helpers/api'
 import loadingReducer, { startLoading, finishLoading, setLoaded } from './loading';
 import errorReducer, { setErrorMessage } from './error';
 import citiesReducer from './cities';
-import citiesWeatherReducer, { setCitiesWeather, addCityWeather } from './cityWeather';
+import citiesWeatherReducer, { setCitiesWeather, addCityWeather, reloadCityWeather } from './cityWeather';
 import weatherDetailsReducer, { setWeatherDetails } from './weatherDetails';
 
 export type RootState = ReturnType<typeof rootReducer>;
@@ -22,9 +22,12 @@ export const getWeatherDetails = (state: RootState) => state.weatherDetails
 export const loadData = (citiesId: number[]) => {
   return async (dispatch: Dispatch<any>) => {
     dispatch(startLoading());
+    dispatch(setErrorMessage(``));
 
     try {
-      const requests = citiesId.map(cityId => fetchCityWeather<CurrentWeather>(cityId));
+      const requests = citiesId.map(cityId =>
+        fetchCityWeather<CurrentWeather>(cityId)
+      );
       const citiesWeather = await Promise.all(requests);
       dispatch(setCitiesWeather(citiesWeather));
       dispatch(setLoaded());
@@ -38,15 +41,19 @@ export const loadData = (citiesId: number[]) => {
 export const loadCityWeatherData = (city: number | string) => {
   return async (dispatch: Dispatch<any>) => {
     dispatch(startLoading());
- 
+
+
     try {
       const cityWeather = await fetchCityWeather<CurrentWeather>(city);
-      dispatch(addCityWeather(cityWeather));
+      typeof city === 'number'
+      ? dispatch(reloadCityWeather(cityWeather))
+      : dispatch(addCityWeather(cityWeather));
       dispatch(setLoaded());
     } catch (e) {
-      dispatch(setErrorMessage(`City not found`));
+      dispatch(setErrorMessage(`City not found: ${e}`));
     }
     dispatch(finishLoading());
+    dispatch(setErrorMessage(``));
   }
 }
 

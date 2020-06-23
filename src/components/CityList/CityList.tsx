@@ -23,7 +23,7 @@ export const CityList = () => {
 
   return (
     <>
-      <Grid container spacing={6} className={classes.root} alignContent="center">
+      <Grid container spacing={6} style={{width: '100%'}} className={classes.root} alignContent="center">
         {cityWeatherList.map(cityWeather => (
           <Grid item
             xs={12} md={6}

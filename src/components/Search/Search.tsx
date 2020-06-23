@@ -9,15 +9,14 @@ export const Search = () => {
   const [inputValue, setInputValue] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isError, setError] = useState<boolean>(false);
-  const [isEdit, setEdit] = useState<boolean>(false);
+ /* const [isEdit, setEdit] = useState<boolean>(false);*/
   const loadError = useSelector(getErrorMessage);
   const dispatch = useDispatch();
   const ref: any = useRef(null);
 
+
   const addCityWeather = (e: React.FormEvent) => {
     e.preventDefault();
-    setErrorMessage('');
-    setError(false);
     const newCity = inputValue.trim();
 
     if (newCity.length < 2) {
@@ -26,41 +25,46 @@ export const Search = () => {
 
       return;
     }
-
+console.log('dispatch')
     dispatch(loadCityWeatherData(newCity));
-
-    if (loadError.errorMessage.length) {
-      setError(true);
-      setErrorMessage(loadError.errorMessage);
-    }
 
     setInputValue('');
   }
 
-  const handleInputValue = (target: string) => {
-    if(isEdit) {
-      setError(false);
-      setErrorMessage('');
+  useEffect(() => {
+    console.log( loadError.errorMessage)
+    if(loadError.errorMessage.length > 0) {
+      setError(true);
+      setErrorMessage(loadError.errorMessage);
     }
+  },[loadError.errorMessage.length])
+
+
+  const handleInputValue = (target: string) => {
     setInputValue(target);
   }
 
+  const handleFocus = () => {
+    console.log('handleFocus')
+    setError(false);
+    setErrorMessage('');
+  };
+
   const handleClickOutside = (e: MouseEvent) => {
     if (ref.current.contains(e.target)) {
-      
+
       return;
     }
 
     setError(false);
     setErrorMessage('');
-    setEdit(false);
   };
 
-  useEffect(() => {
+  /*useEffect(() => {
     if (isEdit) {
       ref.current.focus();
     }
-  }, [isEdit]);
+  }, [isEdit]);*/
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
@@ -78,9 +82,10 @@ export const Search = () => {
           placeholder='INPUT A CITY'
           onChange={({ target }) => handleInputValue(target.value)}
           className={isError? 'search__input error': 'search__input'}
-          onClick={() => setEdit(true)}
           ref={ref}
           autoComplete='off'
+
+          onFocus={handleFocus}
         />
         <span className="error__message">{errorMessage}</span>
         <button className="search__btn"
@@ -94,3 +99,8 @@ export const Search = () => {
 }
 
 
+/*
+if (loadError.errorMessage.length) {
+  setError(true);
+  setErrorMessage(loadError.errorMessage);
+}*/
