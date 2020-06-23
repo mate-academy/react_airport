@@ -1,0 +1,20 @@
+.backbtn {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  color: #556c87;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &__icon {
+    color: #556c87;
+    line-height: 16px;
+  }
+
+  &:hover {
+    .backbtn__icon {
+      color: rgba(0, 0, 0, 0.87);
+    }
+  }
+}
