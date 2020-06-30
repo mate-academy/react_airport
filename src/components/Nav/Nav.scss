@@ -1,0 +1,15 @@
+@import "./src/assets/variables";
+
+.Nav.NavBar {
+  flex-shrink: 0;
+  margin: 0;
+  height: $heightNav;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 0;
+
+  .Nav-Item > .Nav-Logo[alt="Sikorsky Airport"] {
+    width: 150px;
+    height: auto;
+  }
+}

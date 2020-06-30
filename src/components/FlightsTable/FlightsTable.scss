@@ -1,0 +1,36 @@
+@import "./src/assets/variables";
+
+.FlightsTable {
+  &.ui.table {
+    margin: 0;
+    border-radius: 0;
+  }
+
+  &-TableHeader {
+    .FlightsTable-TableRow {
+      .FlightsTable-HeaderCell {
+        color: $blue;
+        background-color: $bg-tr;
+
+        &_gate {
+          width: 70px;
+        }
+
+        &_terminal,
+        &_time,
+        &_flight {
+          width: 92px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: $largestMobileScreen) {
+  .FlightsTable {
+
+    &-TableHeader {
+      background-color: $bg-tr;
+    }
+  }
+}

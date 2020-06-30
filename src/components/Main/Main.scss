@@ -1,0 +1,15 @@
+@import "./src/assets/variables";
+
+.Main {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+  width: 100%;
+  padding: 0 3rem;
+}
+
+@media (max-width: $largestMobileScreen) {
+  .Main {
+    padding: 0 1em;
+  }
+}

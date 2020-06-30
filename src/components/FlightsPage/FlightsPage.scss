@@ -1,0 +1,69 @@
+@import "./src/assets/variables";
+
+.FlightsPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-grow: 1;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 30px;
+
+  &-Header.ui.header {
+    margin-top: 2rem;
+  }
+
+  &-Error.header {
+    margin-top: 0;
+  }
+
+  &-Tabs.ui.attached.menu {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+
+    .FlightsPage-Link {
+      flex: 1 1 auto;
+      justify-content: center;
+      padding: 22px;
+      text-transform: uppercase;
+      background-color: rgba($blue, 0.5);
+      color: #fff;
+      border-radius: 0;
+
+      &:hover {
+        background-color: $blue;
+      }
+
+      &_active {
+        background-color: $bg-light;
+        color: $blue;
+
+        &:hover {
+          background-color: $bg-light;
+        }
+      }
+
+      &:last-child:before {
+        display: none;
+      }
+
+    }
+  }
+
+  &-TabPane.ui.segment.tab {
+    border: none;
+    padding: 0;
+  }
+}
+
+@media (max-width: $largestMobileScreen) {
+  .FlightsPage {
+    &-Tabs.ui.attached.menu {
+
+      .FlightsPage-Link {
+        padding: 15px;
+      }
+    }
+  }
+}
