@@ -50,8 +50,9 @@ const FlightsTable = () => {
   return (
     <Table
       className="FlightsTable"
+      striped
+      padded
       fixed
-      celled
     >
       <Table.Header className="FlightsTable-TableHeader">
         <Table.Row className="FlightsTable-TableRow">
@@ -60,6 +61,7 @@ const FlightsTable = () => {
               : (
                 <Table.HeaderCell
                   key={code}
+                  textAlign="center"
                   className={cn({
                     'FlightsTable-HeaderCell': true,
                     [`FlightsTable-HeaderCell_${code}`]: true,

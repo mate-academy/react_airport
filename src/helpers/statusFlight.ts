@@ -10,8 +10,14 @@ export const statusFlight = (status: Status): string => {
       return 'Check-in';
     case 'FR':
       return 'In flight';
+    case 'BD':
+      return 'Boarding';
     case 'DP':
-      return 'Departed at:';
+      return 'Departed';
+    case 'DV':
+      return 'Route change';
+    case 'GC':
+      return 'Gate closed';
     default:
       return status;
   }

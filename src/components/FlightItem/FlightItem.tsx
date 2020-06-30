@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, useRouteMatch } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Button, Icon, Table } from 'semantic-ui-react';
+import cn from 'classnames';
+import { Button, Icon, Image, Table } from 'semantic-ui-react';
 import * as selectors from '../../store';
 import { statusFlight } from '../../helpers/statusFlight';
 import { DEPARTURE } from '../../constants/flightDirection';
@@ -16,7 +17,6 @@ const FlightItem: React.FC<Props> = ({ flight: {
   airline,
   'airportToID.city_en': airportTo,
   'airportFromID.city_en': airportFrom,
-  // checkinNo = '',
   codeShareData,
   gateNo = '',
   status,
@@ -35,22 +35,46 @@ const FlightItem: React.FC<Props> = ({ flight: {
     .getMinutes().toString().padStart(2, '0')}`;
 
   return (
-    <Table.Row key={ID} className="Flight FlightsTable-TableRow">
+    <Table.Row className="Flight FlightsTable-TableRow" textAlign="center">
       <Table.Cell className="Flight-Term">
-        <span className={term === 'A' ? 'Flight-Term_a' : 'Flight-Term_d'}>
+        <span className={cn({
+          'Flight-TermCircle': true,
+          [`Flight-TermCircle_${term.toLowerCase()}`]: true,
+        })}
+        >
           {term}
         </span>
       </Table.Cell>
-      {direction === DEPARTURE ? <td>{gateNo}</td> : null}
-      <Table.Cell>{localeTime}</Table.Cell>
-      <Table.Cell>{airportTo || airportFrom}</Table.Cell>
-      <Table.Cell>
+      {
+        direction === DEPARTURE
+          ? <Table.Cell className="Flight-Gate">{gateNo}</Table.Cell>
+          : null
+      }
+      <Table.Cell className="Flight-Time">{localeTime}</Table.Cell>
+      <Table.Cell className="Flight-Destination">
+        {airportTo || airportFrom}
+      </Table.Cell>
+      <Table.Cell className="Flight-Status">
         {status === 'DP'
-          ? `${statusFlight(status)} ${departureTime}`
+          ? `${statusFlight(status)} ${
+            timeTakeofFact ? `at: ${departureTime}` : ''
+          }`
           : statusFlight(status)}
       </Table.Cell>
-      <Table.Cell>{airline ? airline.en.name : null}</Table.Cell>
-      <Table.Cell>{codeShareData[0].codeShare}</Table.Cell>
+      <Table.Cell className="Flight-Airline">
+        <Image
+          className="Flight-AirlineImage"
+          src={airline.en.logoSmallName}
+          verticalAlign="middle"
+          size="mini"
+        />
+        <div className="Flight-AirlineName">
+          {airline ? airline.en.name : null}
+        </div>
+      </Table.Cell>
+      <Table.Cell className="Flight-Flight">
+        {codeShareData[0].codeShare}
+      </Table.Cell>
       <Table.Cell className="Flight-Details">
         <Button
           className="Flight-DetailsButton"

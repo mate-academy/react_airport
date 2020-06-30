@@ -10,6 +10,16 @@
     .FlightsTable-TableRow {
       .FlightsTable-HeaderCell {
         color: $blue;
+
+        &_gate {
+          width: 70px;
+        }
+
+        &_terminal,
+        &_time,
+        &_flight {
+          width: 92px;
+        }
       }
     }
   }

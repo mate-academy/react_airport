@@ -25,6 +25,7 @@
     .FlightsPage-Link {
       flex: 1 1 auto;
       justify-content: center;
+      padding: 22px;
       text-transform: uppercase;
       background-color: rgba($blue, 0.5);
       color: #fff;
@@ -54,5 +55,15 @@
     border: none;
     padding: 0;
   }
+}
 
+@media (max-width: $largestMobileScreen) {
+  .FlightsPage {
+    &-Tabs.ui.attached.menu {
+
+      .FlightsPage-Link {
+        padding: 15px;
+      }
+    }
+  }
 }

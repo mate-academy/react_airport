@@ -1,13 +1,56 @@
+@import "./src/assets/variables";
+
 .FlightDetails {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-grow: 1;
   width: 100%;
-  text-align: center;
   margin-bottom: 30px;
 
   &-Header.ui.header {
     margin-top: 2rem;
+    text-align: center;
+  }
+
+  &-Flight,
+  &-Destination {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 10px;
+    font-family: "Open Sans", sans-serif;
+
+    &Code.ui.header,
+    &Flies.ui.header {
+      margin: 0;
+      font-family: inherit;
+    }
+    &Flies.ui.header {
+      margin-left: 15px;
+      font-weight: 300;
+    }
+
+    &Header.ui.header {
+      margin: 0;
+      font-size: 70px;
+      font-family: inherit;
+      font-weight: 300;
+      line-height: 1;
+    }
+    &Image {
+      margin-left: 30px;
+    }
+  }
+
+  &-Table.ui.table {
+    margin-top: 30px;
+    background-color: rgba($bg, 0.9);
+    box-shadow: 0 0 30px 30px rgba($bg, 0.9);
+  }
+
+  &-Airline.ui.accordion {
+    margin-top: 40px;
+
+    .FlightDetails-AirlineName {
+      display: flex;
+      align-items: center;
+      font-size: 25px;
+    }
   }
 }

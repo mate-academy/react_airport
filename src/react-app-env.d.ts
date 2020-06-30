@@ -52,13 +52,22 @@ interface IHeadersConfig {
   details: string;
 }
 
+interface IHeadersDetailsConfig {
+  date: string;
+  time: string;
+  terminal: string;
+  flight: string;
+  stand?: string;
+  gate?: string;
+}
+
 type DateMap = {
   yesterday: number;
   today: number;
   tomorrow: number;
 };
 
-type Status = 'ON' | 'CX' | 'LN' | 'CK' | 'FR' | 'DP';
+type Status = 'ON' | 'CX' | 'LN' | 'CK' | 'FR' | 'BD' | 'DP' | 'DV' | 'GC';
 /*
   TODO: Status description
   ON: 'On time'
@@ -66,5 +75,8 @@ type Status = 'ON' | 'CX' | 'LN' | 'CK' | 'FR' | 'DP';
   LN: 'Landed'
   CK: 'Check-in'
   FR: 'In flight'
+  BD: 'Boarding'
   DP: 'Departed at'
+  DV: 'Route change'
+  GC: 'Gate closed'
 */

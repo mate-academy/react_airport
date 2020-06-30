@@ -46,7 +46,7 @@ const FlightsPage = () => {
         className="FlightsPage-Error"
         content={error}
         color="red"
-        as="h2"
+        size="medium"
       />
       <DirectionBtn />
       <div className="FlightsPage-Tabs ui attached menu blue">

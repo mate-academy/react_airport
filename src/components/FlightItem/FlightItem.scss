@@ -3,8 +3,38 @@
 .FlightsTable-TableRow.Flight {
 
   .Flight {
+
+    &-TermCircle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: auto;
+      width: 40px;
+      height: 40px;
+      color: $term-a;
+      font-size: 20px;
+      font-weight: 700;
+      border-radius: 50%;
+      border: 2px solid $term-a;
+
+      &_d {
+        color: $term-d;
+        border-color: $term-d;
+      }
+    }
+
+    &-Airline {
+
+      &Image {
+        margin-right: 10px;
+      }
+      &Name {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
     &-Details {
-      padding: 0 0.5em;
       text-align: center;
       text-overflow: clip !important;
     }

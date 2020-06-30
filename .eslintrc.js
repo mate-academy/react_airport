@@ -29,5 +29,10 @@ module.exports = {
       "specialLink": [ "hrefLeft", "hrefRight" ],
       "aspects": [ "preferButton" ]
     }],
+    "jsx-a11y/label-has-for": [ 2, {
+      "required": {
+        "some": [ "nesting", "id" ]
+      }
+    }],
   }
 };
