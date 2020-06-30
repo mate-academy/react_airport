@@ -1,9 +1,17 @@
 @import "./src/assets/variables";
 
 .FlightsTable-TableRow.Flight {
+  transition: box-shadow 200ms ease-out;
+
+  &:nth-child(2n) {
+    background-color: $bg-tr;
+  }
+
+  &:hover {
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  }
 
   .Flight {
-
     &-TermCircle {
       display: flex;
       justify-content: center;
@@ -55,12 +63,44 @@
   }
 }
 
-@media (max-width: $mobileBreakpoint) {
+@media (max-width: 995px) {
   .FlightsTable-TableRow.Flight {
+
     .Flight {
+      &-DetailsIcon.icon {
+        margin-right: 0 !important;
+      }
+      &-DetailsText {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: $largestMobileScreen) {
+  .FlightsTable-TableRow.Flight {
+
+    &[class*="center aligned"]:hover {
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2) !important;
+    }
+
+    .Flight {
+      &-DetailsButton.basic.button {
+        color: #fff !important;
+        background-color: $blue !important;
+
+        &:hover {
+          color: $blue !important;
+          background-color: #fff !important;
+        }
+      }
 
       &-DetailsIcon.icon {
-        margin-right: 4px !important;
+        margin-right: 15px !important;
+      }
+      &-DetailsText {
+        display: inline;
+        font-size: 15px;
       }
     }
   }

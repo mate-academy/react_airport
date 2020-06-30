@@ -87,7 +87,7 @@ const FlightItem: React.FC<Props> = ({ flight: {
           airline={airline}
         >
           <Icon className="Flight-DetailsIcon" name="plane" />
-          Details
+          <span className="Flight-DetailsText">Details</span>
         </Button>
       </Table.Cell>
     </Table.Row>

@@ -10,6 +10,7 @@
     .FlightsTable-TableRow {
       .FlightsTable-HeaderCell {
         color: $blue;
+        background-color: $bg-tr;
 
         &_gate {
           width: 70px;
@@ -21,6 +22,15 @@
           width: 92px;
         }
       }
+    }
+  }
+}
+
+@media (max-width: $largestMobileScreen) {
+  .FlightsTable {
+
+    &-TableHeader {
+      background-color: $bg-tr;
     }
   }
 }

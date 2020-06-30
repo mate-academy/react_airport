@@ -50,7 +50,6 @@ const FlightsTable = () => {
   return (
     <Table
       className="FlightsTable"
-      striped
       padded
       fixed
     >

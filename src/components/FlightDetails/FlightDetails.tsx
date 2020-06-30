@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {
   Header, Table, Image, Accordion, Message, Label,
@@ -34,6 +34,7 @@ const tableHeaders: TableHeader[] = Object.entries(headersDetailsConfig)
 const options = { day: '2-digit', month: '2-digit' };
 
 const FlightDetails = () => {
+  const history = useHistory();
   const flights = useSelector(selectors.getFlightsAll);
   const { flightsId } = useParams();
   const currentFlight: IFlight | undefined = useMemo(() => {
@@ -72,6 +73,13 @@ const FlightDetails = () => {
         size="huge"
         color="blue"
       />
+      <button
+        className="FlightDetails-BackBtn"
+        type="button"
+        onClick={() => history.goBack()}
+      >
+        Back
+      </button>
       <div className="FlightDetails-Flight">
         <Header
           className="FlightDetails-FlightCode"
@@ -99,7 +107,7 @@ const FlightDetails = () => {
       <Table
         className="FlightDetails-Table"
         collapsing
-        padded="very"
+        padded
         basic="very"
         size="large"
       >
@@ -123,7 +131,7 @@ const FlightDetails = () => {
         </Table.Header>
         <Table.Body className="FlightDetails-TableBody">
           <Table.Row
-            className="Flight FlightsTable-TableRow"
+            className="FlightDetails-TableRow"
             textAlign="center"
           >
             <Table.Cell>{visibleDate}</Table.Cell>
